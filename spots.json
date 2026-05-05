@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Lake Superior North Shore",
+        "lat": 47.75,
+        "lng": -90.20,
+        "videoId": "IW5y8KML1AU"
+    },
+    {
+        "name": "Grinnell Valley Headwaters Stream",
+        "lat": 48.46,
+        "lng": -113.40,
+        "videoId": "My2dhQWo2WQ"
+    },
+    {
+        "name": "Great Basin Glacial Valley",
+        "lat": 39.00,
+        "lng": -114.22,
+        "videoId": "A2eSVlS4-vw"
+    },
+    {
+        "name": "Sonoran Desert Sunrise",
+        "lat": 32.10,
+        "lng": -110.44,
+        "videoId": "LoO63RtYqP4"
+    }
+]
