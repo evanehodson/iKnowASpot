@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iKnowASpot</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Karla:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/maplibre-gl@4.1.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.1.0/dist/maplibre-gl.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0f0d;
+      --sage: #7a9e8e;
+      --mist: #c8d8c0;
+      --cream: #e8e4d4;
+      --glow: rgba(120, 180, 140, 0.6);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Karla', sans-serif;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--font-body);
+      overflow: hidden;
+    }
+
+    /* ── MAP VIEW ── */
+    #map-view {
+      position: fixed; inset: 0;
+      z-index: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    #map {
+      width: 100%; height: 100%;
+      filter: saturate(0.3) brightness(0.48) hue-rotate(90deg) contrast(1.1);
+    }
+
+    #map-header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 2.5rem 3rem 3rem;
+      background: linear-gradient(to bottom, rgba(10,15,13,0.9) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    #map-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      color: var(--cream);
+    }
+
+    #map-header p {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 0.35rem;
+      font-weight: 300;
+    }
+
+    #map-footer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 3rem 1.5rem;
+      background: linear-gradient(to top, rgba(10,15,13,0.75) 0%, transparent 100%);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.7;
+    }
+
+    /* ── MARKERS ── */
+    .spot-marker {
+      width: 14px; height: 14px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .spot-marker::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: var(--sage);
+      animation: pulse 3s ease-out infinite;
+    }
+
+    .spot-marker::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: var(--mist);
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 var(--glow); }
+      70%  { box-shadow: 0 0 0 12px rgba(120,180,140,0); }
+      100% { box-shadow: 0 0 0 0 rgba(120,180,140,0); }
+    }
+
+    .spot-label {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--mist);
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      text-shadow: 0 1px 10px rgba(10,15,13,0.95);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .spot-marker:hover .spot-label { opacity: 1; }
+
+    /* ── TRANSITION OVERLAY ── */
+    #transition {
+      position: fixed; inset: 0;
+      z-index: 100;
+      background: var(--ink);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.75s ease;
+    }
+
+    #transition.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── SCENE VIEW ── */
+    #scene-view {
+      position: fixed; inset: 0;
+      z-index: 2;
+      display: none;
+      background: var(--ink);
+      overflow: hidden;
+    }
+
+    #scene-view.active { display: block; }
+
+    /* YouTube player iframe — sized to fill + overflow to hide letterbox */
+    #scene-view iframe {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: max(177.78vh, 100vw);
+      height: max(100vh, 56.25vw);
+      border: none;
+      z-index: 1;
+    }
+
+    /* Vignette sits above video */
+    #scene-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center,
+        transparent 35%,
+        rgba(10,15,13,0.35) 68%,
+        rgba(10,15,13,0.78) 100%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* ── BACK BUTTON ── */
+    #btn-back {
+      position: absolute;
+      top: 2rem; left: 2rem;
+      z-index: 10;
+      width: 44px; height: 44px;
+      background: rgba(10,15,13,0.45);
+      border: 1px solid rgba(120,180,140,0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, border-color 0.25s ease, background 0.25s ease;
+      color: var(--mist);
+    }
+
+    #btn-back:hover {
+      border-color: rgba(120,180,140,0.5);
+      background: rgba(45,74,62,0.55);
+    }
+
+    #btn-back svg {
+      width: 18px; height: 18px;
+      stroke: var(--mist);
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #btn-back.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* MapLibre attribution */
+    .maplibregl-ctrl-bottom-right { opacity: 0.25; }
+    .maplibregl-ctrl-attrib {
+      background: transparent !important;
+      font-size: 0.52rem !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MAP VIEW -->
+<div id="map-view">
+  <div id="map"></div>
+  <div id="map-header">
+    <h1>iKnowASpot</h1>
+    <p>A curated atlas of natural places</p>
+  </div>
+  <div id="map-footer">Select a location to begin</div>
+</div>
+
+<!-- FADE TO BLACK -->
+<div id="transition"></div>
+
+<!-- SCENE VIEW -->
+<div id="scene-view">
+  <!-- YouTube player injected here -->
+  <div id="scene-vignette"></div>
+  <button id="btn-back" class="hidden" aria-label="Return to map">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+</div>
+
+<!-- YouTube IFrame API (required for onStateChange / wait-for-playing) -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const SPOTS = [
+  {
+    name: 'Lake Michigan Dunes',
+    lat: 43.8, lng: -86.5,
+    videoId: 'IW5y8KML1AU'
+  },
+  {
+    name: 'Lake Superior Shoreline',
+    lat: 47.6, lng: -90.8,
+    videoId: 'PLACEHOLDER_1'
+  },
+  {
+    name: 'Adirondack Morning Mist',
+    lat: 44.1, lng: -74.2,
+    videoId: 'PLACEHOLDER_2'
+  }
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let ytApiReady  = false;
+let ytPlayer    = null;
+let idleTimer   = null;
+
+const $transition = document.getElementById('transition');
+const $mapView    = document.getElementById('map-view');
+const $sceneView  = document.getElementById('scene-view');
+const $btnBack    = document.getElementById('btn-back');
+
+// ── YOUTUBE API CALLBACK ──────────────────────────────────────────────────────
+window.onYouTubeIframeAPIReady = () => { ytApiReady = true; };
+
+// ── MAP ───────────────────────────────────────────────────────────────────────
+const map = new maplibregl.Map({
+  container: 'map',
+  style: 'https://tiles.openfreemap.org/styles/liberty',
+  center: [-96, 40],
+  zoom: 3.8,
+  minZoom: 2,
+  maxZoom: 14,
+  attributionControl: false
+});
+
+map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+map.scrollZoom.disable();
+
+map.on('load', () => {
+  [
+    'road-label','road-number-shield','poi-label',
+    'airport-label','transit-label','waterway-label',
+    'natural-line-label','natural-point-label',
+    'place-suburb','place-city','place-town',
+    'place-village','place-neighbourhood',
+    'country-label','state-label'
+  ].forEach(id => {
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
+  });
+
+  SPOTS.forEach((spot, i) => {
+    const el = document.createElement('div');
+    el.className = 'spot-marker';
+
+    const label = document.createElement('span');
+    label.className = 'spot-label';
+    label.textContent = spot.name;
+    el.appendChild(label);
+
+    el.addEventListener('click', () => enterSpot(i));
+
+    new maplibregl.Marker({ element: el, anchor: 'center' })
+      .setLngLat([spot.lng, spot.lat])
+      .addTo(map);
+  });
+});
+
+// ── ENTER SPOT ────────────────────────────────────────────────────────────────
+function enterSpot(index) {
+  const spot = SPOTS[index];
+
+  // Step 1: Fade to black on click
+  fadeToBlack(() => {
+    // Step 2: Mount scene view behind the black screen
+    $mapView.style.opacity = '0';
+    $mapView.style.pointerEvents = 'none';
+    $sceneView.classList.add('active');
+
+    // Step 3: Start loading the video, but keep screen black until playing
+    const launch = () => {
+      let revealed = false;
+
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        fadeFromBlack();
+        // Show back button after fade-in completes
+        setTimeout(() => {
+          $btnBack.classList.remove('hidden');
+          resetIdleTimer();
+          document.addEventListener('mousemove', resetIdleTimer);
+        }, 800);
+      }
+
+      // Destroy previous player cleanly
+      destroyPlayer();
+
+      // Create a target div for YT to replace
+      const target = document.createElement('div');
+      target.id = 'yt-target';
+      // Insert before vignette so vignette overlays it
+      $sceneView.insertBefore(target, document.getElementById('scene-vignette'));
+
+      ytPlayer = new YT.Player('yt-target', {
+        videoId: spot.videoId,
+        playerVars: {
+          autoplay:        1,
+          mute:            0,
+          loop:            1,
+          playlist:        spot.videoId,
+          controls:        1,   // keep native YT controls for share/watch on YT
+          modestbranding:  1,
+          playsinline:     1,
+          rel:             0,
+          iv_load_policy:  3
+        },
+        events: {
+          onReady(e) { e.target.playVideo(); },
+          onStateChange(e) {
+            if (e.data === YT.PlayerState.PLAYING) reveal();
+          },
+          onError(e) {
+            console.warn('YT error:', e.data);
+            reveal(); // show something rather than black forever
+          }
+        }
+      });
+
+      // Apply sizing to the iframe once YT creates it
+      const sizeInterval = setInterval(() => {
+        // After YT replaces the div, the element with id yt-target IS the iframe
+        const el = document.getElementById('yt-target');
+        if (el && el.tagName === 'IFRAME') {
+          el.style.position  = 'absolute';
+          el.style.top       = '50%';
+          el.style.left      = '50%';
+          el.style.transform = 'translate(-50%, -50%)';
+          el.style.width     = 'max(177.78vh, 100vw)';
+          el.style.height    = 'max(100vh, 56.25vw)';
+          el.style.border    = 'none';
+          el.style.zIndex    = '1';
+          clearInterval(sizeInterval);
+        }
+      }, 30);
+
+      // Hard fallback: reveal after 5s regardless
+      setTimeout(reveal, 5000);
+    };
+
+    // Wait for YT API if it hasn't loaded yet
+    if (ytApiReady) {
+      launch();
+    } else {
+      const poll = setInterval(() => {
+        if (ytApiReady) { clearInterval(poll); launch(); }
+      }, 100);
+    }
+  });
+}
+
+// ── RETURN TO MAP ─────────────────────────────────────────────────────────────
+function returnToMap() {
+  fadeToBlack(() => {
+    destroyPlayer();
+    $sceneView.classList.remove('active');
+
+    // Hide + clean up back button
+    $btnBack.classList.add('hidden');
+    clearTimeout(idleTimer);
+    document.removeEventListener('mousemove', resetIdleTimer);
+
+    $mapView.style.opacity = '1';
+    $mapView.style.pointerEvents = 'auto';
+
+    fadeFromBlack();
+  });
+}
+
+$btnBack.addEventListener('click', returnToMap);
+
+// ── PLAYER TEARDOWN ───────────────────────────────────────────────────────────
+function destroyPlayer() {
+  if (ytPlayer) {
+    try { ytPlayer.destroy(); } catch(e) {}
+    ytPlayer = null;
+  }
+  // Remove any leftover target element
+  const old = document.getElementById('yt-target');
+  if (old) old.remove();
+}
+
+// ── FADE HELPERS ──────────────────────────────────────────────────────────────
+function fadeToBlack(cb) {
+  $transition.classList.add('visible');
+  setTimeout(cb, 800);
+}
+
+function fadeFromBlack() {
+  setTimeout(() => $transition.classList.remove('visible'), 60);
+}
+
+// ── IDLE TIMER ────────────────────────────────────────────────────────────────
+function resetIdleTimer() {
+  $btnBack.classList.remove('hidden');
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => {
+    $btnBack.classList.add('hidden');
+  }, 3500);
+}
+</script>
+</body>
+</html>
