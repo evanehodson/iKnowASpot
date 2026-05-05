@@ -36,9 +36,11 @@
 
     /* ── MARKERS ── */
     .spot-marker {
-      width: 14px; height: 14px;
+      width: 14px;
+      height: 14px;
       cursor: pointer;
-      position: relative;
+      position: absolute;
+      transform: translate(-50%, -50%);
     }
 
     .spot-marker::before {
@@ -255,6 +257,10 @@
   </button>
 </div>
 
+<div id="drone-container" style="position:absolute; bottom:-100px; opacity:0; pointer-events:none;">
+    <div id="drone-yt-target"></div>
+</div>
+
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
@@ -264,6 +270,8 @@ let ytApiReady = false;
 let ytPlayer = null;
 let idleTimer = null;
 
+const DRONE_ID = '25LHXXXDO-g';
+
 const $loading    = document.getElementById('loading');
 const $transition = document.getElementById('transition');
 const $mapView    = document.getElementById('map-view');
@@ -272,7 +280,29 @@ const $btnBack    = document.getElementById('btn-back');
 const $errorMsg   = document.getElementById('error-msg');
 
 // ── YOUTUBE API ───────────────────────────────────────────────────────────────
-window.onYouTubeIframeAPIReady = () => { ytApiReady = true; };
+window.onYouTubeIframeAPIReady = () => { 
+    ytApiReady = true; 
+    initDrone(); 
+};
+
+function initDrone() {
+    dronePlayer = new YT.Player('drone-yt-target', {
+        videoId: DRONE_ID,
+        playerVars: {
+            autoplay: 1,
+            loop: 1,
+            playlist: DRONE_ID,
+            controls: 0,
+            mute: 0
+        },
+        events: {
+            onReady: (e) => {
+                e.target.setVolume(100);
+                e.target.playVideo();
+            }
+        }
+    });
+}
 
 // ── LOAD SPOTS (PURE JSON) ───────────────────────────────────────────────────
 async function loadSpots() {
@@ -295,30 +325,25 @@ async function loadSpots() {
 // ── MAP ───────────────────────────────────────────────────────────────────────
 const map = new maplibregl.Map({
   container: 'map',
+  // Esri World Imagery - pure satellite, no labels
   style: {
     version: 8,
     sources: {
-      esri: {
-        type: "raster",
-        tiles: [
-          "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-        ],
+      'satellite': {
+        type: 'raster',
+        tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
         tileSize: 256,
-        attribution: "Esri"
+        attribution: 'Esri'
       }
     },
-    layers: [
-      {
-        id: "esri-layer",
-        type: "raster",
-        source: "esri"
-      }
-    ]
+    layers: [{
+      id: 'satellite',
+      type: 'raster',
+      source: 'satellite'
+    }]
   },
   center: [-96, 40],
   zoom: 3.8,
-  minZoom: 2,
-  maxZoom: 14,
   attributionControl: false
 });
 
@@ -326,8 +351,6 @@ map.addControl(
   new maplibregl.AttributionControl({ compact: true }),
   'bottom-right'
 );
-
-map.scrollZoom.disable();
 
 function addMarkersToMap() {
   SPOTS.forEach((spot, i) => {
@@ -347,7 +370,8 @@ function addMarkersToMap() {
   });
 }
 
-map.on('load', () => {
+// ── INIT ──────────────────────────────────────────────────────────────────────
+function hideMapLabels() {
   [
     'road-label','road-number-shield','poi-label',
     'airport-label','transit-label','waterway-label',
@@ -360,9 +384,8 @@ map.on('load', () => {
       map.setLayoutProperty(id, 'visibility', 'none');
     }
   });
-});
+}
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
 async function init() {
   try {
     SPOTS = await loadSpots();
@@ -371,13 +394,11 @@ async function init() {
       throw new Error('No spots found in spots.json');
     }
 
-    if (map.isStyleLoaded()) {
+    map.once('load', () => {
+      hideMapLabels();
       addMarkersToMap();
-    } else {
-      map.once('load', addMarkersToMap);
-    }
-
-    $loading.classList.add('hidden');
+      $loading.classList.add('hidden');
+    });
 
   } catch (err) {
     console.error(err);
@@ -392,6 +413,24 @@ async function init() {
 init();
 
 // ── ENTER SPOT ────────────────────────────────────────────────────────────────
+function crossFade(playerToFadeOut, playerToFadeIn) {
+    let volOut = 100;
+    let volIn = 0;
+    
+    const fadeInterval = setInterval(() => {
+        volOut -= 5;
+        volIn += 5;
+
+        if (playerToFadeOut) playerToFadeOut.setVolume(volOut);
+        if (playerToFadeIn) {
+            if (volIn === 5) playerToFadeIn.playVideo();
+            playerToFadeIn.setVolume(volIn);
+        }
+
+        if (volIn >= 100) clearInterval(fadeInterval);
+    }, 50); // Fades over 1 second
+}
+
 function enterSpot(index) {
   const spot = SPOTS[index];
 
@@ -406,6 +445,9 @@ function enterSpot(index) {
       function reveal() {
         if (revealed) return;
         revealed = true;
+
+        // Fade drone out, spot video in
+      crossFade(dronePlayer, ytPlayer);
 
         fadeFromBlack();
 
@@ -471,14 +513,13 @@ function enterSpot(index) {
       setTimeout(reveal, 5000);
     };
 
-    if (ytApiReady) launch();
-    else {
-      const poll = setInterval(() => {
-        if (ytApiReady) {
-          clearInterval(poll);
-          launch();
-        }
-      }, 100);
+    if (ytApiReady) {
+      launch();
+    } else {
+      window.onYouTubeIframeAPIReady = () => {
+        ytApiReady = true;
+        launch();
+      };
     }
   });
 }
@@ -486,6 +527,14 @@ function enterSpot(index) {
 // ── RETURN ───────────────────────────────────────────────────────────────────
 function returnToMap() {
   fadeToBlack(() => {
+    // Fade drone back in before destroying the spot player
+    let vol = 0;
+    const fadeIn = setInterval(() => {
+      vol += 5;
+      dronePlayer.setVolume(vol);
+      if (vol >= 100) clearInterval(fadeIn);
+    }, 50);
+    
     destroyPlayer();
 
     $sceneView.classList.remove('active');
