@@ -106,5 +106,29 @@
       "Thunder here doesn’t interrupt the forest — it belongs to it",
       "The air is saturated, warm and electric, carrying the scent of rain hitting soil before it even reaches you"
     ]
+  },
+  {
+    "name": "Lake Michigan Waves",
+    "lat": 43.344444,
+    "lng": -86.394444,
+    "videoId": "r8UF2NpM0Ic",
+    "tips": [
+      "Lake Michigan is one of the largest freshwater lakes on Earth, where wind-driven waves can reach heights comparable to ocean surf",
+      "Let the rhythm of the waves regulate your attention — you don’t need to fix it on anything else",
+      "What looks like an ocean is completely freshwater, shaped only by wind and distance, not tides",
+      "The air here carries cold spray, fine sand, and the clean metallic edge of freshwater moving in large volume"
+    ]
+  },
+  {
+    "name": "Acadia Coast",
+    "lat": 44.3386,
+    "lng": -68.2733,
+    "videoId": "JIXVMnEysTg",
+    "tips": [
+      "Acadia sits where the Atlantic meets ancient, glacier-sculpted granite coastline, with some of the oldest exposed rock on the U.S. eastern seaboard",
+      "Let the tide set the rhythm of your attention — everything here is in slow negotiation with the sea",
+      "This coastline is not fixed ground — it is rock being continuously rewritten by wind, ice, and saltwater",
+      "The air carries cold Atlantic salt, pine resin, and the sharp clarity that follows moving weather"
+    ]
   }
 ]
