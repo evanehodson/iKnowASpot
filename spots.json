@@ -1,26 +1,50 @@
 [
-    {
-        "name": "Lake Superior North Shore",
-        "lat": 47.75,
-        "lng": -90.20,
-        "videoId": "IW5y8KML1AU"
-    },
-    {
-        "name": "Grinnell Valley Headwaters Stream",
-        "lat": 48.46,
-        "lng": -113.40,
-        "videoId": "My2dhQWo2WQ"
-    },
-    {
-        "name": "Great Basin Glacial Valley",
-        "lat": 39.00,
-        "lng": -114.22,
-        "videoId": "A2eSVlS4-vw"
-    },
-    {
-        "name": "Sonoran Desert Sunrise",
-        "lat": 32.179167,
-        "lng": -110.736944,
-        "videoId": "LoO63RtYqP4"
-    }
+  {
+    "name": "Lake Superior North Shore",
+    "lat": 47.75,
+    "lng": -90.20,
+    "videoId": "IW5y8KML1AU",
+    "tips": [
+      "Lake Superior holds enough water to flood all of North and South America under a foot of water",
+      "Let the sound of the water arrive before you try to see anything",
+      "Cold lakes have a different quality of stillness than warm ones",
+      "The shoreline here has looked roughly like this for ten thousand years"
+    ]
+  },
+  {
+    "name": "Grinnell Valley Headwaters Stream",
+    "lat": 48.46,
+    "lng": -113.40,
+    "videoId": "My2dhQWo2WQ",
+    "tips": [
+      "Glacier National Park loses roughly one glacier per year. What remains is what you're hearing",
+      "Headwaters streams are among the quietest places a river will ever be",
+      "Mountain water sounds different — higher, thinner, more urgent",
+      "The valley this stream carved took longer to form than our species has existed"
+    ]
+  },
+  {
+    "name": "Great Basin Glacial Valley",
+    "lat": 39.00,
+    "lng": -114.22,
+    "videoId": "A2eSVlS4-vw",
+    "tips": [
+      "The Great Basin has no outlet to the sea. Every drop of water here eventually evaporates",
+      "Desert silence isn't the absence of sound — it's a different register entirely",
+      "This valley was carved by glaciers that melted fourteen thousand years ago",
+      "Notice how the light moves here. The air is too dry to soften it"
+    ]
+  },
+  {
+    "name": "Sonoran Desert Sunrise",
+    "lat": 32.179167,
+    "lng": -110.736944,
+    "videoId": "LoO63RtYqP4",
+    "tips": [
+      "The saguaro cactus grows its first arm only after 75 years. The ones you see are older than most living people",
+      "Dawn in the desert belongs to sound. The light comes second",
+      "No other desert on earth has quite this combination of heat, spines, and unlikely abundance",
+      "The Sonoran is one of the wettest deserts in the world — and still, nothing here wastes water"
+    ]
+  }
 ]

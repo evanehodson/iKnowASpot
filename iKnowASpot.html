@@ -6,84 +6,68 @@
   <title>iKnowASpot</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Karla:wght@300;400&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/maplibre-gl@4.1.0/dist/maplibre-gl.css" rel="stylesheet" />
-  <script src="https://unpkg.com/maplibre-gl@4.1.0/dist/maplibre-gl.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ink: #0a0f0d;
+      --ink: #050810;
       --sage: #7a9e8e;
       --mist: #c8d8c0;
       --cream: #e8e4d4;
       --glow: rgba(120, 180, 140, 0.6);
-      --font-display: 'Cormorant Garamond', Georgia, serif;
-      --font-body: 'Karla', sans-serif;
+      --font-display: 'Jost', sans-serif;
+      --font-body: 'Jost', sans-serif;
     }
 
-    /* ── MAP VIEW ── */
-    #map-view {
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--ink);
+      overflow: hidden;
+    }
+
+    /* ── CANVAS ── */
+    #globe-canvas {
       position: fixed; inset: 0;
       z-index: 1;
+      cursor: grab;
+    }
+    #globe-canvas:active { cursor: grabbing; }
+
+    /* ── HEADER ── */
+    #site-header {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      z-index: 20;
+      pointer-events: none;
       transition: opacity 0.6s ease;
     }
+    #site-header.hidden { opacity: 0; }
 
-    #map {
-      width: 100%; height: 100%;
-    }
-
-    /* ── MARKERS ── */
-    .spot-marker {
-      width: 14px;
-      height: 14px;
-      cursor: pointer;
-      position: absolute;
-      transform: translate(-50%, -50%);
-    }
-
-    .spot-marker::before {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 50%;
-      background: var(--sage);
-      animation: pulse 3s ease-out infinite;
-    }
-
-    .spot-marker::after {
-      content: '';
-      position: absolute; inset: 3px;
-      border-radius: 50%;
-      background: var(--mist);
-    }
-
-    @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 var(--glow); }
-      70%  { box-shadow: 0 0 0 12px rgba(120,180,140,0); }
-      100% { box-shadow: 0 0 0 0 rgba(120,180,140,0); }
-    }
-
-    .spot-label {
-      position: absolute;
-      left: 20px; top: 50%;
-      transform: translateY(-50%);
-      white-space: nowrap;
+    #site-title {
       font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--mist);
+      font-size: 2rem;
+      font-weight: 500;
       letter-spacing: 0.05em;
-      pointer-events: none;
-      text-shadow: 0 1px 10px rgba(10,15,13,0.95);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      color: var(--mist);
+      line-height: 1;
+      margin-bottom: 0.45rem;
     }
 
-    .spot-marker:hover .spot-label { opacity: 1; }
+    #site-tagline {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--sage);
+      line-height: 1.6;
+      max-width: 50ch;
+      opacity: 0.85;
+    }
 
-    /* ── LOADING STATE ── */
+    /* ── LOADING SCREEN ── */
     #loading {
       position: fixed; inset: 0;
       z-index: 200;
@@ -92,63 +76,90 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      gap: 1rem;
-      transition: opacity 0.6s ease;
+      gap: 1.2rem;
+      transition: opacity 1s ease;
     }
+    #loading.hidden { opacity: 0; pointer-events: none; }
 
-    #loading.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #loading p {
+    #loading-label {
       font-family: var(--font-display);
       font-size: 1rem;
-      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.18em;
       color: var(--sage);
-      letter-spacing: 0.1em;
     }
 
+    .load-dots {
+      display: flex;
+      gap: 7px;
+    }
     .load-dot {
-      display: inline-block;
-      width: 6px; height: 6px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--sage);
-      animation: blink 1.4s ease-in-out infinite;
+      animation: blink 1.6s ease-in-out infinite;
     }
-    .load-dot:nth-child(2) { animation-delay: 0.2s; }
-    .load-dot:nth-child(3) { animation-delay: 0.4s; }
+    .load-dot:nth-child(2) { animation-delay: 0.25s; }
+    .load-dot:nth-child(3) { animation-delay: 0.5s; }
 
     @keyframes blink {
-      0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+      0%, 80%, 100% { opacity: 0.15; transform: scale(0.75); }
       40%            { opacity: 1;   transform: scale(1); }
     }
 
     #error-msg {
       display: none;
       font-family: var(--font-body);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #a06060;
       letter-spacing: 0.1em;
       text-align: center;
-      max-width: 32ch;
-      line-height: 1.6;
+      max-width: 30ch;
+      line-height: 1.7;
+      margin-top: 0.5rem;
     }
 
-    /* ── TRANSITION OVERLAY ── */
+    /* ── TRAVELING OVERLAY ── */
+    #traveling {
+      position: fixed; inset: 0;
+      z-index: 90;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.6rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+    #traveling.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #traveling-tip {
+      font-family: var(--font-display);
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: var(--mist);
+      letter-spacing: 0.1em;
+      text-align: center;
+      max-width: 42ch;
+      line-height: 1.7;
+      opacity: 0.75;
+      padding: 0 2rem;
+    }
+
+    /* ── BLACK FADE TRANSITION ── */
     #transition {
       position: fixed; inset: 0;
       z-index: 100;
       background: var(--ink);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.75s ease;
+      transition: opacity 0.8s ease;
     }
-
-    #transition.visible {
-      opacity: 1;
-      pointer-events: all;
-    }
+    #transition.visible { opacity: 1; pointer-events: all; }
 
     /* ── SCENE VIEW ── */
     #scene-view {
@@ -158,80 +169,95 @@
       background: var(--ink);
       overflow: hidden;
     }
-
     #scene-view.active { display: block; }
 
-    #scene-view iframe {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: max(177.78vh, 100vw);
-      height: max(100vh, 56.25vw);
-      border: none;
-      z-index: 1;
+    #yt-blocker {
+      position: absolute; inset: 0;
+      z-index: 5;
+      background: transparent;
+      cursor: default;
     }
 
     #scene-vignette {
       position: absolute; inset: 0;
       background: radial-gradient(ellipse at center,
         transparent 35%,
-        rgba(10,15,13,0.35) 68%,
-        rgba(10,15,13,0.78) 100%);
+        rgba(5,8,16,0.3) 68%,
+        rgba(5,8,16,0.72) 100%);
       pointer-events: none;
-      z-index: 3;
+      z-index: 6;
     }
 
-    /* ── BACK BUTTON ── */
-    #btn-back {
+    /* ── SCENE HUD ── */
+    #scene-hud {
       position: absolute;
-      top: 2rem; left: 2rem;
+      inset: 0;
       z-index: 10;
-      width: 44px; height: 44px;
-      background: rgba(10,15,13,0.45);
-      border: 1px solid rgba(120,180,140,0.2);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 50%;
-      cursor: pointer;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+    #scene-hud.hidden { opacity: 0; }
+
+    .hud-btn {
+      position: absolute;
+      top: 1.8rem;
+      width: 36px; height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.5s ease, border-color 0.25s ease, background 0.25s ease;
+      cursor: pointer;
+      pointer-events: all;
+      opacity: 0.55;
+      transition: opacity 0.2s ease;
+      background: none;
+      border: none;
+      padding: 0;
     }
+    .hud-btn:hover { opacity: 1; }
 
-    #btn-back:hover {
-      border-color: rgba(120,180,140,0.5);
-      background: rgba(45,74,62,0.55);
-    }
+    #btn-back  { top: 1.8rem; left: 1.8rem; }
+    #btn-open  { top: auto; bottom: 1.8rem; right: 1.8rem; }
 
-    #btn-back svg {
-      width: 18px; height: 18px;
+    .hud-btn svg {
+      width: 20px; height: 20px;
       stroke: var(--mist);
-      stroke-width: 1.8;
+      stroke-width: 1.5;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    #btn-back.hidden {
-      opacity: 0;
+    /* ── TOOLTIP ── */
+    #spot-tooltip {
+      position: fixed;
+      z-index: 50;
       pointer-events: none;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--mist);
+      text-shadow: 0 1px 12px rgba(5,8,16,0.95);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      white-space: nowrap;
+      transform: translate(18px, -50%);
     }
-
-    /* MapLibre attribution */
-    .maplibregl-ctrl-bottom-right { opacity: 0.25; }
-    .maplibregl-ctrl-attrib {
-      background: transparent !important;
-      font-size: 0.52rem !important;
-    }
+    #spot-tooltip.visible { opacity: 1; }
   </style>
 </head>
 <body>
 
-<!-- INITIAL LOAD SCREEN -->
+<!-- Site header — top left, disappears on scene entry -->
+<div id="site-header">
+  <p id="site-title">iKnowASpot</p>
+  <p id="site-tagline">Curated natural soundscapes for<br>focus, calm, and connection to place.</p>
+</div>
+
+<!-- Initial loading -->
 <div id="loading">
-  <p>finding your spots</p>
-  <div style="display:flex;gap:6px">
+  <p id="loading-label">finding your spots</p>
+  <div class="load-dots">
     <span class="load-dot"></span>
     <span class="load-dot"></span>
     <span class="load-dot"></span>
@@ -239,352 +265,701 @@
   <p id="error-msg"></p>
 </div>
 
-<!-- MAP VIEW -->
-<div id="map-view">
-  <div id="map"></div>
-</div>
+<canvas id="globe-canvas"></canvas>
+<div id="spot-tooltip"></div>
 
-<!-- FADE TO BLACK -->
+<!-- Black crossfade overlay -->
 <div id="transition"></div>
 
-<!-- SCENE VIEW -->
+<!-- Traveling overlay -->
+<div id="traveling">
+  <p id="traveling-tip"></p>
+  <div class="load-dots">
+    <span class="load-dot"></span>
+    <span class="load-dot"></span>
+    <span class="load-dot"></span>
+  </div>
+</div>
+
+<!-- Scene view -->
 <div id="scene-view">
+  <div id="yt-blocker"></div>
   <div id="scene-vignette"></div>
-  <button id="btn-back" class="hidden" aria-label="Return to map">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <polyline points="15 18 9 12 15 6"/>
-    </svg>
-  </button>
+
+  <div id="scene-hud" class="hidden">
+    <button class="hud-btn" id="btn-back" aria-label="Return to map">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hud-btn" id="btn-open" aria-label="Watch on YouTube">
+      <svg viewBox="0 0 24 24">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+    </button>
+  </div>
 </div>
 
-<div id="drone-container" style="position:absolute; bottom:-100px; opacity:0; pointer-events:none;">
-    <div id="drone-yt-target"></div>
+<!-- Drone audio player — hidden, never destroyed -->
+<div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
+  <div id="drone-yt-target"></div>
 </div>
 
-<script src="https://www.youtube.com/iframe_api"></script>
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 
 <script>
-// ── STATE ─────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────────────────
 let SPOTS = [];
-let ytApiReady = false;
-let ytPlayer = null;
-let idleTimer = null;
+
+let ytApiReady   = false;
+let dronePlayer  = null;
+let scenePlayer  = null;
+let droneReady   = false;
+let droneVolume  = 100;
 
 const DRONE_ID = '25LHXXXDO-g';
 
-const $loading    = document.getElementById('loading');
-const $transition = document.getElementById('transition');
-const $mapView    = document.getElementById('map-view');
-const $sceneView  = document.getElementById('scene-view');
-const $btnBack    = document.getElementById('btn-back');
-const $errorMsg   = document.getElementById('error-msg');
+let currentSpotIndex = -1;
+let currentSpotUrl   = '';
+let travelRetryCount = 0;
+let travelRevealTimer = null;
+let travelTimeoutTimer = null;
+let idleTimer = null;
 
-// ── YOUTUBE API ───────────────────────────────────────────────────────────────
-window.onYouTubeIframeAPIReady = () => { 
-    ytApiReady = true; 
-    initDrone(); 
+let globeAnimId   = null;
+let globePaused   = false;
+let isDragging    = false;
+
+const $loading        = document.getElementById('loading');
+const $loadingLabel   = document.getElementById('loading-label');
+const $transition     = document.getElementById('transition');
+const $traveling      = document.getElementById('traveling');
+const $travelingTip   = document.getElementById('traveling-tip');
+const $sceneView      = document.getElementById('scene-view');
+const $sceneHud       = document.getElementById('scene-hud');
+const $btnBack        = document.getElementById('btn-back');
+const $btnOpen        = document.getElementById('btn-open');
+const $errorMsg       = document.getElementById('error-msg');
+const $tooltip        = document.getElementById('spot-tooltip');
+const $canvas         = document.getElementById('globe-canvas');
+const $siteHeader     = document.getElementById('site-header');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// YOUTUBE API
+// ─────────────────────────────────────────────────────────────────────────────
+window.onYouTubeIframeAPIReady = () => {
+  ytApiReady = true;
+  initDrone();
 };
 
 function initDrone() {
-    dronePlayer = new YT.Player('drone-yt-target', {
-        videoId: DRONE_ID,
-        playerVars: {
-            autoplay: 1,
-            loop: 1,
-            playlist: DRONE_ID,
-            controls: 0,
-            mute: 0
-        },
-        events: {
-            onReady: (e) => {
-                e.target.setVolume(100);
-                e.target.playVideo();
-            }
+  dronePlayer = new YT.Player('drone-yt-target', {
+    width: '1',
+    height: '1',
+    videoId: DRONE_ID,
+    playerVars: {
+      autoplay: 1,
+      loop: 1,
+      playlist: DRONE_ID,
+      controls: 0,
+      mute: 0,
+      playsinline: 1,
+    },
+    events: {
+      onReady(e) {
+        droneReady = true;
+        droneVolume = 100;
+        e.target.setVolume(100);
+        e.target.playVideo();
+      },
+      onStateChange(e) {
+        if (e.data === YT.PlayerState.ENDED) {
+          dronePlayer.playVideo();
         }
-    });
+      }
+    }
+  });
 }
 
-// ── LOAD SPOTS (PURE JSON) ───────────────────────────────────────────────────
+function fadeDrone(targetVol, durationMs = 1000) {
+  if (!droneReady || !dronePlayer) return;
+  const startVol = droneVolume;
+  const steps = 30;
+  const stepTime = durationMs / steps;
+  const delta = (targetVol - startVol) / steps;
+  let step = 0;
+
+  const iv = setInterval(() => {
+    step++;
+    droneVolume = Math.max(0, Math.min(100, Math.round(startVol + delta * step)));
+    try { dronePlayer.setVolume(droneVolume); } catch(e) {}
+    if (step >= steps) {
+      clearInterval(iv);
+      droneVolume = targetVol;
+      if (targetVol === 0) {
+        try { dronePlayer.pauseVideo(); } catch(e) {}
+      }
+    }
+  }, stepTime);
+}
+
+function resumeDrone() {
+  if (!droneReady || !dronePlayer) return;
+  try { dronePlayer.playVideo(); } catch(e) {}
+  fadeDrone(100, 1500);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SCENE AUDIO FADE IN
+// Fades spot video from 0 → 100 over 5 seconds as soon as it starts playing
+// ─────────────────────────────────────────────────────────────────────────────
+function fadeInSceneAudio() {
+  if (!scenePlayer) return;
+  const targetVol = 100;
+  const durationMs = 5000;
+  const steps = 50;
+  const stepTime = durationMs / steps;
+  let step = 0;
+
+  try { scenePlayer.setVolume(0); } catch(e) {}
+
+  const iv = setInterval(() => {
+    step++;
+    const vol = Math.round((targetVol / steps) * step);
+    try { scenePlayer.setVolume(Math.min(vol, targetVol)); } catch(e) {}
+    if (step >= steps) clearInterval(iv);
+  }, stepTime);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LOAD SPOTS
+// ─────────────────────────────────────────────────────────────────────────────
 async function loadSpots() {
   const res = await fetch('./spots.json');
-
-  if (!res.ok) {
-    throw new Error(`Failed to load spots.json: ${res.status}`);
-  }
-
+  if (!res.ok) throw new Error(`spots.json: ${res.status}`);
   const data = await res.json();
-
   return data.map(s => ({
-    name: s.name || 'Unnamed Spot',
-    lat: parseFloat(s.lat),
-    lng: parseFloat(s.lng),
-    videoId: s.videoId
+    name:    s.name    || 'Unnamed Spot',
+    lat:     parseFloat(s.lat),
+    lng:     parseFloat(s.lng),
+    videoId: s.videoId || '',
+    url:     `https://www.youtube.com/watch?v=${s.videoId}`,
+    tips:    Array.isArray(s.tips) ? s.tips : []
   }));
 }
 
-// ── MAP ───────────────────────────────────────────────────────────────────────
-const map = new maplibregl.Map({
-  container: 'map',
-  // Esri World Imagery - pure satellite, no labels
-  style: {
-    version: 8,
-    sources: {
-      'satellite': {
-        type: 'raster',
-        tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
-        tileSize: 256,
-        attribution: 'Esri'
-      }
-    },
-    layers: [{
-      id: 'satellite',
-      type: 'raster',
-      source: 'satellite'
-    }]
-  },
-  center: [-96, 40],
-  zoom: 3.8,
-  attributionControl: false
-});
+// ─────────────────────────────────────────────────────────────────────────────
+// THREE.JS GLOBE
+// ─────────────────────────────────────────────────────────────────────────────
+const RADIUS = 1.0;
+let scene, camera, renderer, globe, atmosphere;
+let spotMeshes = [];
+let rotationY  = 0;
+let rotationX  = 0;
+let cameraZ    = 2.8;
+const CAM_MIN  = 1.6;
+const CAM_MAX  = 4.5;
+let dragStartX = 0, dragStartY = 0;
+let dragStartRotY = 0, dragStartRotX = 0;
+let hoveredSpot = null;
+const AUTO_ROTATE = 0.0008;
 
-map.addControl(
-  new maplibregl.AttributionControl({ compact: true }),
-  'bottom-right'
-);
+function latLngToVec3(lat, lng, r) {
+  const phi   = (90 - lat) * (Math.PI / 180);
+  const theta = (lng + 180) * (Math.PI / 180);
+  return new THREE.Vector3(
+    -r * Math.sin(phi) * Math.cos(theta),
+     r * Math.cos(phi),
+     r * Math.sin(phi) * Math.sin(theta)
+  );
+}
 
-function addMarkersToMap() {
+function initThree() {
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+  camera.position.set(0, 0, 2.8);
+
+  renderer = new THREE.WebGLRenderer({ canvas: $canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  // Stars
+  const starGeo = new THREE.BufferGeometry();
+  const starCount = 2800;
+  const starPos = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 80;
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.06, sizeAttenuation: true })));
+
+  // Globe
+  const loader = new THREE.TextureLoader();
+  const earthTex = loader.load(
+    'https://www.shadedrelief.com/natural3/ne3_lr.jpg',
+    undefined, undefined,
+    () => {
+      globe.material.map = new THREE.TextureLoader().load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
+      globe.material.needsUpdate = true;
+    }
+  );
+  globe = new THREE.Mesh(
+    new THREE.SphereGeometry(RADIUS, 64, 64),
+    new THREE.MeshPhongMaterial({ map: earthTex, specular: new THREE.Color(0x111122), shininess: 8 })
+  );
+  scene.add(globe);
+
+  // Atmosphere outer
+  atmosphere = new THREE.Mesh(
+    new THREE.SphereGeometry(RADIUS * 1.12, 64, 64),
+    new THREE.ShaderMaterial({
+      vertexShader: `varying vec3 vNormal; void main(){ vNormal=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+      fragmentShader: `varying vec3 vNormal; void main(){ float i=pow(0.65-dot(vNormal,vec3(0,0,1)),3.0); gl_FragColor=vec4(0.15,0.45,1.0,1.0)*i*1.6; }`,
+      blending: THREE.AdditiveBlending,
+      side: THREE.BackSide,
+      transparent: true,
+      depthWrite: false,
+    })
+  );
+  scene.add(atmosphere);
+
+  // Atmosphere rim
+  scene.add(new THREE.Mesh(
+    new THREE.SphereGeometry(RADIUS * 1.04, 64, 64),
+    new THREE.ShaderMaterial({
+      vertexShader: `varying vec3 vNormal; void main(){ vNormal=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+      fragmentShader: `varying vec3 vNormal; void main(){ float i=pow(0.72-dot(vNormal,vec3(0,0,1)),4.5); gl_FragColor=vec4(0.2,0.55,1.0,0.5)*i; }`,
+      blending: THREE.AdditiveBlending,
+      side: THREE.BackSide,
+      transparent: true,
+      depthWrite: false,
+    })
+  ));
+
+  // Lighting
+  scene.add(new THREE.AmbientLight(0x112244, 0.6));
+  const sun = new THREE.DirectionalLight(0xfff5e0, 2.2);
+  sun.position.set(5, 2, 3);
+  scene.add(sun);
+  const fill = new THREE.DirectionalLight(0x1a3060, 0.3);
+  fill.position.set(-5, -1, -2);
+  scene.add(fill);
+
+  // Night shadow overlay
+  const shadowMat = new THREE.ShaderMaterial({
+    uniforms: { sunDir: { value: new THREE.Vector3(5, 2, 3).normalize() } },
+    vertexShader: `varying vec3 vWorldNormal; void main(){ vWorldNormal=normalize((modelMatrix*vec4(normal,0.0)).xyz); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+    fragmentShader: `uniform vec3 sunDir; varying vec3 vWorldNormal; void main(){ float ndotl=dot(vWorldNormal,sunDir); float dark=smoothstep(0.1,-0.25,ndotl); gl_FragColor=vec4(0.01,0.02,0.05,dark*0.72); }`,
+    transparent: true, depthWrite: false, side: THREE.FrontSide,
+  });
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(RADIUS + 0.002, 64, 64), shadowMat));
+
+  addSpotMarkers();
+  setupInteraction();
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+  renderLoop();
+}
+
+function addSpotMarkers() {
+  spotMeshes.forEach(s => { globe.remove(s.mesh); globe.remove(s.haloMesh); });
+  spotMeshes = [];
+
   SPOTS.forEach((spot, i) => {
-    const el = document.createElement('div');
-    el.className = 'spot-marker';
+    const pos = latLngToVec3(spot.lat, spot.lng, RADIUS);
 
-    const label = document.createElement('span');
-    label.className = 'spot-label';
-    label.textContent = spot.name;
-    el.appendChild(label);
+    const dot = new THREE.Mesh(
+      new THREE.SphereGeometry(0.012, 12, 12),
+      new THREE.MeshBasicMaterial({ color: 0x90e8b0 })
+    );
+    dot.position.copy(pos);
+    globe.add(dot);
 
-    el.addEventListener('click', () => enterSpot(i));
+    const halo = new THREE.Mesh(
+      new THREE.SphereGeometry(0.022, 16, 16),
+      new THREE.MeshBasicMaterial({ color: 0x78c89a, transparent: true, opacity: 0.35, depthWrite: false })
+    );
+    halo.position.copy(pos);
+    globe.add(halo);
 
-    new maplibregl.Marker({ element: el, anchor: 'center' })
-      .setLngLat([spot.lng, spot.lat])
-      .addTo(map);
+    spotMeshes.push({ mesh: dot, haloMesh: halo, spot, index: i });
   });
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-function hideMapLabels() {
-  [
-    'road-label','road-number-shield','poi-label',
-    'airport-label','transit-label','waterway-label',
-    'natural-line-label','natural-point-label',
-    'place-suburb','place-city','place-town',
-    'place-village','place-neighbourhood',
-    'country-label','state-label'
-  ].forEach(id => {
-    if (map.getLayer(id)) {
-      map.setLayoutProperty(id, 'visibility', 'none');
+// ─────────────────────────────────────────────────────────────────────────────
+// INTERACTION
+// ─────────────────────────────────────────────────────────────────────────────
+const raycaster = new THREE.Raycaster();
+
+function hitTestSpots(clientX, clientY) {
+  const ndc = new THREE.Vector2(
+    (clientX / window.innerWidth) * 2 - 1,
+    -(clientY / window.innerHeight) * 2 + 1
+  );
+  raycaster.setFromCamera(ndc, camera);
+  const hits = raycaster.intersectObjects(spotMeshes.map(s => s.mesh));
+  if (!hits.length) return null;
+  return spotMeshes.find(s => s.mesh === hits[0].object) || null;
+}
+
+function setupInteraction() {
+  $canvas.addEventListener('mousedown', e => {
+    isDragging = false;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragStartRotY = rotationY;
+    dragStartRotX = rotationX;
+    $canvas.style.cursor = 'grabbing';
+  });
+
+  window.addEventListener('mousemove', e => {
+    const dx = e.clientX - dragStartX;
+    const dy = e.clientY - dragStartY;
+
+    if (e.buttons === 1 && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
+      isDragging = true;
+      rotationY = dragStartRotY + dx * 0.005;
+      rotationX = Math.max(-0.6, Math.min(0.6, dragStartRotX + dy * 0.005));
     }
+
+    const hit = hitTestSpots(e.clientX, e.clientY);
+    if (hit) {
+      $canvas.style.cursor = 'pointer';
+      hoveredSpot = hit;
+      $tooltip.textContent = hit.spot.name;
+      $tooltip.style.left = e.clientX + 'px';
+      $tooltip.style.top  = e.clientY + 'px';
+      $tooltip.classList.add('visible');
+    } else {
+      if (!isDragging) $canvas.style.cursor = 'grab';
+      hoveredSpot = null;
+      $tooltip.classList.remove('visible');
+    }
+  });
+
+  window.addEventListener('mouseup', () => {
+    $canvas.style.cursor = hoveredSpot ? 'pointer' : 'grab';
+  });
+
+  $canvas.addEventListener('click', e => {
+    if (isDragging) { isDragging = false; return; }
+    const hit = hitTestSpots(e.clientX, e.clientY);
+    if (hit) enterSpot(hit.index);
+    isDragging = false;
+  });
+
+  $canvas.addEventListener('wheel', e => {
+    e.preventDefault();
+    const delta = e.deltaY * 0.002;
+    cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, cameraZ + delta));
+  }, { passive: false });
+
+  let lastPinchDist = null;
+  $canvas.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) lastPinchDist = null;
+  }, { passive: true });
+  $canvas.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (lastPinchDist !== null) {
+        const delta = (lastPinchDist - dist) * 0.008;
+        cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, cameraZ + delta));
+      }
+      lastPinchDist = dist;
+    }
+  }, { passive: true });
+  $canvas.addEventListener('touchend', () => { lastPinchDist = null; }, { passive: true });
+
+  let touchStartX = 0, touchStartY = 0;
+  $canvas.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    dragStartRotY = rotationY;
+    dragStartRotX = rotationX;
+    isDragging = false;
+  }, { passive: true });
+
+  $canvas.addEventListener('touchmove', e => {
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+      isDragging = true;
+      rotationY = dragStartRotY + dx * 0.005;
+      rotationX = Math.max(-0.6, Math.min(0.6, dragStartRotX + dy * 0.005));
+    }
+  }, { passive: true });
+
+  $canvas.addEventListener('touchend', e => {
+    if (!isDragging) {
+      const t = e.changedTouches[0];
+      const hit = hitTestSpots(t.clientX, t.clientY);
+      if (hit) enterSpot(hit.index);
+    }
+    isDragging = false;
   });
 }
 
-async function init() {
-  try {
-    SPOTS = await loadSpots();
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDER LOOP
+// ─────────────────────────────────────────────────────────────────────────────
+let lastTs = 0;
 
-    if (!SPOTS.length) {
-      throw new Error('No spots found in spots.json');
-    }
+function renderLoop(ts = 0) {
+  globeAnimId = requestAnimationFrame(renderLoop);
+  if (globePaused) return;
 
-    map.once('load', () => {
-      hideMapLabels();
-      addMarkersToMap();
-      $loading.classList.add('hidden');
+  lastTs = ts;
+  camera.position.z += (cameraZ - camera.position.z) * 0.08;
+
+  if (!isDragging) rotationY += AUTO_ROTATE;
+
+  globe.rotation.y = rotationY;
+  globe.rotation.x = rotationX;
+  atmosphere.rotation.x = rotationX;
+
+  const t = ts / 1000;
+  spotMeshes.forEach(s => {
+    const isHovered = s === hoveredSpot;
+    const pulse = 1 + 0.18 * Math.sin(t * 2.5 + s.index * 1.3);
+    s.haloMesh.scale.setScalar(isHovered ? 2.2 : pulse);
+    s.haloMesh.material.opacity = isHovered ? 0.7 : 0.28 + 0.1 * Math.sin(t * 2.5 + s.index * 1.3);
+  });
+
+  renderer.render(scene, camera);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ENTER SPOT
+// ─────────────────────────────────────────────────────────────────────────────
+function enterSpot(index, isRetry = false) {
+  const spot = SPOTS[index];
+  currentSpotIndex = index;
+  currentSpotUrl = spot.url;
+
+  if (!isRetry) travelRetryCount = 0;
+
+  $tooltip.classList.remove('visible');
+
+  // Hide header
+  $siteHeader.classList.add('hidden');
+
+  const s = spotMeshes[index];
+  if (s) { s.haloMesh.scale.setScalar(3.5); s.haloMesh.material.opacity = 1; }
+
+  fadeDrone(0, 1200);
+
+  setTimeout(() => {
+    fadeToBlack(() => {
+      globePaused = true;
+      $sceneView.classList.add('active');
+
+      const tips = spot.tips || [];
+      $travelingTip.textContent = tips.length
+        ? tips[Math.floor(Math.random() * tips.length)]
+        : spot.name;
+
+      $traveling.classList.add('visible');
+      fadeFromBlack();
+      launchSpotVideo(spot, isRetry);
     });
+  }, 350);
+}
 
-  } catch (err) {
-    console.error(err);
+function launchSpotVideo(spot, isRetry) {
+  destroyScenePlayer();
 
-    $errorMsg.style.display = 'block';
-    $errorMsg.textContent = `Could not load spots.\n${err.message}`;
+  const target = document.createElement('div');
+  target.id = 'yt-target';
+  $sceneView.insertBefore(target, document.getElementById('yt-blocker'));
 
-    document.querySelector('#loading div').style.display = 'none';
+  let revealed = false;
+  let audioFadeStarted = false;
+
+  clearTimeout(travelTimeoutTimer);
+  travelTimeoutTimer = setTimeout(() => {
+    if (!revealed) handleTravelTimeout(spot);
+  }, 5000);
+
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    clearTimeout(travelTimeoutTimer);
+
+    setTimeout(() => {
+      fadeToBlack(() => {
+        $traveling.classList.remove('visible');
+        fadeFromBlack();
+        setTimeout(() => {
+          $sceneHud.classList.remove('hidden');
+          resetIdleTimer();
+          document.addEventListener('mousemove', onSceneMouseMove);
+          document.addEventListener('touchstart', onSceneTouchStart);
+        }, 600);
+      });
+    }, 3000);
+  }
+
+  scenePlayer = new YT.Player('yt-target', {
+    videoId: spot.videoId,
+    playerVars: {
+      autoplay:        1,
+      mute:            0,
+      loop:            1,
+      playlist:        spot.videoId,
+      controls:        0,
+      disablekb:       1,
+      modestbranding:  1,
+      playsinline:     1,
+      rel:             0,
+      iv_load_policy:  3,
+      fs:              0,
+      cc_load_policy:  0,
+    },
+    events: {
+      onReady(e) { e.target.playVideo(); },
+      onStateChange(e) {
+        if (e.data === YT.PlayerState.PLAYING) {
+          // Start audio fade immediately on first PLAYING event
+          if (!audioFadeStarted) {
+            audioFadeStarted = true;
+            fadeInSceneAudio();
+          }
+          reveal();
+        }
+        if (e.data === YT.PlayerState.ENDED) scenePlayer && scenePlayer.playVideo();
+      },
+      onError() {
+        clearTimeout(travelTimeoutTimer);
+        handleTravelTimeout(spot);
+      }
+    }
+  });
+
+  const sizeIv = setInterval(() => {
+    const el = document.getElementById('yt-target');
+    if (el && el.tagName === 'IFRAME') {
+      el.style.cssText = `
+        position:absolute;top:50%;left:50%;
+        transform:translate(-50%,-50%);
+        width:max(177.78vh,100vw);
+        height:max(100vh,56.25vw);
+        border:none;z-index:1;
+        pointer-events:none;
+        opacity:0;
+        transition:opacity 1.2s ease;
+      `;
+      setTimeout(() => {
+        const iframe = document.getElementById('yt-target');
+        if (iframe) iframe.style.opacity = '1';
+      }, 100);
+      clearInterval(sizeIv);
+    }
+  }, 30);
+}
+
+function handleTravelTimeout(spot) {
+  if (travelRetryCount === 0) {
+    travelRetryCount = 1;
+    console.log('Video load timeout — retrying…');
+    destroyScenePlayer();
+    launchSpotVideo(spot, true);
+  } else {
+    console.log('Video load failed after retry — returning to globe.');
+    returnToGlobe();
   }
 }
 
-init();
-
-// ── ENTER SPOT ────────────────────────────────────────────────────────────────
-function crossFade(playerToFadeOut, playerToFadeIn) {
-    let volOut = 100;
-    let volIn = 0;
-    
-    const fadeInterval = setInterval(() => {
-        volOut -= 5;
-        volIn += 5;
-
-        if (playerToFadeOut) playerToFadeOut.setVolume(volOut);
-        if (playerToFadeIn) {
-            if (volIn === 5) playerToFadeIn.playVideo();
-            playerToFadeIn.setVolume(volIn);
-        }
-
-        if (volIn >= 100) clearInterval(fadeInterval);
-    }, 50); // Fades over 1 second
-}
-
-function enterSpot(index) {
-  const spot = SPOTS[index];
+// ─────────────────────────────────────────────────────────────────────────────
+// RETURN TO GLOBE
+// ─────────────────────────────────────────────────────────────────────────────
+function returnToGlobe() {
+  clearTimeout(travelTimeoutTimer);
 
   fadeToBlack(() => {
-    $mapView.style.opacity = '0';
-    $mapView.style.pointerEvents = 'none';
-    $sceneView.classList.add('active');
-
-    const launch = () => {
-      let revealed = false;
-
-      function reveal() {
-        if (revealed) return;
-        revealed = true;
-
-        // Fade drone out, spot video in
-      crossFade(dronePlayer, ytPlayer);
-
-        fadeFromBlack();
-
-        setTimeout(() => {
-          $btnBack.classList.remove('hidden');
-          resetIdleTimer();
-          document.addEventListener('mousemove', resetIdleTimer);
-        }, 800);
-      }
-
-      destroyPlayer();
-
-      const target = document.createElement('div');
-      target.id = 'yt-target';
-      $sceneView.insertBefore(
-        target,
-        document.getElementById('scene-vignette')
-      );
-
-      ytPlayer = new YT.Player('yt-target', {
-        videoId: spot.videoId,
-        playerVars: {
-          autoplay: 1,
-          mute: 0,
-          loop: 1,
-          playlist: spot.videoId,
-          controls: 1,
-          modestbranding: 1,
-          playsinline: 1,
-          rel: 0,
-          iv_load_policy: 3
-        },
-        events: {
-          onReady(e) {
-            e.target.playVideo();
-          },
-          onStateChange(e) {
-            if (e.data === YT.PlayerState.PLAYING) reveal();
-          },
-          onError() {
-            reveal();
-          }
-        }
-      });
-
-      const sizeInterval = setInterval(() => {
-        const el = document.getElementById('yt-target');
-        if (el && el.tagName === 'IFRAME') {
-          el.style.cssText = `
-            position:absolute;
-            top:50%;
-            left:50%;
-            transform:translate(-50%,-50%);
-            width:max(177.78vh,100vw);
-            height:max(100vh,56.25vw);
-            border:none;
-            z-index:1;
-          `;
-          clearInterval(sizeInterval);
-        }
-      }, 30);
-
-      setTimeout(reveal, 5000);
-    };
-
-    if (ytApiReady) {
-      launch();
-    } else {
-      window.onYouTubeIframeAPIReady = () => {
-        ytApiReady = true;
-        launch();
-      };
-    }
-  });
-}
-
-// ── RETURN ───────────────────────────────────────────────────────────────────
-function returnToMap() {
-  fadeToBlack(() => {
-    // Fade drone back in before destroying the spot player
-    let vol = 0;
-    const fadeIn = setInterval(() => {
-      vol += 5;
-      dronePlayer.setVolume(vol);
-      if (vol >= 100) clearInterval(fadeIn);
-    }, 50);
-    
-    destroyPlayer();
-
+    destroyScenePlayer();
     $sceneView.classList.remove('active');
-
-    $btnBack.classList.add('hidden');
+    $sceneHud.classList.add('hidden');
+    $traveling.classList.remove('visible');
     clearTimeout(idleTimer);
-    document.removeEventListener('mousemove', resetIdleTimer);
+    document.removeEventListener('mousemove', onSceneMouseMove);
+    document.removeEventListener('touchstart', onSceneTouchStart);
 
-    $mapView.style.opacity = '1';
-    $mapView.style.pointerEvents = 'auto';
+    globePaused = false;
+    lastTs = performance.now();
 
+    // Restore header
+    $siteHeader.classList.remove('hidden');
+
+    resumeDrone();
     fadeFromBlack();
   });
 }
 
-$btnBack.addEventListener('click', returnToMap);
+$btnBack.addEventListener('click', returnToGlobe);
+$btnOpen.addEventListener('click', () => {
+  if (currentSpotUrl) window.open(currentSpotUrl, '_blank', 'noopener');
+});
 
-// ── PLAYER CLEANUP ────────────────────────────────────────────────────────────
-function destroyPlayer() {
-  if (ytPlayer) {
-    try { ytPlayer.destroy(); } catch(e) {}
-    ytPlayer = null;
+// ─────────────────────────────────────────────────────────────────────────────
+// IDLE HUD
+// ─────────────────────────────────────────────────────────────────────────────
+function resetIdleTimer() {
+  $sceneHud.classList.remove('hidden');
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => $sceneHud.classList.add('hidden'), 3000);
+}
+
+function onSceneMouseMove() { resetIdleTimer(); }
+function onSceneTouchStart() { resetIdleTimer(); }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+function destroyScenePlayer() {
+  if (scenePlayer) {
+    try { scenePlayer.destroy(); } catch(e) {}
+    scenePlayer = null;
   }
-
   const old = document.getElementById('yt-target');
   if (old) old.remove();
 }
 
-// ── TRANSITIONS ───────────────────────────────────────────────────────────────
 function fadeToBlack(cb) {
   $transition.classList.add('visible');
-  setTimeout(cb, 800);
+  setTimeout(cb, 850);
 }
 
 function fadeFromBlack() {
-  setTimeout(() => {
-    $transition.classList.remove('visible');
-  }, 60);
+  setTimeout(() => $transition.classList.remove('visible'), 60);
 }
 
-// ── IDLE UI ───────────────────────────────────────────────────────────────────
-function resetIdleTimer() {
-  $btnBack.classList.remove('hidden');
-
-  clearTimeout(idleTimer);
-
-  idleTimer = setTimeout(() => {
-    $btnBack.classList.add('hidden');
-  }, 3500);
+// ─────────────────────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    SPOTS = await loadSpots();
+    if (!SPOTS.length) throw new Error('No spots in spots.json');
+    initThree();
+    $loading.classList.add('hidden');
+  } catch (err) {
+    console.error(err);
+    $loadingLabel.textContent = 'something went wrong';
+    $errorMsg.style.display = 'block';
+    $errorMsg.textContent = err.message;
+    document.querySelector('#loading .load-dots').style.display = 'none';
+  }
 }
+
+init();
 </script>
+
+<script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
