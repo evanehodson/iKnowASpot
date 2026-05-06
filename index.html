@@ -516,12 +516,12 @@ let spotMeshes = [];
 let rotationY  = 0;
 let rotationX  = 0;
 let cameraZ    = 2.8;
-const CAM_MIN  = 1.6;
+const CAM_MIN  = 2;
 const CAM_MAX  = 4.5;
 let dragStartX = 0, dragStartY = 0;
 let dragStartRotY = 0, dragStartRotX = 0;
 let hoveredSpot = null;
-const AUTO_ROTATE = 0.0002;
+const AUTO_ROTATE = 0.0001;
 
 function latLngToVec3(lat, lng, r) {
   const phi   = (90 - lat) * (Math.PI / 180);
