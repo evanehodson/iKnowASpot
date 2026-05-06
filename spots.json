@@ -130,5 +130,28 @@
       "This coastline is not fixed ground — it is rock being continuously rewritten by wind, ice, and saltwater",
       "The air carries cold Atlantic salt, pine resin, and the sharp clarity that follows moving weather"
     ]
+  },
+  {
+    "name": "Adirondack Lakeside Fishing",
+    "lat": 44.326111, 
+    "lng": -74.130833,
+    "videoId": "dZzpRymFlsA",
+    "tips": [
+      "The Adirondack lakes are part of an ancient mountain range shaped by glaciers, where many waters are cold, deep, and low in nutrients",
+      "Let your attention slow to the pace of the water — fishing here is as much about waiting as it is about noticing",
+      "The air carries pine resin, cold freshwater, and the faint metallic stillness that comes from deep, shaded lakes"
+    ]
+  },
+  {
+    "name": "Coastal Redwood Rainforest",
+    "lat": 41.2132,
+    "lng": -124.0046,
+    "videoId": "g4S9w3ydS0E",
+    "tips": [
+      "Coastal redwoods are the tallest trees on Earth, sustained by frequent fog that supplies much of their water intake",
+      "Let your attention move upward slowly — these trees are measured in vertical time, not horizontal distance",
+      "Sound doesn’t travel far in this forest; it gets absorbed before it ever becomes distant",
+      "The air is cool, damp, and layered with the scent of salt fog, decaying wood, and living green density"
+    ]
   }
 ]
