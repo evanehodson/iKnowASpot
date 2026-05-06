@@ -153,5 +153,101 @@
       "Sound doesn’t travel far in this forest; it gets absorbed before it ever becomes distant",
       "The air is cool, damp, and layered with the scent of salt fog, decaying wood, and living green density"
     ]
+  },
+  {
+    "name": "Yanui Beach",
+    "lat": 7.7683,
+    "lng": 98.3016,
+    "videoId": "nta1YhicoGw",
+    "tips": [
+      "Yanui sits in a sheltered cove shaped by limestone headlands and nearby coral reef systems that break up open-ocean energy",
+      "Let the tide decide how long you stay in any one thought — nothing here moves in straight lines",
+      "Stillness here is an effect of scale — what feels calm is actually movement happening just below perception",
+      "The air is warm, salt-heavy, and layered with the smell of sun-heated rock, sea spray, and distant jungle"
+    ]
+  },
+  {
+    "name": "Olympic Rainforest",
+    "lat": 47.8021,
+    "lng": -123.6044,
+    "videoId": "85SKnam3zeo",
+    "tips": [
+      "Olympic National Park contains three distinct ecosystems—glaciated peaks, temperate rainforest, and wild Pacific coastline—all within a single protected landscape",
+      "Let the scale of the place unsettle your sense of distance — mountains, forest, and ocean are all happening at once",
+      "What looks like separate environments are actually one continuous system exchanging water, air, and energy",
+      "The air shifts constantly between salt spray, moss-heavy forest damp, and cold alpine wind depending on where you stand"
+    ]
+  },
+    {
+    "name": "Three Sisters Alpine Lake",
+    "lat": 51.0900,
+    "lng": -115.3430,
+    "videoId": "9Ch7eqK4gdI",
+    "tips": [
+      "The Three Sisters are limestone peaks in the Canadian Rockies, shaped by ancient seas lifted and carved by glaciers over millions of years",
+      "Let the evening alpine light simplify everything — detail falls away before color does",
+      "At this elevation, still water becomes a mirror for weather rather than landscape",
+      "The air is cold, dry, and faintly mineral—carrying pine, stone, and the distant memory of ice"
+    ]
+  },
+  {
+    "name": "Colorado Rockies Spring Melt",
+    "lat": 40.3428,
+    "lng": -105.6836,
+    "videoId": "-7K1THu1BTU",
+    "tips": [
+      "Spring melt in the Rockies is driven by accumulated winter snowpack releasing stored water all at once into rivers and streams",
+      "Let the sound of moving water set the pace — this is a landscape transitioning faster than it can be seen",
+      "What looks like a single river is actually a temporary surge of winter returning to motion",
+      "The air is cold at altitude, but carries the sharp freshness of melting snow, pine, and exposed stone"
+    ]
+  },
+  {
+    "name": "Yucatán Cenote",
+    "lat": 20.6843,
+    "lng": -88.5678,
+    "videoId": "p_eEadzpEnI",
+    "tips": [
+      "Cenotes form when limestone bedrock collapses, exposing groundwater that has been filtered underground for thousands of years through porous rock",
+      "Let your perception adjust to the vertical shift — you are now looking into a water system that runs beneath the land, not across it",
+      "Stillness here is not calm water — it is groundwater made visible, held in place by stone",
+      "The air is cool, humid, and faintly mineral, carrying the scent of wet limestone and shaded stone"
+    ]
+  },
+  {
+    "name": "Laguna Las Mulitas",
+    "lat": -36.8872,
+    "lng": -62.0108,
+    "videoId": "TiXyzG4XJEc",
+    "tips": [
+      "Laguna Las Mulitas sits in the flat pampas of Argentina, where shallow lakes form in wind-shaped depressions across grassland plains",
+      "Let the horizon widen your attention — here, distance is the dominant feature, not elevation or enclosure",
+      "What looks like a simple lake is part of a seasonal system that expands and contracts with rainfall across the pampas",
+      "The air is open, wind-swept, and carries the dry scent of grass, soil, and long horizontal space"
+    ]
+  },
+  {
+    "name": "Blue Mountains",
+    "lat": -33.7122,
+    "lng": 150.3119,
+    "videoId": "wfs_5EfO2mU",
+    "tips": [
+      "The Blue Mountains are not actually blue from distance—the haze comes from eucalyptus oils released by vast forests reacting with sunlight and airborne particles",
+      "Let your attention follow depth instead of detail — the landscape is built in layers that recede rather than resolve",
+      "What looks like solid forest is actually a system of ridges, cliffs, and valleys carved over millions of years by slow erosion",
+      "The air carries eucalyptus vapor, dry sandstone dust, and a sharp clarity that shifts with every change in wind and light"
+    ]
+  },
+  {
+    "name": "Snowy Mountains Alpine Range",
+    "lat": -36.5000,
+    "lng": 148.3000,
+    "videoId": "mtmB30Prqvs",
+    "tips": [
+      "The Snowy Mountains are the highest range in Australia, where winter snowpack feeds major river systems like the Murray–Darling Basin",
+      "Let your attention settle into scale — this is a landscape defined by exposure, not enclosure",
+      "What looks like still alpine ground is part of a seasonal cycle of snow storage and spring release that shapes entire downstream ecosystems",
+      "The air is cold, dry, and thin, carrying alpine grass, granite dust, and the quiet sharpness of high elevation"
+    ]
   }
 ]
