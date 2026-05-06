@@ -46,5 +46,29 @@
       "No other desert on earth has quite this combination of heat, spines, and unlikely abundance",
       "The Sonoran is one of the wettest deserts in the world — and still, nothing here wastes water"
     ]
+  },
+  {
+    "name": "Kuwohi (Clingmans Dome)",
+    "lat": 35.562778,
+    "lng":  -83.498611,
+    "videoId": "klKNMhGhWqw",
+    "tips": [
+      "This is the highest point in the Great Smoky Mountains, rising above a forest that breathes out its own weather",
+      "The name Kuwohi means 'mulberry place' in Cherokee — this was a known and named landscape long before it was a viewpoint",
+      "What looks like fog is often the forest exhaling moisture",
+      "These mountains are older than the Rockies, worn down into softness over hundreds of millions of years"
+    ]
+  },
+  {
+    "name": "Blackwater Cypress Dome",
+    "lat": 28.052222, 
+    "lng":  -82.485833,
+    "videoId": "H44Wj0TOxk",
+    "tips": [
+      "Blackwater gets its dark color from tannins released by leaves and wood",
+      "Cypress domes form in shallow depressions where water collects",
+      "Water levels here rise and fall through the year. In the dry season, you could walk across ground that is now submerged",
+      "Still water like this isn’t empty — it’s just slow enough that you notice yourself first"
+    ]
   }
 ]
