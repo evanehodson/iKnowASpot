@@ -318,6 +318,12 @@ let dronePlayer  = null;
 let scenePlayer  = null;
 let droneReady   = false;
 let droneVolume  = 100;
+let dronePlaying = false;
+let droneRetryCount = 0;
+const MAX_DRONE_RETRIES = 3;
+
+let spotsLoaded = false;
+let allowWithoutDrone = false;
 
 const DRONE_ID = '25LHXXXDO-g';
 
@@ -364,20 +370,35 @@ function initDrone() {
       loop: 1,
       playlist: DRONE_ID,
       controls: 0,
-      mute: 0,
+      mute: 1,
       playsinline: 1,
     },
     events: {
       onReady(e) {
         droneReady = true;
-        droneVolume = 100;
         e.target.setVolume(100);
-        e.target.playVideo();
+        tryPlayDrone();
       },
       onStateChange(e) {
+        if (e.data === YT.PlayerState.PLAYING) {
+          dronePlaying = true;
+          droneRetryCount = 0;
+
+          // Unmute safely after playback begins
+          try {
+            e.target.unMute();
+            e.target.setVolume(100);
+          } catch (err) {}
+
+          checkAppReady();
+        }
+
         if (e.data === YT.PlayerState.ENDED) {
           dronePlayer.playVideo();
         }
+      },
+      onError() {
+        retryDrone();
       }
     }
   });
@@ -409,6 +430,42 @@ function resumeDrone() {
   if (!droneReady || !dronePlayer) return;
   try { dronePlayer.playVideo(); } catch(e) {}
   fadeDrone(100, 1500);
+}
+
+function tryPlayDrone() {
+  if (!dronePlayer) return;
+
+  try {
+    dronePlayer.playVideo();
+  } catch (e) {
+    retryDrone();
+    return;
+  }
+
+  setTimeout(() => {
+    if (!dronePlaying) retryDrone();
+  }, 1500);
+}
+
+function retryDrone() {
+  if (droneRetryCount >= MAX_DRONE_RETRIES) {
+    console.warn('Drone failed after retries.');
+    checkAppReady(true); // allow app anyway
+    return;
+  }
+
+  droneRetryCount++;
+  console.log(`Retrying drone (${droneRetryCount})...`);
+
+  try {
+    dronePlayer.destroy();
+  } catch (e) {}
+
+  dronePlayer = null;
+  droneReady = false;
+  dronePlaying = false;
+
+  setTimeout(initDrone, 800);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -464,7 +521,7 @@ const CAM_MAX  = 4.5;
 let dragStartX = 0, dragStartY = 0;
 let dragStartRotY = 0, dragStartRotX = 0;
 let hoveredSpot = null;
-const AUTO_ROTATE = 0.0008;
+const AUTO_ROTATE = 0.0002;
 
 function latLngToVec3(lat, lng, r) {
   const phi   = (90 - lat) * (Math.PI / 180);
@@ -939,6 +996,16 @@ function fadeFromBlack() {
   setTimeout(() => $transition.classList.remove('visible'), 60);
 }
 
+function checkAppReady(force = false) {
+  if (!spotsLoaded) return;
+
+  if (dronePlaying || force) {
+    $loading.classList.add('hidden');
+  } else {
+    $loadingLabel.textContent = 'tuning the air';
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────────────────────────────────────
@@ -946,8 +1013,12 @@ async function init() {
   try {
     SPOTS = await loadSpots();
     if (!SPOTS.length) throw new Error('No spots in spots.json');
+
+    spotsLoaded = true;
+
     initThree();
-    $loading.classList.add('hidden');
+
+    checkAppReady();
   } catch (err) {
     console.error(err);
     $loadingLabel.textContent = 'something went wrong';
