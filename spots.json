@@ -358,5 +358,41 @@
       "Desert silence before dawn is different from desert silence at noon. One is waiting. The other is enduring",
       "The air is cool and bone-dry, carrying creosote, warm rock, and the faint sweetness of something blooming that you cannot see"
     ]
+  },
+  {
+    "name": "Rapa Nui Coastal Cliffs",
+    "lat": -27.1127,
+    "lng": -109.3497,
+    "videoId": "tNqA2cuxwCU",
+    "tips": [
+      "Rapa Nui sits alone in more than 8 million square miles of open ocean — one of the most isolated inhabited places on Earth",
+      "Let the scale of the ocean behind arrive slowly. The distance is the point",
+      "These figures face inland, not outward. They were watching over the living, not the sea",
+      "The air is salt-stripped and open, carrying volcanic rock, dry grass, and the particular emptiness of wind that has crossed thousands of kilometres of open Pacific with nothing to slow it"
+    ]
+  },
+  {
+    "name": "Lake Baikal Autumn",
+    "lat": 53.0700,
+    "lng": 107.3500,
+    "videoId": "nOxgQ21JQZ8",
+    "tips": [
+      "Lake Baikal is home to the Baikal seal — the only seal species on the planet that lives entirely in freshwater, found nowhere else in the world",
+      "Let the stillness of the water arrive before you try to read the shoreline. A lake this deep has its own kind of quiet",
+      "Old water looks different. Baikal is clear enough to see 40 metres down",
+      "The air is cold and resinous, carrying Siberian pine, lake water, and the particular sharpness of a summer that knows it is brief"
+    ]
+  },
+    {
+    "name": "Southern Alps Riverside Retreat",
+    "lat": -42.3833,
+    "lng": 172.1333,
+    "videoId": "9hrKyf_VFGQ",
+    "tips": [
+      "The Southern Alps are being pushed upward by the Alpine Fault at roughly the same rate fingernails grow — but erosion strips them back just as fast",
+      "Let the sound of the water fill the valley before you look for anything else. A river this cold moves differently from a warm one",
+      "Southern beech forest has a particular quality of green. Dense and unbroken, it makes the valley feel like it has a ceiling",
+      "The air is cold and wet, carrying beech leaf, glacial stone, and the clean mineral sharpness of water that began as snow not far above"
+    ]
   }
 ]
