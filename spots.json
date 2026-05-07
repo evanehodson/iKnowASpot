@@ -18,9 +18,9 @@
     "videoId": "My2dhQWo2WQ",
     "tips": [
       "Glacier National Park loses roughly one glacier per year. What remains is what you're hearing",
-      "Headwaters streams are among the quietest places a river will ever be",
+      "Headwaters streams are among the quietest places a river will ever be. Notice what that does to the sound",
       "Mountain water sounds different — higher, thinner, more urgent",
-      "The valley this stream carved took longer to form than our species has existed"
+      "The air is cold and faintly metallic. That sharpness is snowmelt, not rain"
     ]
   },
   {
@@ -30,7 +30,7 @@
     "videoId": "A2eSVlS4-vw",
     "tips": [
       "The Great Basin has no outlet to the sea. Every drop of water here eventually evaporates",
-      "Desert silence isn't the absence of sound — it's a different register entirely",
+      "Desert silence is not the absence of sound. It is a different register entirely",
       "This valley was carved by glaciers that melted fourteen thousand years ago",
       "Notice how the light moves here. The air is too dry to soften it"
     ]
@@ -44,55 +44,55 @@
       "The saguaro cactus grows its first arm only after 75 years. The ones you see are older than most living people",
       "Dawn in the desert belongs to sound. The light comes second",
       "No other desert on earth has quite this combination of heat, spines, and unlikely abundance",
-      "The Sonoran is one of the wettest deserts in the world — and still, nothing here wastes water"
+      "The air before sunrise here is cool and faintly dusty. That warmth arriving is the rock, not the sun"
     ]
   },
   {
     "name": "Kuwohi (Clingmans Dome)",
     "lat": 35.562778,
-    "lng":  -83.498611,
+    "lng": -83.498611,
     "videoId": "klKNMhGhWqw",
     "tips": [
-      "Kuwohi is the highest point in the Great Smoky Mountains at 2,025 metres, where elevation shifts the entire forest ecosystem",
-      "Let the horizon slow you down — you don’t need to scan it all at once",
-      "Mountains this old don’t rise — they settle",
-      "What looks like fog is often the forest exhaling moisture, wrapping the air in a cool, damp softness"
+      "Kuwohi is the highest point in the Great Smoky Mountains at 2,025 metres, where the elevation shifts the entire forest ecosystem",
+      "Let the horizon slow you down. You don't need to scan it all at once",
+      "Mountains this old don't rise. They settle",
+      "What looks like fog is the forest exhaling. These trees release enough moisture to wrap the valley in their own weather"
     ]
   },
   {
     "name": "Juniper Springs",
     "lat": 29.183889,
-    "lng":  -81.711944,
+    "lng": -81.711944,
     "videoId": "9Z4tzJf8mxY",
     "tips": [
-      "Juniper Springs discharges millions of gallons of groundwater daily from the Floridan Aquifer, one of the largest freshwater systems on Earth",
-      "Let your eyes adjust before you try to understand the water — clarity like this can feel unfamiliar at first",
-      "Clear water isn’t empty — it’s just honest about what’s there",
-      "The air here carries a mix of minerals, wet stone, and subtropical vegetation warming in the sun"
+      "Juniper Springs discharges millions of gallons daily from the Floridan Aquifer, one of the largest freshwater systems on Earth",
+      "Let your eyes adjust before you try to understand the water. Clarity like this can feel unfamiliar at first",
+      "Clear water is not empty. It is just honest about what is there",
+      "The air carries wet stone, minerals, and the smell of subtropical vegetation warming in early sun"
     ]
   },
   {
     "name": "Rainy Ozarks",
     "lat": 37.166667,
-    "lng":  -92.5,
+    "lng": -92.5,
     "videoId": "eX2nSmlTtm0",
     "tips": [
-      "The Ozarks are an ancient uplifted plateau, where rainwater disappears into limestone and re-emerges through springs and caves",
-      "Let the rain set the pace — you don’t need to move faster than it falls",
+      "The Ozarks are an ancient uplifted plateau where rainwater disappears into limestone and re-emerges through springs and caves",
+      "Let the rain set the pace. You don't need to move faster than it falls",
       "Rain turns a forest into a thousand small conversations",
-      "The air here is thick with wet leaves, soil, and the metallic scent of approaching storms"
+      "The air is thick with wet leaves, soil, and the metallic edge of a storm that has already arrived"
     ]
   },
   {
     "name": "Costa Rican Rainforest",
-    "lat": 9.75, 
+    "lat": 9.75,
     "lng": -84.25,
     "videoId": "E7byvKAJHGU",
     "tips": [
-      "Costa Rica holds around 5% of the world’s biodiversity despite covering less than 0.1% of its land surface",
-      "Don’t try to track every sound — let the forest come to you instead",
+      "Costa Rica holds around 5% of the world's biodiversity despite covering less than 0.1% of its land surface",
+      "Don't try to track every sound. Let the forest come to you instead",
       "Nothing here is still, even when it looks like it is",
-      "The air is heavy with humidity, layered with the scent of earth, leaves, and things constantly growing"
+      "The air is heavy and green-smelling. That density is not heat alone but the weight of everything growing at once"
     ]
   },
   {
@@ -101,10 +101,10 @@
     "lng": -73.672761,
     "videoId": "8myYyMg1fFE",
     "tips": [
-      "The Amazon rainforest helps generate its own rainfall, recycling moisture through the atmosphere in a continuous loop",
-      "Let the storm take over your attention — you don’t need to hold onto it",
-      "Thunder here doesn’t interrupt the forest — it belongs to it",
-      "The air is saturated, warm and electric, carrying the scent of rain hitting soil before it even reaches you"
+      "The Amazon rainforest generates its own rainfall, recycling moisture through the atmosphere in a continuous loop",
+      "Let the storm take over your attention. You don't need to hold onto it",
+      "Thunder here doesn't interrupt the forest. It belongs to it",
+      "The air is warm and electric. That smell arriving before the rain is petrichor rising from soil that has been waiting"
     ]
   },
   {
@@ -114,9 +114,9 @@
     "videoId": "r8UF2NpM0Ic",
     "tips": [
       "Lake Michigan is one of the largest freshwater lakes on Earth, where wind-driven waves can reach heights comparable to ocean surf",
-      "Let the rhythm of the waves regulate your attention — you don’t need to fix it on anything else",
+      "Let the rhythm of the waves regulate your attention. You don't need to fix it on anything else",
       "What looks like an ocean is completely freshwater, shaped only by wind and distance, not tides",
-      "The air here carries cold spray, fine sand, and the clean metallic edge of freshwater moving in large volume"
+      "The air carries cold spray and the clean metallic edge of freshwater moving in large volume"
     ]
   },
   {
@@ -125,21 +125,22 @@
     "lng": -68.2733,
     "videoId": "JIXVMnEysTg",
     "tips": [
-      "Acadia sits where the Atlantic meets ancient, glacier-sculpted granite coastline, with some of the oldest exposed rock on the U.S. eastern seaboard",
-      "Let the tide set the rhythm of your attention — everything here is in slow negotiation with the sea",
-      "This coastline is not fixed ground — it is rock being continuously rewritten by wind, ice, and saltwater",
-      "The air carries cold Atlantic salt, pine resin, and the sharp clarity that follows moving weather"
+      "Acadia sits where the Atlantic meets glacier-sculpted granite, some of the oldest exposed rock on the U.S. eastern seaboard",
+      "Let the tide set the rhythm. Everything here is in slow negotiation with the sea",
+      "This coastline is not fixed ground. It is rock being continuously rewritten by wind, ice, and salt",
+      "The air carries cold Atlantic spray, pine resin, and the sharp clarity that follows moving weather"
     ]
   },
   {
     "name": "Adirondack Lakeside Fishing",
-    "lat": 44.326111, 
+    "lat": 44.326111,
     "lng": -74.130833,
     "videoId": "dZzpRymFlsA",
     "tips": [
-      "The Adirondack lakes are part of an ancient mountain range shaped by glaciers, where many waters are cold, deep, and low in nutrients",
-      "Let your attention slow to the pace of the water — fishing here is as much about waiting as it is about noticing",
-      "The air carries pine resin, cold freshwater, and the faint metallic stillness that comes from deep, shaded lakes"
+      "The Adirondack lakes sit inside the oldest mountain range in North America, shaped by glaciers into basins that are cold, deep, and remarkably clear",
+      "Slow your attention to the pace of the water. Fishing here is as much about waiting as it is about noticing",
+      "Stillness on a lake is never complete. It just asks you to look more carefully",
+      "The air carries pine resin and cold freshwater, with a faint metallic stillness that comes from depth and shade"
     ]
   },
   {
@@ -148,10 +149,10 @@
     "lng": -124.0046,
     "videoId": "g4S9w3ydS0E",
     "tips": [
-      "Coastal redwoods are the tallest trees on Earth, sustained by frequent fog that supplies much of their water intake",
-      "Let your attention move upward slowly — these trees are measured in vertical time, not horizontal distance",
-      "Sound doesn’t travel far in this forest; it gets absorbed before it ever becomes distant",
-      "The air is cool, damp, and layered with the scent of salt fog, decaying wood, and living green density"
+      "Coastal redwoods are the tallest trees on Earth, and they drink fog. Up to 40% of their water intake comes not from rain but from clouds moving through the canopy",
+      "Let your attention move upward slowly. These trees are measured in vertical time, not horizontal distance",
+      "Sound doesn't travel far in this forest. It gets absorbed before it ever becomes distant",
+      "The air is cool and damp, layered with salt fog, decaying wood, and the dense green smell of things that never fully dry out"
     ]
   },
   {
@@ -160,10 +161,10 @@
     "lng": 98.3016,
     "videoId": "nta1YhicoGw",
     "tips": [
-      "Yanui sits in a sheltered cove shaped by limestone headlands and nearby coral reef systems that break up open-ocean energy",
-      "Let the tide decide how long you stay in any one thought — nothing here moves in straight lines",
-      "Stillness here is an effect of scale — what feels calm is actually movement happening just below perception",
-      "The air is warm, salt-heavy, and layered with the smell of sun-heated rock, sea spray, and distant jungle"
+      "Yanui sits in a sheltered cove where limestone headlands and nearby coral reef systems absorb open-ocean energy before it reaches shore",
+      "Let the tide decide how long you stay in any one thought. Nothing here moves in straight lines",
+      "Stillness here is an effect of scale. What feels calm is movement happening just below perception",
+      "The air is warm and salt-heavy, carrying sun-heated rock, sea spray, and the faint green edge of jungle at the treeline"
     ]
   },
   {
@@ -172,22 +173,22 @@
     "lng": -123.6044,
     "videoId": "85SKnam3zeo",
     "tips": [
-      "Olympic National Park contains three distinct ecosystems—glaciated peaks, temperate rainforest, and wild Pacific coastline—all within a single protected landscape",
-      "Let the scale of the place unsettle your sense of distance — mountains, forest, and ocean are all happening at once",
-      "What looks like separate environments are actually one continuous system exchanging water, air, and energy",
-      "The air shifts constantly between salt spray, moss-heavy forest damp, and cold alpine wind depending on where you stand"
+      "Olympic National Park contains three distinct ecosystems — glaciated peaks, temperate rainforest, and wild Pacific coastline — all within a single protected landscape",
+      "Let the scale of the place unsettle your sense of distance. Mountains, forest, and ocean are all happening at once",
+      "What looks like separate environments is one continuous system exchanging water, air, and energy",
+      "The air shifts between salt spray, moss-heavy forest damp, and cold alpine wind depending on where you stand and which way the wind turns"
     ]
   },
-    {
+  {
     "name": "Three Sisters Alpine Lake",
     "lat": 51.0900,
     "lng": -115.3430,
     "videoId": "9Ch7eqK4gdI",
     "tips": [
-      "The Three Sisters are limestone peaks in the Canadian Rockies, shaped by ancient seas lifted and carved by glaciers over millions of years",
-      "Let the evening alpine light simplify everything — detail falls away before color does",
+      "The Three Sisters are limestone peaks in the Canadian Rockies formed from ancient seafloor lifted by tectonic forces and carved by glaciers over millions of years",
+      "Let the evening alpine light simplify everything. Detail falls away before colour does",
       "At this elevation, still water becomes a mirror for weather rather than landscape",
-      "The air is cold, dry, and faintly mineral—carrying pine, stone, and the distant memory of ice"
+      "The air is cold and faintly mineral, carrying pine, stone, and the memory of ice that has not fully left"
     ]
   },
   {
@@ -196,10 +197,10 @@
     "lng": -105.6836,
     "videoId": "-7K1THu1BTU",
     "tips": [
-      "Spring melt in the Rockies is driven by accumulated winter snowpack releasing stored water all at once into rivers and streams",
-      "Let the sound of moving water set the pace — this is a landscape transitioning faster than it can be seen",
-      "What looks like a single river is actually a temporary surge of winter returning to motion",
-      "The air is cold at altitude, but carries the sharp freshness of melting snow, pine, and exposed stone"
+      "Spring melt in the Rockies releases an entire winter's snowpack at once, sending stored water into rivers and streams faster than the land can absorb it",
+      "Let the sound of moving water set the pace. This is a landscape transitioning faster than it can be seen",
+      "What looks like a single river is winter returning to motion all at once",
+      "The air is cold at altitude but carries the sharp freshness of melting snow, pine, and stone newly exposed to sun"
     ]
   },
   {
@@ -208,10 +209,10 @@
     "lng": -88.5678,
     "videoId": "p_eEadzpEnI",
     "tips": [
-      "Cenotes form when limestone bedrock collapses, exposing groundwater that has been filtered underground for thousands of years through porous rock",
-      "Let your perception adjust to the vertical shift — you are now looking into a water system that runs beneath the land, not across it",
-      "Stillness here is not calm water — it is groundwater made visible, held in place by stone",
-      "The air is cool, humid, and faintly mineral, carrying the scent of wet limestone and shaded stone"
+      "Cenotes form when limestone bedrock collapses, exposing groundwater that has been filtering through porous rock for thousands of years",
+      "Let your perception adjust to the vertical shift. You are looking into a water system that runs beneath the land, not across it",
+      "Stillness here is not calm water. It is groundwater made visible, held in place by stone",
+      "The air is cool and faintly mineral, carrying wet limestone and the particular quiet of a place the sun only partially reaches"
     ]
   },
   {
@@ -220,10 +221,10 @@
     "lng": -62.0108,
     "videoId": "TiXyzG4XJEc",
     "tips": [
-      "Laguna Las Mulitas sits in the flat pampas of Argentina, where shallow lakes form in wind-shaped depressions across grassland plains",
-      "Let the horizon widen your attention — here, distance is the dominant feature, not elevation or enclosure",
+      "Laguna Las Mulitas sits in the flat pampas of Argentina, where shallow lakes form in wind-shaped depressions across one of the largest grassland plains on Earth",
+      "Let the horizon widen your attention. Here, distance is the dominant feature, not elevation or enclosure",
       "What looks like a simple lake is part of a seasonal system that expands and contracts with rainfall across the pampas",
-      "The air is open, wind-swept, and carries the dry scent of grass, soil, and long horizontal space"
+      "The air is open and wind-swept, carrying dry grass, soil, and the particular emptiness of long horizontal space"
     ]
   },
   {
@@ -232,9 +233,9 @@
     "lng": 150.3119,
     "videoId": "wfs_5EfO2mU",
     "tips": [
-      "The Blue Mountains are not actually blue from distance—the haze comes from eucalyptus oils released by vast forests reacting with sunlight and airborne particles",
-      "Let your attention follow depth instead of detail — the landscape is built in layers that recede rather than resolve",
-      "What looks like solid forest is actually a system of ridges, cliffs, and valleys carved over millions of years by slow erosion",
+      "The blue haze over these mountains is real and chemical. Eucalyptus forests release oils into the air that scatter light, tinting the entire distance blue",
+      "Let your attention follow depth instead of detail. This landscape is built in layers that recede rather than resolve",
+      "What looks like solid forest is a system of ridges, cliffs, and valleys carved over millions of years by slow erosion",
       "The air carries eucalyptus vapor, dry sandstone dust, and a sharp clarity that shifts with every change in wind and light"
     ]
   },
@@ -244,10 +245,118 @@
     "lng": 148.3000,
     "videoId": "mtmB30Prqvs",
     "tips": [
-      "The Snowy Mountains are the highest range in Australia, where winter snowpack feeds major river systems like the Murray–Darling Basin",
-      "Let your attention settle into scale — this is a landscape defined by exposure, not enclosure",
-      "What looks like still alpine ground is part of a seasonal cycle of snow storage and spring release that shapes entire downstream ecosystems",
+      "The Snowy Mountains are Australia's highest range, and their winter snowpack feeds the Murray-Darling Basin, the river system that waters a third of the continent",
+      "Let your attention settle into scale. This is a landscape defined by exposure, not enclosure",
+      "What looks like still alpine ground is part of a seasonal cycle of storage and release that shapes entire downstream ecosystems",
       "The air is cold, dry, and thin, carrying alpine grass, granite dust, and the quiet sharpness of high elevation"
+    ]
+  },
+  {
+    "name": "Colombian Jungle, Chocó",
+    "lat": 6.0200,
+    "lng": -77.3500,
+    "videoId": "PSzVqDGY2gs",
+    "tips": [
+      "The Chocó is not an extension of the Amazon. Sealed off by the Andes on one side and the Pacific on the other, it evolved in isolation — around 20% of its plant species exist nowhere else on Earth",
+      "Don't try to separate the sounds into individual sources. Let the whole thing arrive at once",
+      "The loudest rainforests are usually the most alive. Silence here would be the warning",
+      "The air is saturated and warm, carrying the smell of wet bark, decomposing leaves, and soil that has never fully dried out"
+    ]
+  },
+  {
+    "name": "Bahia Atlantic Forest",
+    "lat": -23.5000,
+    "lng": -45.1000,
+    "videoId": "6eNgRI_p4EQ",
+    "tips": [
+      "This forest holds more life per square metre than almost anywhere on Earth",
+      "Stay with one layer of sound at a time. There is no end to what the forest is doing",
+      "A forest this dense doesn't have a background. Everything you hear is the foreground",
+      "The air is warm and thick, carrying the smell of wet soil, bark, and flowering things competing for the same small patches of light"
+    ]
+  },
+  {
+    "name": "Denali Tundra Hillside",
+    "lat": 63.3333,
+    "lng": -150.5000,
+    "videoId": "dD9OI_cYZDk",
+    "tips": [
+      "During the last ice age, the tundra around Denali was part of Beringia — a vast ice-free refuge connected to northeastern Asia. The plants and animals here have more in common with Siberia than with the rest of North America",
+      "Pick a point on the horizon and stay with it. At this scale, stillness takes time to arrive",
+      "Tundra wind doesn't move through things. It moves everything at once",
+      "The air is cold and almost scentless. That absence is what subarctic air smells like — space, with nothing to catch it"
+    ]
+  },
+    {
+    "name": "Morning in the Cloud Forest",
+    "lat": 15.0833,
+    "lng": -89.9167,
+    "videoId": "kb-VSf-QdUU",
+    "tips": [
+      "Sierra de las Minas is the source of 63 permanent rivers. They begin as fog, caught by leaves exactly like these",
+      "Watch one drop form and fall. The whole water cycle is happening at that scale",
+      "A fern doesn't wait for rain. It drinks the cloud directly",
+      "The air is cool and still, carrying wet moss, dark soil, and the mineral sharpness of stone that hasn't seen direct sun since yesterday"
+    ]
+  },
+  {
+    "name": "Maui Coastal Sunrise",
+    "lat": 20.7984,
+    "lng": -156.3319,
+    "videoId": "LCc6I-n2UUc",
+    "tips": [
+      "Hawaii is the most geographically isolated island chain on Earth, more than 3,200 kilometres from the nearest continent",
+      "Let the light come in stages. Sunrise here moves slower than you expect",
+      "An ocean this large doesn't have a far side you can feel. It just continues",
+      "The air is warm and salt-heavy, carrying the particular softness of trade winds that have crossed thousands of kilometres of open water before reaching land"
+    ]
+  },
+  {
+    "name": "Baja Beach Sounds",
+    "lat": 26.1167,
+    "lng": -111.2833,
+    "videoId": "Z1zxi4gaunE",
+    "tips": [
+      "This narrow sea contains more marine species than almost any comparable body of water on Earth",
+      "Let your eyes adjust to the water before you try to read it. Clarity this shallow takes a moment to make sense of",
+      "Volcanic rock and turquoise water shouldn't go together. Here they do",
+      "The air is dry and bright, carrying sea salt, warm basalt, and the particular sharpness of a desert meeting the ocean"
+    ]
+  },
+  {
+    "name": "Caribbean Blue Bay",
+    "lat": 18.3533,
+    "lng": -64.7891,
+    "videoId": "_Q9NjXNMtNE",
+    "tips": [
+      "Trunk Bay is named after the leatherback sea turtles that nest here. Leatherbacks are the largest reptiles on Earth",
+      "Watch the water rather than through it. The colour itself is the first thing worth staying with",
+      "The Caribbean is not one shade of blue. It changes with depth, sand, and the angle of the sun every few metres",
+      "The air is warm and lightly salted, carried by trade winds that have moved across open Atlantic for thousands of kilometres before reaching this bay"
+    ]
+  },
+  {
+    "name": "San Joaquin Wetland",
+    "lat": 35.6783,
+    "lng": -119.5258,
+    "videoId": "A8bWMgLNIaI",
+    "tips": [
+      "The San Joaquin Valley once held over 800,000 acres of wetland — the largest freshwater marsh in the western United States",
+      "Let the birds set the rhythm. This is a place measured in arrivals and departures, not stillness",
+      "Wetlands don't look like much until something lands. Then everything changes",
+      "The air is flat and open, carrying cattail, still water, and the particular quiet of a valley floor with no hills to hold the wind"
+    ]
+  },
+  {
+    "name": "Big Bend Morning",
+    "lat": 29.2498,
+    "lng": -103.2502,
+    "videoId": "w23YelRLv6s",
+    "tips": [
+      "The Chisos Mountains rising from Big Bend's desert floor are a sky island — a cool, forested range so isolated by surrounding desert that their plants and animals have evolved separately from any other mountain range",
+      "Morning is a slow process, not an event",
+      "Desert silence before dawn is different from desert silence at noon. One is waiting. The other is enduring",
+      "The air is cool and bone-dry, carrying creosote, warm rock, and the faint sweetness of something blooming that you cannot see"
     ]
   }
 ]

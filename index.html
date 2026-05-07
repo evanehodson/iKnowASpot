@@ -680,7 +680,7 @@ function setupInteraction() {
     if (e.buttons === 1 && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
       isDragging = true;
       rotationY = dragStartRotY + dx * 0.005;
-      rotationX = Math.max(-0.6, Math.min(0.6, dragStartRotX + dy * 0.005));
+      rotationX = Math.max(-1.0, Math.min(1.0, dragStartRotX + dy * 0.005));
     }
 
     const hit = hitTestSpots(e.clientX, e.clientY);
@@ -748,7 +748,7 @@ function setupInteraction() {
     if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
       isDragging = true;
       rotationY = dragStartRotY + dx * 0.005;
-      rotationX = Math.max(-0.6, Math.min(0.6, dragStartRotX + dy * 0.005));
+      rotationX = Math.max(-1.0, Math.min(1.0, dragStartRotX + dy * 0.005));
     }
   }, { passive: true });
 
