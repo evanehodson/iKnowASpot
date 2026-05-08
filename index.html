@@ -46,6 +46,30 @@
     }
     #site-header.hidden { opacity: 0; }
 
+    #shuffle-btn {
+      position: fixed;
+      top: 25px;
+      right: 70px;
+      z-index: 100;
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity 0.6s ease;
+      padding: 0;
+    }
+    #shuffle-btn:hover { opacity: 1; }
+    #shuffle-btn.hidden { opacity: 0; pointer-events: none; }
+
+    #shuffle-btn svg {
+      width: 20px; height: 20px;
+      stroke: var(--mist);
+    }
+
     #filter-wrap {
       position: fixed;
       top: 25px;
@@ -332,6 +356,25 @@
   <p id="site-title">iKnowASpot</p>
   <p id="site-tagline">Curated natural soundscapes for<br>focus, calm, and connection to place.</p>
 </div>
+
+<button id="shuffle-btn" aria-label="Shuffle to a random spot">
+  <svg viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="1.8"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+  <!-- top path -->
+  <path d="M16 3h5v5" />
+  <path d="M4 20L21 3" />
+
+  <!-- bottom path -->
+  <path d="M21 16v5h-5" />
+  <path d="M15 15l6 6" />
+  <path d="M4 4l5 5" />
+</svg>
+</button>
 
 <div id="filter-wrap">
   <button id="filter-toggle" aria-label="Filter spots">
@@ -747,6 +790,87 @@ function addSpotMarkers() {
   });
 }
 
+function shuffleToSpot() {
+  const visible = spotMeshes.filter(s => s.mesh.visible);
+  if (!visible.length) return;
+
+  const target = visible[Math.floor(Math.random() * visible.length)];
+
+  const $shuffle = document.getElementById('shuffle-btn');
+  $shuffle.style.pointerEvents = 'none';
+
+  const pos = target.mesh.position.clone().normalize();
+
+  // STEP 1:
+  // Rotate globe around Y so marker faces center/front
+
+  const targetRotY = Math.atan2(-pos.x, pos.z);
+
+  // Simulate that Y rotation
+  const cosY = Math.cos(targetRotY);
+  const sinY = Math.sin(targetRotY);
+
+  const x1 = pos.x * cosY + pos.z * sinY;
+  const z1 = -pos.x * sinY + pos.z * cosY;
+
+  // STEP 2:
+  // Now compute X rotation needed to bring marker vertically centered
+
+  const targetRotX = Math.atan2(pos.y, z1);
+
+  const startRotY = rotationY;
+  const startRotX = rotationX;
+
+  const duration = 2200;
+  const start = performance.now();
+
+  // shortest path
+  let deltaY = targetRotY - startRotY;
+
+  while (deltaY > Math.PI) deltaY -= Math.PI * 2;
+  while (deltaY < -Math.PI) deltaY += Math.PI * 2;
+
+  function animateSpin(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+
+    rotationY = startRotY + deltaY * ease;
+    rotationX = startRotX + (targetRotX - startRotX) * ease;
+
+    if (t < 1) {
+      requestAnimationFrame(animateSpin);
+    } else {
+      const worldPos = target.mesh.position.clone();
+      worldPos.applyEuler(new THREE.Euler(rotationX, rotationY, 0, 'YXZ'));
+      const projected = worldPos.project(camera);
+
+      const screenX = ((projected.x + 1) / 2) * window.innerWidth;
+      const screenY = ((-projected.y + 1) / 2) * window.innerHeight;
+
+      $tooltip.textContent = target.spot.name;
+      $tooltip.style.left = screenX + 'px';
+      $tooltip.style.top  = screenY + 'px';
+      $tooltip.classList.add('visible');
+
+      hoveredSpot = target;
+      target.haloMesh.scale.setScalar(2.2);
+      target.haloMesh.material.opacity = 0.7;
+
+      setTimeout(() => {
+        $tooltip.classList.remove('visible');
+        hoveredSpot = null;
+        $shuffle.style.pointerEvents = 'all';
+        enterSpot(target.index);
+      }, 1500);
+    }
+  }
+
+  requestAnimationFrame(animateSpin);
+}
+
+document.getElementById('shuffle-btn').addEventListener('click', shuffleToSpot);
+
 let activeTags = new Set();
 
 function buildFilterBar() {
@@ -944,6 +1068,7 @@ function enterSpot(index, isRetry = false) {
   // Hide header
   $siteHeader.classList.add('hidden');
 
+  document.getElementById('shuffle-btn').classList.add('hidden');
   document.getElementById('filter-wrap').classList.add('hidden');
 
   const s = spotMeshes[index];
@@ -1093,6 +1218,7 @@ function returnToGlobe() {
     // Restore header
     $siteHeader.classList.remove('hidden');
 
+    document.getElementById('shuffle-btn').classList.remove('hidden');
     document.getElementById('filter-wrap').classList.remove('hidden');
 
     resumeDrone();
