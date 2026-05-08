@@ -108,7 +108,7 @@
     "lat": -7.447515,
     "lng": -73.672761,
     "videoId": "8myYyMg1fFE",
-    "tags": ["forest", "rain", "waterfall"],
+    "tags": ["forest", "rain", "waterfall", "storm"],
     "tips": [
       "The Amazon rainforest generates its own rainfall, recycling moisture through the atmosphere in a continuous loop",
       "Let the storm take over your attention. You don't need to hold onto it",
@@ -257,19 +257,6 @@
       "Let your attention follow depth instead of detail. This landscape is built in layers that recede rather than resolve",
       "What looks like solid forest is a system of ridges, cliffs, and valleys carved over millions of years by slow erosion",
       "The air carries eucalyptus vapor, dry sandstone dust, and a sharp clarity that shifts with every change in wind and light"
-    ]
-  },
-  {
-    "name": "Snowy Mountains Alpine Range",
-    "lat": -36.5000,
-    "lng": 148.3000,
-    "videoId": "mtmB30Prqvs",
-    "tags": ["mountains", "snow"],
-    "tips": [
-      "The Snowy Mountains are Australia's highest range, and their winter snowpack feeds the Murray-Darling Basin, the river system that waters a third of the continent",
-      "Let your attention settle into scale. This is a landscape defined by exposure, not enclosure",
-      "What looks like still alpine ground is part of a seasonal cycle of storage and release that shapes entire downstream ecosystems",
-      "The air is cold, dry, and thin, carrying alpine grass, granite dust, and the quiet sharpness of high elevation"
     ]
   },
   {
@@ -451,6 +438,32 @@
       "Let your eyes adjust to the colour before anything else. Blue this dense in a forest takes a moment to accept as real",
       "A bluebell wood smells different from any other forest. That sweetness has nowhere else to go",
       "The air is cool and damp, carrying soil, last year's leaves, and the particular green stillness of a woodland that has not yet fully opened its canopy"
+    ]
+  },
+  {
+    "name": "Bavarian Alps Blizzard",
+    "lat": 47.64, 
+    "lng": 11.77,
+    "videoId": "M3Zt4h1EJjs",
+    "tags": ["mountains", "snow", "storm"],
+    "tips": [
+      "The Bavarian Alps sit where moist Atlantic air collides with cold continental air, creating snowstorms that can reshape entire valleys overnight",
+      "Let the snowfall narrow your attention. In weather like this, distance disappears before sound does",
+      "A blizzard changes the shape of a mountain without moving the mountain itself",
+      "The air is sharp and metallic, carrying pine resin, wet wool, and the muffled stillness that arrives when snow absorbs almost every distant sound"
+    ]
+  },
+  {
+    "name": "Great Plains Thunderstorm",
+    "lat": 40.8172,
+    "lng": -99.1125,
+    "videoId": "azEfqCmwKVk",
+    "tags": ["rain", "storm"],
+    "tips": [
+      "The Great Plains produce some of the largest thunderstorms on Earth, where warm Gulf air and cold northern systems collide across thousands of open kilometres",
+      "Let the distance calm you before the storm arrives. On the plains, weather is something you watch becoming",
+      "A storm this wide changes the atmosphere long before the rain reaches you",
+      "The air is heavy and electrically still, carrying wet soil, cut grass, and the metallic sharpness that arrives just before lightning"
     ]
   }
 ]
