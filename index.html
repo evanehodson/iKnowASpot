@@ -46,6 +46,85 @@
     }
     #site-header.hidden { opacity: 0; }
 
+    #filter-wrap {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      transition: opacity 0.6s ease;
+    }
+    #filter-wrap.hidden { opacity: 0; pointer-events: none; }
+
+    #filter-toggle {
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--mist);
+      opacity: 0.55;
+      transition: opacity 0.2s ease;
+      padding: 0;
+    }
+    #filter-toggle:hover { opacity: 1; }
+    #filter-toggle.active { opacity: 1; }
+
+    #filter-toggle svg {
+      width: 20px; height: 20px;
+      stroke: var(--mist);
+    }
+
+    #filter-bar {
+      background: rgba(5, 8, 16, 0.85);
+      border: 1px solid rgba(122, 158, 142, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-start;
+      width: 260px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+      padding: 0 12px;
+    }
+    #filter-bar.open {
+      max-height: 400px;
+      opacity: 1;
+      padding: 12px;
+    }
+
+    .filter-pill {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--sage);
+      border: 1px solid var(--sage);
+      border-radius: 20px;
+      padding: 4px 12px;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+      background: none;
+      text-transform: lowercase;
+      white-space: nowrap;
+    }
+    .filter-pill:hover { opacity: 0.85; }
+    .filter-pill.active {
+      background: var(--sage);
+      color: var(--ink);
+      opacity: 1;
+    }
+
     #site-title {
       font-family: var(--font-display);
       font-size: 2rem;
@@ -254,9 +333,20 @@
   <p id="site-tagline">Curated natural soundscapes for<br>focus, calm, and connection to place.</p>
 </div>
 
+<div id="filter-wrap">
+  <button id="filter-toggle" aria-label="Filter spots">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="3,3 21,3 14,12 14,21 10,21 10,12"/>
+    </svg>
+  </button>
+  <div id="filter-bar">
+    <!-- pills injected by JS -->
+  </div>
+</div>
+
 <!-- Initial loading -->
 <div id="loading">
-  <p id="loading-label">finding your spots</p>
+  <p id="loading-label"></p>
   <div class="load-dots">
     <span class="load-dot"></span>
     <span class="load-dot"></span>
@@ -503,6 +593,7 @@ async function loadSpots() {
     lng:     parseFloat(s.lng),
     videoId: s.videoId || '',
     url:     `https://www.youtube.com/watch?v=${s.videoId}`,
+    tags:    Array.isArray(s.tags) ? s.tags : [],
     tips:    Array.isArray(s.tips) ? s.tips : []
   }));
 }
@@ -613,6 +704,15 @@ function initThree() {
   scene.add(new THREE.Mesh(new THREE.SphereGeometry(RADIUS + 0.002, 64, 64), shadowMat));
 
   addSpotMarkers();
+  
+  buildFilterBar();
+
+  document.getElementById('filter-toggle').addEventListener('click', () => {
+    const bar = document.getElementById('filter-bar');
+    const btn = document.getElementById('filter-toggle');
+    bar.classList.toggle('open');
+    btn.classList.toggle('active');
+  });
   setupInteraction();
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -644,6 +744,44 @@ function addSpotMarkers() {
     globe.add(halo);
 
     spotMeshes.push({ mesh: dot, haloMesh: halo, spot, index: i });
+  });
+}
+
+let activeTags = new Set();
+
+function buildFilterBar() {
+  const $bar = document.getElementById('filter-bar');
+  $bar.innerHTML = '';
+
+  // Collect all unique tags across spots
+  const allTags = [...new Set(SPOTS.flatMap(s => s.tags || []))].sort();
+
+  allTags.forEach(tag => {
+    const pill = document.createElement('button');
+    pill.className = 'filter-pill';
+    pill.textContent = tag;
+    pill.addEventListener('click', () => toggleTag(tag, pill));
+    $bar.appendChild(pill);
+  });
+}
+
+function toggleTag(tag, pill) {
+  if (activeTags.has(tag)) {
+    activeTags.delete(tag);
+    pill.classList.remove('active');
+  } else {
+    activeTags.add(tag);
+    pill.classList.add('active');
+  }
+  applyFilter();
+}
+
+function applyFilter() {
+  spotMeshes.forEach(s => {
+    const tags = s.spot.tags || [];
+    const visible = activeTags.size === 0 || tags.some(t => activeTags.has(t));
+    s.mesh.visible = visible;
+    s.haloMesh.visible = visible;
   });
 }
 
@@ -806,6 +944,8 @@ function enterSpot(index, isRetry = false) {
   // Hide header
   $siteHeader.classList.add('hidden');
 
+  document.getElementById('filter-wrap').classList.add('hidden');
+
   const s = spotMeshes[index];
   if (s) { s.haloMesh.scale.setScalar(3.5); s.haloMesh.material.opacity = 1; }
 
@@ -953,6 +1093,8 @@ function returnToGlobe() {
     // Restore header
     $siteHeader.classList.remove('hidden');
 
+    document.getElementById('filter-wrap').classList.remove('hidden');
+
     resumeDrone();
     fadeFromBlack();
   });
@@ -998,11 +1140,8 @@ function fadeFromBlack() {
 
 function checkAppReady(force = false) {
   if (!spotsLoaded) return;
-
   if (dronePlaying || force) {
     $loading.classList.add('hidden');
-  } else {
-    $loadingLabel.textContent = 'tuning the air';
   }
 }
 
@@ -1010,6 +1149,13 @@ function checkAppReady(force = false) {
 // INIT
 // ─────────────────────────────────────────────────────────────────────────────
 async function init() {
+  const seasonalMessages = [
+    "The cherry blossoms are peaking somewhere in Japan right now",
+    "Yosemite's waterfalls are roaring with snowmelt this time of year",
+    "English woodland floors are carpeted in bluebells right now",
+  ];
+  $loadingLabel.textContent = seasonalMessages[Math.floor(Math.random() * seasonalMessages.length)];
+
   try {
     SPOTS = await loadSpots();
     if (!SPOTS.length) throw new Error('No spots in spots.json');

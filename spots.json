@@ -4,6 +4,7 @@
     "lat": 47.75,
     "lng": -90.20,
     "videoId": "IW5y8KML1AU",
+    "tags": ["coast", "water"],
     "tips": [
       "Lake Superior holds enough water to flood all of North and South America under a foot of water",
       "Let the sound of the water arrive before you try to see anything",
@@ -16,6 +17,7 @@
     "lat": 48.46,
     "lng": -113.40,
     "videoId": "My2dhQWo2WQ",
+    "tags": ["mountains", "river", "water"], 
     "tips": [
       "Glacier National Park loses roughly one glacier per year. What remains is what you're hearing",
       "Headwaters streams are among the quietest places a river will ever be. Notice what that does to the sound",
@@ -28,6 +30,7 @@
     "lat": 39.00,
     "lng": -114.22,
     "videoId": "A2eSVlS4-vw",
+    "tags": ["mountains", "river", "water"],
     "tips": [
       "The Great Basin has no outlet to the sea. Every drop of water here eventually evaporates",
       "Desert silence is not the absence of sound. It is a different register entirely",
@@ -40,6 +43,7 @@
     "lat": 32.179167,
     "lng": -110.736944,
     "videoId": "LoO63RtYqP4",
+    "tags": ["sunrise"], 
     "tips": [
       "The saguaro cactus grows its first arm only after 75 years. The ones you see are older than most living people",
       "Dawn in the desert belongs to sound. The light comes second",
@@ -52,6 +56,7 @@
     "lat": 35.562778,
     "lng": -83.498611,
     "videoId": "klKNMhGhWqw",
+    "tags": ["mountains", "forest"],
     "tips": [
       "Kuwohi is the highest point in the Great Smoky Mountains at 2,025 metres, where the elevation shifts the entire forest ecosystem",
       "Let the horizon slow you down. You don't need to scan it all at once",
@@ -64,6 +69,7 @@
     "lat": 29.183889,
     "lng": -81.711944,
     "videoId": "9Z4tzJf8mxY",
+    "tags": ["water", "river"],
     "tips": [
       "Juniper Springs discharges millions of gallons daily from the Floridan Aquifer, one of the largest freshwater systems on Earth",
       "Let your eyes adjust before you try to understand the water. Clarity like this can feel unfamiliar at first",
@@ -76,6 +82,7 @@
     "lat": 37.166667,
     "lng": -92.5,
     "videoId": "eX2nSmlTtm0",
+    "tags": ["forest", "rain"],
     "tips": [
       "The Ozarks are an ancient uplifted plateau where rainwater disappears into limestone and re-emerges through springs and caves",
       "Let the rain set the pace. You don't need to move faster than it falls",
@@ -88,6 +95,7 @@
     "lat": 9.75,
     "lng": -84.25,
     "videoId": "E7byvKAJHGU",
+    "tags": ["forest"],
     "tips": [
       "Costa Rica holds around 5% of the world's biodiversity despite covering less than 0.1% of its land surface",
       "Don't try to track every sound. Let the forest come to you instead",
@@ -100,6 +108,7 @@
     "lat": -7.447515,
     "lng": -73.672761,
     "videoId": "8myYyMg1fFE",
+    "tags": ["forest", "rain", "waterfall"],
     "tips": [
       "The Amazon rainforest generates its own rainfall, recycling moisture through the atmosphere in a continuous loop",
       "Let the storm take over your attention. You don't need to hold onto it",
@@ -112,6 +121,7 @@
     "lat": 43.344444,
     "lng": -86.394444,
     "videoId": "r8UF2NpM0Ic",
+    "tags": ["coast", "water", "beach"],
     "tips": [
       "Lake Michigan is one of the largest freshwater lakes on Earth, where wind-driven waves can reach heights comparable to ocean surf",
       "Let the rhythm of the waves regulate your attention. You don't need to fix it on anything else",
@@ -124,6 +134,7 @@
     "lat": 44.3386,
     "lng": -68.2733,
     "videoId": "JIXVMnEysTg",
+    "tags": ["coast", "water"],
     "tips": [
       "Acadia sits where the Atlantic meets glacier-sculpted granite, some of the oldest exposed rock on the U.S. eastern seaboard",
       "Let the tide set the rhythm. Everything here is in slow negotiation with the sea",
@@ -136,6 +147,7 @@
     "lat": 44.326111,
     "lng": -74.130833,
     "videoId": "dZzpRymFlsA",
+    "tags": ["water", "forest"],
     "tips": [
       "The Adirondack lakes sit inside the oldest mountain range in North America, shaped by glaciers into basins that are cold, deep, and remarkably clear",
       "Slow your attention to the pace of the water. Fishing here is as much about waiting as it is about noticing",
@@ -148,6 +160,7 @@
     "lat": 41.2132,
     "lng": -124.0046,
     "videoId": "g4S9w3ydS0E",
+    "tags": ["forest", "coast", "rain"],
     "tips": [
       "Coastal redwoods are the tallest trees on Earth, and they drink fog. Up to 40% of their water intake comes not from rain but from clouds moving through the canopy",
       "Let your attention move upward slowly. These trees are measured in vertical time, not horizontal distance",
@@ -160,6 +173,7 @@
     "lat": 7.7683,
     "lng": 98.3016,
     "videoId": "nta1YhicoGw",
+    "tags": ["beach", "coast"],
     "tips": [
       "Yanui sits in a sheltered cove where limestone headlands and nearby coral reef systems absorb open-ocean energy before it reaches shore",
       "Let the tide decide how long you stay in any one thought. Nothing here moves in straight lines",
@@ -172,6 +186,7 @@
     "lat": 47.8021,
     "lng": -123.6044,
     "videoId": "85SKnam3zeo",
+    "tags": ["forest"],
     "tips": [
       "Olympic National Park contains three distinct ecosystems — glaciated peaks, temperate rainforest, and wild Pacific coastline — all within a single protected landscape",
       "Let the scale of the place unsettle your sense of distance. Mountains, forest, and ocean are all happening at once",
@@ -184,6 +199,7 @@
     "lat": 51.0900,
     "lng": -115.3430,
     "videoId": "9Ch7eqK4gdI",
+    "tags": ["mountains", "water"],
     "tips": [
       "The Three Sisters are limestone peaks in the Canadian Rockies formed from ancient seafloor lifted by tectonic forces and carved by glaciers over millions of years",
       "Let the evening alpine light simplify everything. Detail falls away before colour does",
@@ -196,6 +212,7 @@
     "lat": 40.3428,
     "lng": -105.6836,
     "videoId": "-7K1THu1BTU",
+    "tags": ["mountains", "river", "water"],
     "tips": [
       "Spring melt in the Rockies releases an entire winter's snowpack at once, sending stored water into rivers and streams faster than the land can absorb it",
       "Let the sound of moving water set the pace. This is a landscape transitioning faster than it can be seen",
@@ -208,6 +225,7 @@
     "lat": 20.6843,
     "lng": -88.5678,
     "videoId": "p_eEadzpEnI",
+    "tags": ["forest", "water"],
     "tips": [
       "Cenotes form when limestone bedrock collapses, exposing groundwater that has been filtering through porous rock for thousands of years",
       "Let your perception adjust to the vertical shift. You are looking into a water system that runs beneath the land, not across it",
@@ -220,9 +238,10 @@
     "lat": -36.8872,
     "lng": -62.0108,
     "videoId": "TiXyzG4XJEc",
+    "tags": ["water", "sunrise"],
     "tips": [
       "Laguna Las Mulitas sits in the flat pampas of Argentina, where shallow lakes form in wind-shaped depressions across one of the largest grassland plains on Earth",
-      "Let the horizon widen your attention. Here, distance is the dominant feature, not elevation or enclosure",
+      "Let the horizon widen your attention",
       "What looks like a simple lake is part of a seasonal system that expands and contracts with rainfall across the pampas",
       "The air is open and wind-swept, carrying dry grass, soil, and the particular emptiness of long horizontal space"
     ]
@@ -232,6 +251,7 @@
     "lat": -33.7122,
     "lng": 150.3119,
     "videoId": "wfs_5EfO2mU",
+    "tags": ["mountains", "forest"],
     "tips": [
       "The blue haze over these mountains is real and chemical. Eucalyptus forests release oils into the air that scatter light, tinting the entire distance blue",
       "Let your attention follow depth instead of detail. This landscape is built in layers that recede rather than resolve",
@@ -244,6 +264,7 @@
     "lat": -36.5000,
     "lng": 148.3000,
     "videoId": "mtmB30Prqvs",
+    "tags": ["mountains", "snow"],
     "tips": [
       "The Snowy Mountains are Australia's highest range, and their winter snowpack feeds the Murray-Darling Basin, the river system that waters a third of the continent",
       "Let your attention settle into scale. This is a landscape defined by exposure, not enclosure",
@@ -256,6 +277,7 @@
     "lat": 6.0200,
     "lng": -77.3500,
     "videoId": "PSzVqDGY2gs",
+    "tags": ["forest", "river"],
     "tips": [
       "The Chocó is not an extension of the Amazon. Sealed off by the Andes on one side and the Pacific on the other, it evolved in isolation — around 20% of its plant species exist nowhere else on Earth",
       "Don't try to separate the sounds into individual sources. Let the whole thing arrive at once",
@@ -268,6 +290,7 @@
     "lat": -23.5000,
     "lng": -45.1000,
     "videoId": "6eNgRI_p4EQ",
+    "tags": ["forest"],
     "tips": [
       "This forest holds more life per square metre than almost anywhere on Earth",
       "Stay with one layer of sound at a time. There is no end to what the forest is doing",
@@ -280,6 +303,7 @@
     "lat": 63.3333,
     "lng": -150.5000,
     "videoId": "dD9OI_cYZDk",
+    "tags":  ["mountains", "river"],
     "tips": [
       "During the last ice age, the tundra around Denali was part of Beringia — a vast ice-free refuge connected to northeastern Asia. The plants and animals here have more in common with Siberia than with the rest of North America",
       "Pick a point on the horizon and stay with it. At this scale, stillness takes time to arrive",
@@ -292,6 +316,7 @@
     "lat": 15.0833,
     "lng": -89.9167,
     "videoId": "kb-VSf-QdUU",
+    "tags": ["forest", "rain", "mountains"],
     "tips": [
       "Sierra de las Minas is the source of 63 permanent rivers. They begin as fog, caught by leaves exactly like these",
       "Watch one drop form and fall. The whole water cycle is happening at that scale",
@@ -304,6 +329,7 @@
     "lat": 20.7984,
     "lng": -156.3319,
     "videoId": "LCc6I-n2UUc",
+    "tags": ["beach", "coast", "sunrise"],
     "tips": [
       "Hawaii is the most geographically isolated island chain on Earth, more than 3,200 kilometres from the nearest continent",
       "Let the light come in stages. Sunrise here moves slower than you expect",
@@ -316,6 +342,7 @@
     "lat": 26.1167,
     "lng": -111.2833,
     "videoId": "Z1zxi4gaunE",
+    "tags": ["beach", "coast"],
     "tips": [
       "This narrow sea contains more marine species than almost any comparable body of water on Earth",
       "Let your eyes adjust to the water before you try to read it. Clarity this shallow takes a moment to make sense of",
@@ -328,6 +355,7 @@
     "lat": 18.3533,
     "lng": -64.7891,
     "videoId": "_Q9NjXNMtNE",
+    "tags": ["beach", "coast"],
     "tips": [
       "Trunk Bay is named after the leatherback sea turtles that nest here. Leatherbacks are the largest reptiles on Earth",
       "Watch the water rather than through it. The colour itself is the first thing worth staying with",
@@ -352,6 +380,7 @@
     "lat": 29.2498,
     "lng": -103.2502,
     "videoId": "w23YelRLv6s",
+    "tags": ["water"],
     "tips": [
       "The Chisos Mountains rising from Big Bend's desert floor are a sky island — a cool, forested range so isolated by surrounding desert that their plants and animals have evolved separately from any other mountain range",
       "Morning is a slow process, not an event",
@@ -364,6 +393,7 @@
     "lat": -27.1127,
     "lng": -109.3497,
     "videoId": "tNqA2cuxwCU",
+    "tags": ["mountains"],
     "tips": [
       "Rapa Nui sits alone in more than 8 million square miles of open ocean — one of the most isolated inhabited places on Earth",
       "Let the scale of the ocean behind arrive slowly. The distance is the point",
@@ -372,27 +402,55 @@
     ]
   },
   {
-    "name": "Lake Baikal Autumn",
-    "lat": 53.0700,
-    "lng": 107.3500,
-    "videoId": "nOxgQ21JQZ8",
-    "tips": [
-      "Lake Baikal is home to the Baikal seal — the only seal species on the planet that lives entirely in freshwater, found nowhere else in the world",
-      "Let the stillness of the water arrive before you try to read the shoreline. A lake this deep has its own kind of quiet",
-      "Old water looks different. Baikal is clear enough to see 40 metres down",
-      "The air is cold and resinous, carrying Siberian pine, lake water, and the particular sharpness of a summer that knows it is brief"
-    ]
-  },
-    {
     "name": "Southern Alps Riverside Retreat",
     "lat": -42.3833,
     "lng": 172.1333,
     "videoId": "9hrKyf_VFGQ",
+    "tags": ["mountains", "river"],
     "tips": [
       "The Southern Alps are being pushed upward by the Alpine Fault at roughly the same rate fingernails grow — but erosion strips them back just as fast",
       "Let the sound of the water fill the valley before you look for anything else. A river this cold moves differently from a warm one",
       "Southern beech forest has a particular quality of green. Dense and unbroken, it makes the valley feel like it has a ceiling",
       "The air is cold and wet, carrying beech leaf, glacial stone, and the clean mineral sharpness of water that began as snow not far above"
+    ]
+  },
+  {
+    "name": "Yosemite Spring",
+    "lat": 37.7365,
+    "lng": -119.5567,
+    "videoId": "TC0hpqHAZ4E",
+    "tags": ["mountains", "river", "water"],
+    "tips": [
+      "Up to 85% of the Merced River's flow comes entirely from snowmelt. What you're hearing is an entire winter stored in the Sierra Nevada releasing itself at once",
+      "Find a fixed point on the bank and watch the water move past it. A river this fast makes stillness feel earned",
+      "Snowmelt rivers are a different colour than rainwater rivers. The cold keeps them clear all the way to the bottom",
+      "The air is cold and sharp, carrying granite, pine, and the clean electric freshness of water that was snow just days ago"
+    ]
+  },
+  {
+    "name": "Sakura Spring",
+    "lat": 35.0116,
+    "lng": 135.7681,
+    "videoId": "JPckEQWaIxE",
+    "tags": ["forest"],
+    "tips": [
+      "Kyoto has recorded cherry blossom bloom dates continuously since 812 CE — one of the longest biological records on Earth",
+      "Watch a single branch rather than the whole tree. The whole tree is too much at once",
+      "A flower that lasts one week has a different weight than one that lasts all season",
+      "The air in peak bloom carries a faint vanilla sweetness — cherry blossoms contain coumarin, the same compound that gives fresh hay its scent"
+    ]
+  },
+  {
+    "name": "Bluebell Forest",
+    "lat": 51.5500,
+    "lng": -0.9500,
+    "videoId": "IsPBplWLImI",
+    "tags": ["forest"],
+    "tips": [
+      "A bluebell carpet is often a sign that trees have stood here for five hundred years or more",
+      "Let your eyes adjust to the colour before anything else. Blue this dense in a forest takes a moment to accept as real",
+      "A bluebell wood smells different from any other forest. That sweetness has nowhere else to go",
+      "The air is cool and damp, carrying soil, last year's leaves, and the particular green stillness of a woodland that has not yet fully opened its canopy"
     ]
   }
 ]
