@@ -27,7 +27,6 @@
       overflow: hidden;
     }
 
-    /* ── CANVAS ── */
     #globe-canvas {
       position: fixed; inset: 0;
       z-index: 1;
@@ -45,109 +44,6 @@
       transition: opacity 0.6s ease;
     }
     #site-header.hidden { opacity: 0; }
-
-    #shuffle-btn {
-      position: fixed;
-      top: 25px;
-      right: 70px;
-      z-index: 100;
-      width: 36px; height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      cursor: pointer;
-      opacity: 0.55;
-      transition: opacity 0.6s ease;
-      padding: 0;
-    }
-    #shuffle-btn:hover { opacity: 1; }
-    #shuffle-btn.hidden { opacity: 0; pointer-events: none; }
-
-    #shuffle-btn svg {
-      width: 20px; height: 20px;
-      stroke: var(--mist);
-    }
-
-    #filter-wrap {
-      position: fixed;
-      top: 25px;
-      right: 25px;
-      z-index: 20;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
-      transition: opacity 0.6s ease;
-    }
-    #filter-wrap.hidden { opacity: 0; pointer-events: none; }
-
-    #filter-toggle {
-      width: 36px; height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--mist);
-      opacity: 0.55;
-      transition: opacity 0.2s ease;
-      padding: 0;
-    }
-    #filter-toggle:hover { opacity: 1; }
-    #filter-toggle.active { opacity: 1; }
-
-    #filter-toggle svg {
-      width: 20px; height: 20px;
-      stroke: var(--mist);
-    }
-
-    #filter-bar {
-      background: rgba(5, 8, 16, 0.85);
-      border: 1px solid rgba(122, 158, 142, 0.3);
-      border-radius: 8px;
-      padding: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: flex-start;
-      width: 260px;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
-      padding: 0 12px;
-    }
-    #filter-bar.open {
-      max-height: 400px;
-      opacity: 1;
-      padding: 12px;
-    }
-
-    .filter-pill {
-      font-family: var(--font-body);
-      font-size: 0.65rem;
-      font-weight: 300;
-      letter-spacing: 0.12em;
-      color: var(--sage);
-      border: 1px solid var(--sage);
-      border-radius: 20px;
-      padding: 4px 12px;
-      cursor: pointer;
-      opacity: 0.5;
-      transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
-      background: none;
-      text-transform: lowercase;
-      white-space: nowrap;
-    }
-    .filter-pill:hover { opacity: 0.85; }
-    .filter-pill.active {
-      background: var(--sage);
-      color: var(--ink);
-      opacity: 1;
-    }
 
     #site-title {
       font-family: var(--font-display);
@@ -169,6 +65,215 @@
       max-width: 50ch;
       opacity: 0.85;
     }
+
+    /* ── SHUFFLE ── */
+    #shuffle-btn {
+      position: fixed;
+      top: 25px;
+      right: 70px;
+      z-index: 100;
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity 0.6s ease;
+      padding: 0;
+    }
+    #shuffle-btn:hover { opacity: 1; }
+    #shuffle-btn.hidden { opacity: 0; pointer-events: none; }
+    #shuffle-btn svg {
+      width: 20px; height: 20px;
+      stroke: var(--mist);
+    }
+
+    /* ── SEARCH WRAP ── */
+    #search-wrap {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      transition: opacity 0.6s ease;
+    }
+    #search-wrap.hidden { opacity: 0; pointer-events: none; }
+
+    #search-toggle {
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity 0.2s ease;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    #search-toggle:hover { opacity: 1; }
+    #search-toggle.active { opacity: 1; }
+    #search-toggle svg {
+      width: 20px; height: 20px;
+      stroke: var(--mist);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── SEARCH PANEL ── */
+    #search-panel {
+      background: rgba(5, 8, 16, 0.88);
+      border: 1px solid rgba(122, 158, 142, 0.3);
+      border-radius: 8px;
+      width: 260px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+    }
+    #search-panel.open {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    #search-inner {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #search-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(122, 158, 142, 0.2);
+      padding-bottom: 10px;
+    }
+
+    #search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--mist);
+      caret-color: var(--sage);
+    }
+    #search-input::placeholder {
+      color: var(--sage);
+      opacity: 0.5;
+    }
+
+    #search-clear {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 16px; height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+    #search-clear.visible {
+      opacity: 0.45;
+      pointer-events: all;
+    }
+    #search-clear:hover { opacity: 1; }
+    #search-clear svg {
+      width: 12px; height: 12px;
+      stroke: var(--mist);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    /* ── SEARCH RESULTS ── */
+    #search-results {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .search-status {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--sage);
+      opacity: 0.6;
+      padding: 2px 0;
+    }
+
+    .search-result-item {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--mist);
+      padding: 6px 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .search-result-item:hover {
+      background: rgba(122, 158, 142, 0.12);
+    }
+    .search-result-item .result-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--sage);
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+    .search-result-item .result-label {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .search-result-item .result-type {
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: var(--sage);
+      opacity: 0.5;
+      text-transform: lowercase;
+      flex-shrink: 0;
+    }
+
+    /* searching spinner */
+    .search-spinner {
+      display: flex;
+      gap: 5px;
+      padding: 4px 0;
+    }
+    .search-spinner span {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--sage);
+      animation: blink 1.4s ease-in-out infinite;
+      opacity: 0.4;
+    }
+    .search-spinner span:nth-child(2) { animation-delay: 0.2s; }
+    .search-spinner span:nth-child(3) { animation-delay: 0.4s; }
 
     /* ── LOADING SCREEN ── */
     #loading {
@@ -253,7 +358,7 @@
       padding: 0 2rem;
     }
 
-    /* ── BLACK FADE TRANSITION ── */
+    /* ── TRANSITION ── */
     #transition {
       position: fixed; inset: 0;
       z-index: 100;
@@ -317,10 +422,8 @@
       padding: 0;
     }
     .hud-btn:hover { opacity: 1; }
-
     #btn-back  { top: 1.8rem; left: 1.8rem; }
     #btn-open  { top: auto; bottom: 1.8rem; right: 1.8rem; }
-
     .hud-btn svg {
       width: 20px; height: 20px;
       stroke: var(--mist);
@@ -351,43 +454,42 @@
 </head>
 <body>
 
-<!-- Site header — top left, disappears on scene entry -->
 <div id="site-header">
   <p id="site-title">iKnowASpot</p>
   <p id="site-tagline">Curated natural soundscapes for<br>focus, calm, and connection to place.</p>
 </div>
 
 <button id="shuffle-btn" aria-label="Shuffle to a random spot">
-  <svg viewBox="0 0 24 24"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="1.8"
-     stroke-linecap="round"
-     stroke-linejoin="round">
-
-  <!-- top path -->
-  <path d="M16 3h5v5" />
-  <path d="M4 20L21 3" />
-
-  <!-- bottom path -->
-  <path d="M21 16v5h-5" />
-  <path d="M15 15l6 6" />
-  <path d="M4 4l5 5" />
-</svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 3h5v5" />
+    <path d="M4 20L21 3" />
+    <path d="M21 16v5h-5" />
+    <path d="M15 15l6 6" />
+    <path d="M4 4l5 5" />
+  </svg>
 </button>
 
-<div id="filter-wrap">
-  <button id="filter-toggle" aria-label="Filter spots">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <polygon points="3,3 21,3 14,12 14,21 10,21 10,12"/>
+<!-- Search replaces filter -->
+<div id="search-wrap">
+  <button id="search-toggle" aria-label="Search spots">
+    <svg viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
     </svg>
   </button>
-  <div id="filter-bar">
-    <!-- pills injected by JS -->
+  <div id="search-panel">
+    <div id="search-inner">
+      <div id="search-input-row">
+        <input id="search-input" type="text" placeholder="place, state, vibe…" autocomplete="off" spellcheck="false" />
+        <button id="search-clear" aria-label="Clear search">
+          <svg viewBox="0 0 12 12"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg>
+        </button>
+      </div>
+      <div id="search-results"></div>
+    </div>
   </div>
 </div>
 
-<!-- Initial loading -->
 <div id="loading">
   <p id="loading-label"></p>
   <div class="load-dots">
@@ -401,10 +503,8 @@
 <canvas id="globe-canvas"></canvas>
 <div id="spot-tooltip"></div>
 
-<!-- Black crossfade overlay -->
 <div id="transition"></div>
 
-<!-- Traveling overlay -->
 <div id="traveling">
   <p id="traveling-tip"></p>
   <div class="load-dots">
@@ -414,11 +514,9 @@
   </div>
 </div>
 
-<!-- Scene view -->
 <div id="scene-view">
   <div id="yt-blocker"></div>
   <div id="scene-vignette"></div>
-
   <div id="scene-hud" class="hidden">
     <button class="hud-btn" id="btn-back" aria-label="Return to map">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -433,7 +531,6 @@
   </div>
 </div>
 
-<!-- Drone audio player — hidden, never destroyed -->
 <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
   <div id="drone-yt-target"></div>
 </div>
@@ -456,20 +553,19 @@ let droneRetryCount = 0;
 const MAX_DRONE_RETRIES = 3;
 
 let spotsLoaded = false;
-let allowWithoutDrone = false;
 
 const DRONE_ID = '25LHXXXDO-g';
 
 let currentSpotIndex = -1;
 let currentSpotUrl   = '';
 let travelRetryCount = 0;
-let travelRevealTimer = null;
 let travelTimeoutTimer = null;
 let idleTimer = null;
 
 let globeAnimId   = null;
 let globePaused   = false;
 let isDragging    = false;
+let isFlying      = false;
 
 const $loading        = document.getElementById('loading');
 const $loadingLabel   = document.getElementById('loading-label');
@@ -486,6 +582,332 @@ const $canvas         = document.getElementById('globe-canvas');
 const $siteHeader     = document.getElementById('site-header');
 
 // ─────────────────────────────────────────────────────────────────────────────
+// SEARCH
+// ─────────────────────────────────────────────────────────────────────────────
+const $searchWrap    = document.getElementById('search-wrap');
+const $searchToggle  = document.getElementById('search-toggle');
+const $searchPanel   = document.getElementById('search-panel');
+const $searchInput   = document.getElementById('search-input');
+const $searchClear   = document.getElementById('search-clear');
+const $searchResults = document.getElementById('search-results');
+
+let searchDebounceTimer = null;
+let searchOpen = false;
+let activeSearchQuery = '';
+
+// Simple fuzzy scorer — scores a query against a target string
+function fuzzyScore(query, target) {
+  query  = query.toLowerCase().trim();
+  target = target.toLowerCase();
+  if (!query) return 0;
+  if (target === query) return 100;
+  if (target.startsWith(query)) return 90;
+  if (target.includes(query)) return 75;
+
+  // character-sequence fuzzy
+  let qi = 0;
+  let score = 0;
+  for (let i = 0; i < target.length && qi < query.length; i++) {
+    if (target[i] === query[qi]) { score++; qi++; }
+  }
+  return qi === query.length ? Math.round((score / target.length) * 60) : 0;
+}
+
+function scoreSpot(query, spot) {
+  const scores = [
+    fuzzyScore(query, spot.name),
+    ...(spot.tags || []).map(t => fuzzyScore(query, t) * 0.85),
+  ];
+  return Math.max(...scores);
+}
+
+$searchToggle.addEventListener('click', () => {
+  searchOpen = !searchOpen;
+  $searchPanel.classList.toggle('open', searchOpen);
+  $searchToggle.classList.toggle('active', searchOpen);
+  if (searchOpen) {
+    // Always start fresh
+    $searchInput.value = '';
+    $searchClear.classList.remove('visible');
+    $searchResults.innerHTML = '';
+    setTimeout(() => $searchInput.focus(), 320);
+  } else {
+    clearSearch();
+  }
+});
+
+$searchClear.addEventListener('click', () => {
+  clearSearch();
+  $searchInput.focus();
+});
+
+$searchInput.addEventListener('input', () => {
+  const q = $searchInput.value.trim();
+  $searchClear.classList.toggle('visible', q.length > 0);
+  clearTimeout(searchDebounceTimer);
+  if (!q) {
+    clearSearch(false);
+    return;
+  }
+  searchDebounceTimer = setTimeout(() => runSearch(q), 320);
+});
+
+$searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    clearSearch();
+    $searchPanel.classList.remove('open');
+    $searchToggle.classList.remove('active');
+    searchOpen = false;
+  }
+});
+
+function clearSearch(resetSpots = true) {
+  $searchInput.value = '';
+  $searchClear.classList.remove('visible');
+  $searchResults.innerHTML = '';
+  activeSearchQuery = '';
+  clearTimeout(searchDebounceTimer);
+  if (resetSpots) {
+    resetSpotVisibility();
+    globeAutoRotate = true;
+  }
+}
+
+function resetSpotVisibility() {
+  spotMeshes.forEach(s => {
+    s.mesh.visible = true;
+    s.haloMesh.visible = true;
+  });
+}
+
+async function runSearch(query) {
+  activeSearchQuery = query;
+
+  // 1. Score all spots
+  const spotResults = SPOTS
+    .map((spot, index) => ({ spot, index, score: scoreSpot(query, spot) }))
+    .filter(r => r.score > 20)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+
+  // Show spinner while geocoding
+  showSearchStatus('searching…', true);
+
+  // 2. Geocode via Nominatim
+  let geoResult = null;
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&addressdetails=0`;
+    const res = await fetch(url, {
+      headers: { 'Accept-Language': 'en', 'User-Agent': 'iKnowASpot/1.0' }
+    });
+    const data = await res.json();
+    if (data && data.length > 0) {
+      geoResult = {
+        lat: parseFloat(data[0].lat),
+        lng: parseFloat(data[0].lon),
+        name: data[0].display_name.split(',')[0]
+      };
+    }
+  } catch (err) {
+    console.warn('Geocoding failed:', err);
+  }
+
+  // Bail if query changed while we were fetching
+  if (activeSearchQuery !== query) return;
+
+  renderSearchResults(query, spotResults, geoResult);
+}
+
+function renderSearchResults(query, spotResults, geoResult) {
+  $searchResults.innerHTML = '';
+
+  const hasSpots = spotResults.length > 0;
+  const hasGeo   = geoResult !== null;
+
+  if (!hasSpots && !hasGeo) {
+    showSearchStatus('no results found');
+    resetSpotVisibility();
+    return;
+  }
+
+  // If we have spot results, show them first
+  if (hasSpots) {
+    spotResults.forEach(({ spot, index }) => {
+      const item = document.createElement('div');
+      item.className = 'search-result-item';
+      item.innerHTML = `
+        <span class="result-dot"></span>
+        <span class="result-label">${spot.name}</span>
+        <span class="result-type">spot</span>
+      `;
+      item.addEventListener('click', () => {
+        selectSpotResult(index);
+      });
+      $searchResults.appendChild(item);
+    });
+  }
+
+  // If geo result and no spots matched (or geo is a different place), show geo option
+  if (hasGeo && !hasSpots) {
+    const item = document.createElement('div');
+    item.className = 'search-result-item';
+    item.innerHTML = `
+      <span class="result-dot" style="background:var(--sage);opacity:0.4"></span>
+      <span class="result-label">${geoResult.name}</span>
+      <span class="result-type">place</span>
+    `;
+    item.addEventListener('click', () => {
+      flyToGeo(geoResult);
+      closeSearchPanel();
+    });
+    $searchResults.appendChild(item);
+  } else if (hasGeo && hasSpots) {
+    // Offer geo as a secondary option below spots
+    const item = document.createElement('div');
+    item.className = 'search-result-item';
+    item.style.opacity = '0.6';
+    item.innerHTML = `
+      <span class="result-dot" style="background:var(--sage);opacity:0.4"></span>
+      <span class="result-label">${geoResult.name}</span>
+      <span class="result-type">place</span>
+    `;
+    item.addEventListener('click', () => {
+      flyToGeo(geoResult);
+      closeSearchPanel();
+    });
+    $searchResults.appendChild(item);
+  }
+
+  // Update globe — show only matching spots
+  if (hasSpots) {
+    const matchingIndices = new Set(spotResults.map(r => r.index));
+    spotMeshes.forEach(s => {
+      const visible = matchingIndices.has(s.index);
+      s.mesh.visible = visible;
+      s.haloMesh.visible = visible;
+    });
+  } else {
+    resetSpotVisibility();
+  }
+}
+
+function selectSpotResult(index) {
+  closeSearchPanel();
+  flyToSpotMesh(spotMeshes[index], 2000, () => {
+    enterSpot(index);
+  });
+}
+
+function flyToGeo(geo) {
+  flyToGeoLatLng(geo.lat, geo.lng);
+  resetSpotVisibility();
+}
+
+function showSearchStatus(text, spinner = false) {
+  $searchResults.innerHTML = '';
+  if (spinner) {
+    const wrap = document.createElement('div');
+    wrap.className = 'search-spinner';
+    wrap.innerHTML = '<span></span><span></span><span></span>';
+    $searchResults.appendChild(wrap);
+  } else {
+    const el = document.createElement('div');
+    el.className = 'search-status';
+    el.textContent = text;
+    $searchResults.appendChild(el);
+  }
+}
+
+function closeSearchPanel() {
+  $searchPanel.classList.remove('open');
+  $searchToggle.classList.remove('active');
+  searchOpen = false;
+  $searchResults.innerHTML = '';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GLOBE FLY HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Fly to a real spot mesh — uses the same 3D position math as shuffle (proven correct)
+function flyToSpotMesh(spotMesh, duration = 2000, onComplete) {
+  globeAutoRotate = false;
+  const pos = spotMesh.mesh.position.clone().normalize();
+
+  const targetRotY = Math.atan2(-pos.x, pos.z);
+  const cosY = Math.cos(targetRotY);
+  const sinY = Math.sin(targetRotY);
+  const z1   = -pos.x * sinY + pos.z * cosY;
+  const targetRotX = Math.atan2(pos.y, z1);
+
+  const startRotY = rotationY;
+  const startRotX = rotationX;
+
+  let deltaY = targetRotY - startRotY;
+  while (deltaY > Math.PI)  deltaY -= Math.PI * 2;
+  while (deltaY < -Math.PI) deltaY += Math.PI * 2;
+
+  const start = performance.now();
+
+  function animate(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    rotationY = startRotY + deltaY * ease;
+    rotationX = startRotX + (targetRotX - startRotX) * ease;
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      if (onComplete) onComplete();
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+// Geo-only fly (no marker to derive position from) — approximate but fine at globe zoom
+function flyToGeoLatLng(lat, lng, onComplete) {
+  globeAutoRotate = false;
+  // Build a Vec3 the same way latLngToVec3 does, then derive rotations
+  // identically to flyToSpotMesh — consistent math, no magic constants
+  const phi   = (90 - lat) * (Math.PI / 180);
+  const theta = (lng + 180) * (Math.PI / 180);
+  const pos   = new THREE.Vector3(
+    -Math.sin(phi) * Math.cos(theta),
+     Math.cos(phi),
+     Math.sin(phi) * Math.sin(theta)
+  ).normalize();
+
+  const targetRotY = Math.atan2(-pos.x, pos.z);
+  const cosY = Math.cos(targetRotY);
+  const sinY = Math.sin(targetRotY);
+  const z1   = -pos.x * sinY + pos.z * cosY;
+  const targetRotX = Math.atan2(pos.y, z1);
+
+  const startRotY = rotationY;
+  const startRotX = rotationX;
+
+  let deltaY = targetRotY - startRotY;
+  while (deltaY > Math.PI)  deltaY -= Math.PI * 2;
+  while (deltaY < -Math.PI) deltaY += Math.PI * 2;
+
+  const duration = 2000;
+  const start = performance.now();
+
+  function animate(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    rotationY = startRotY + deltaY * ease;
+    rotationX = startRotX + (targetRotX - startRotX) * ease;
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      if (onComplete) onComplete();
+      setTimeout(() => { globeAutoRotate = true; }, 5000);
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // YOUTUBE API
 // ─────────────────────────────────────────────────────────────────────────────
 window.onYouTubeIframeAPIReady = () => {
@@ -495,17 +917,9 @@ window.onYouTubeIframeAPIReady = () => {
 
 function initDrone() {
   dronePlayer = new YT.Player('drone-yt-target', {
-    width: '1',
-    height: '1',
+    width: '1', height: '1',
     videoId: DRONE_ID,
-    playerVars: {
-      autoplay: 1,
-      loop: 1,
-      playlist: DRONE_ID,
-      controls: 0,
-      mute: 1,
-      playsinline: 1,
-    },
+    playerVars: { autoplay: 1, loop: 1, playlist: DRONE_ID, controls: 0, mute: 1, playsinline: 1 },
     events: {
       onReady(e) {
         droneReady = true;
@@ -516,23 +930,12 @@ function initDrone() {
         if (e.data === YT.PlayerState.PLAYING) {
           dronePlaying = true;
           droneRetryCount = 0;
-
-          // Unmute safely after playback begins
-          try {
-            e.target.unMute();
-            e.target.setVolume(100);
-          } catch (err) {}
-
+          try { e.target.unMute(); e.target.setVolume(100); } catch(err) {}
           checkAppReady();
         }
-
-        if (e.data === YT.PlayerState.ENDED) {
-          dronePlayer.playVideo();
-        }
+        if (e.data === YT.PlayerState.ENDED) dronePlayer.playVideo();
       },
-      onError() {
-        retryDrone();
-      }
+      onError() { retryDrone(); }
     }
   });
 }
@@ -544,7 +947,6 @@ function fadeDrone(targetVol, durationMs = 1000) {
   const stepTime = durationMs / steps;
   const delta = (targetVol - startVol) / steps;
   let step = 0;
-
   const iv = setInterval(() => {
     step++;
     droneVolume = Math.max(0, Math.min(100, Math.round(startVol + delta * step)));
@@ -552,9 +954,7 @@ function fadeDrone(targetVol, durationMs = 1000) {
     if (step >= steps) {
       clearInterval(iv);
       droneVolume = targetVol;
-      if (targetVol === 0) {
-        try { dronePlayer.pauseVideo(); } catch(e) {}
-      }
+      if (targetVol === 0) { try { dronePlayer.pauseVideo(); } catch(e) {} }
     }
   }, stepTime);
 }
@@ -567,73 +967,30 @@ function resumeDrone() {
 
 function tryPlayDrone() {
   if (!dronePlayer) return;
-
-  try {
-    dronePlayer.playVideo();
-  } catch (e) {
-    retryDrone();
-    return;
-  }
-
-  setTimeout(() => {
-    if (!dronePlaying) retryDrone();
-  }, 1500);
+  try { dronePlayer.playVideo(); } catch(e) { retryDrone(); return; }
+  setTimeout(() => { if (!dronePlaying) retryDrone(); }, 1500);
 }
 
 function retryDrone() {
-  if (droneRetryCount >= MAX_DRONE_RETRIES) {
-    console.warn('Drone failed after retries.');
-    checkAppReady(true); // allow app anyway
-    return;
-  }
-
+  if (droneRetryCount >= MAX_DRONE_RETRIES) { checkAppReady(true); return; }
   droneRetryCount++;
-  console.log(`Retrying drone (${droneRetryCount})...`);
-
-  try {
-    dronePlayer.destroy();
-  } catch (e) {}
-
-  dronePlayer = null;
-  droneReady = false;
-  dronePlaying = false;
-
+  try { dronePlayer.destroy(); } catch(e) {}
+  dronePlayer = null; droneReady = false; dronePlaying = false;
   setTimeout(initDrone, 800);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SCENE AUDIO FADE IN
-// Fades spot video from 0 → 100 over 5 seconds as soon as it starts playing
+// SCENE AUDIO
 // ─────────────────────────────────────────────────────────────────────────────
 function fadeInSceneAudio() {
   if (!scenePlayer) return;
-
-  const durationMs = 5000;
-  const steps = 50;
-  const stepTime = durationMs / steps;
-
+  const durationMs = 5000, steps = 50, stepTime = durationMs / steps;
   let step = 0;
-
   const iv = setInterval(() => {
-    if (!scenePlayer) {
-      clearInterval(iv);
-      return;
-    }
-
+    if (!scenePlayer) { clearInterval(iv); return; }
     step++;
-
-    const vol = Math.min(
-      100,
-      Math.round((step / steps) * 100)
-    );
-
-    try {
-      scenePlayer.setVolume(vol);
-    } catch(e) {}
-
-    if (step >= steps) {
-      clearInterval(iv);
-    }
+    try { scenePlayer.setVolume(Math.min(100, Math.round((step / steps) * 100))); } catch(e) {}
+    if (step >= steps) clearInterval(iv);
   }, stepTime);
 }
 
@@ -670,6 +1027,7 @@ let dragStartX = 0, dragStartY = 0;
 let dragStartRotY = 0, dragStartRotX = 0;
 let hoveredSpot = null;
 const AUTO_ROTATE = 0.0001;
+let globeAutoRotate = true; // paused during fly animations and while search is active
 
 function latLngToVec3(lat, lng, r) {
   const phi   = (90 - lat) * (Math.PI / 180);
@@ -721,24 +1079,17 @@ function initThree() {
     new THREE.ShaderMaterial({
       vertexShader: `varying vec3 vNormal; void main(){ vNormal=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
       fragmentShader: `varying vec3 vNormal; void main(){ float i=pow(0.65-dot(vNormal,vec3(0,0,1)),3.0); gl_FragColor=vec4(0.15,0.45,1.0,1.0)*i*1.6; }`,
-      blending: THREE.AdditiveBlending,
-      side: THREE.BackSide,
-      transparent: true,
-      depthWrite: false,
+      blending: THREE.AdditiveBlending, side: THREE.BackSide, transparent: true, depthWrite: false,
     })
   );
   scene.add(atmosphere);
 
-  // Atmosphere rim
   scene.add(new THREE.Mesh(
     new THREE.SphereGeometry(RADIUS * 1.04, 64, 64),
     new THREE.ShaderMaterial({
       vertexShader: `varying vec3 vNormal; void main(){ vNormal=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
       fragmentShader: `varying vec3 vNormal; void main(){ float i=pow(0.72-dot(vNormal,vec3(0,0,1)),4.5); gl_FragColor=vec4(0.2,0.55,1.0,0.5)*i; }`,
-      blending: THREE.AdditiveBlending,
-      side: THREE.BackSide,
-      transparent: true,
-      depthWrite: false,
+      blending: THREE.AdditiveBlending, side: THREE.BackSide, transparent: true, depthWrite: false,
     })
   ));
 
@@ -751,7 +1102,7 @@ function initThree() {
   fill.position.set(-5, -1, -2);
   scene.add(fill);
 
-  // Night shadow overlay
+  // Night shadow
   const shadowMat = new THREE.ShaderMaterial({
     uniforms: { sunDir: { value: new THREE.Vector3(5, 2, 3).normalize() } },
     vertexShader: `varying vec3 vWorldNormal; void main(){ vWorldNormal=normalize((modelMatrix*vec4(normal,0.0)).xyz); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
@@ -761,21 +1112,14 @@ function initThree() {
   scene.add(new THREE.Mesh(new THREE.SphereGeometry(RADIUS + 0.002, 64, 64), shadowMat));
 
   addSpotMarkers();
-  
-  buildFilterBar();
-
-  document.getElementById('filter-toggle').addEventListener('click', () => {
-    const bar = document.getElementById('filter-bar');
-    const btn = document.getElementById('filter-toggle');
-    bar.classList.toggle('open');
-    btn.classList.toggle('active');
-  });
   setupInteraction();
+
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
+
   renderLoop();
 }
 
@@ -804,126 +1148,43 @@ function addSpotMarkers() {
   });
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// SHUFFLE
+// ─────────────────────────────────────────────────────────────────────────────
 function shuffleToSpot() {
   const visible = spotMeshes.filter(s => s.mesh.visible);
   if (!visible.length) return;
-
   const target = visible[Math.floor(Math.random() * visible.length)];
 
   const $shuffle = document.getElementById('shuffle-btn');
   $shuffle.style.pointerEvents = 'none';
+  globeAutoRotate = false;
 
-  const pos = target.mesh.position.clone().normalize();
+  flyToSpotMesh(target, 2200, () => {
+    const worldPos = new THREE.Vector3();
+    target.mesh.getWorldPosition(worldPos);
+    const projected = worldPos.project(camera);
+    const screenX = ((projected.x + 1) / 2) * window.innerWidth;
+    const screenY = ((-projected.y + 1) / 2) * window.innerHeight;
 
-  // STEP 1:
-  // Rotate globe around Y so marker faces center/front
+    $tooltip.textContent = target.spot.name;
+    $tooltip.style.left = screenX + 'px';
+    $tooltip.style.top  = screenY + 'px';
+    $tooltip.classList.add('visible');
+    hoveredSpot = target;
+    target.haloMesh.scale.setScalar(2.2);
+    target.haloMesh.material.opacity = 0.7;
 
-  const targetRotY = Math.atan2(-pos.x, pos.z);
-
-  // Simulate that Y rotation
-  const cosY = Math.cos(targetRotY);
-  const sinY = Math.sin(targetRotY);
-
-  const x1 = pos.x * cosY + pos.z * sinY;
-  const z1 = -pos.x * sinY + pos.z * cosY;
-
-  // STEP 2:
-  // Now compute X rotation needed to bring marker vertically centered
-
-  const targetRotX = Math.atan2(pos.y, z1);
-
-  const startRotY = rotationY;
-  const startRotX = rotationX;
-
-  const duration = 2200;
-  const start = performance.now();
-
-  // shortest path
-  let deltaY = targetRotY - startRotY;
-
-  while (deltaY > Math.PI) deltaY -= Math.PI * 2;
-  while (deltaY < -Math.PI) deltaY += Math.PI * 2;
-
-  function animateSpin(now) {
-    const elapsed = now - start;
-    const t = Math.min(elapsed / duration, 1);
-    const ease = 1 - Math.pow(1 - t, 3);
-
-    rotationY = startRotY + deltaY * ease;
-    rotationX = startRotX + (targetRotX - startRotX) * ease;
-
-    if (t < 1) {
-      requestAnimationFrame(animateSpin);
-    } else {
-      const worldPos = new THREE.Vector3();
-
-      target.mesh.getWorldPosition(worldPos);
-
-      const projected = worldPos.project(camera);
-
-      const screenX = ((projected.x + 1) / 2) * window.innerWidth;
-      const screenY = ((-projected.y + 1) / 2) * window.innerHeight;
-
-      $tooltip.textContent = target.spot.name;
-      $tooltip.style.left = screenX + 'px';
-      $tooltip.style.top  = screenY + 'px';
-      $tooltip.classList.add('visible');
-
-      hoveredSpot = target;
-      target.haloMesh.scale.setScalar(2.2);
-      target.haloMesh.material.opacity = 0.7;
-
-      setTimeout(() => {
-        $tooltip.classList.remove('visible');
-        hoveredSpot = null;
-        $shuffle.style.pointerEvents = 'all';
-        enterSpot(target.index);
-      }, 1500);
-    }
-  }
-
-  requestAnimationFrame(animateSpin);
+    setTimeout(() => {
+      $tooltip.classList.remove('visible');
+      hoveredSpot = null;
+      $shuffle.style.pointerEvents = 'all';
+      enterSpot(target.index);
+    }, 1500);
+  });
 }
 
 document.getElementById('shuffle-btn').addEventListener('click', shuffleToSpot);
-
-let activeTags = new Set();
-
-function buildFilterBar() {
-  const $bar = document.getElementById('filter-bar');
-  $bar.innerHTML = '';
-
-  // Collect all unique tags across spots
-  const allTags = [...new Set(SPOTS.flatMap(s => s.tags || []))].sort();
-
-  allTags.forEach(tag => {
-    const pill = document.createElement('button');
-    pill.className = 'filter-pill';
-    pill.textContent = tag;
-    pill.addEventListener('click', () => toggleTag(tag, pill));
-    $bar.appendChild(pill);
-  });
-}
-
-function toggleTag(tag, pill) {
-  if (activeTags.has(tag)) {
-    activeTags.delete(tag);
-    pill.classList.remove('active');
-  } else {
-    activeTags.add(tag);
-    pill.classList.add('active');
-  }
-  applyFilter();
-}
-
-function applyFilter() {
-  spotMeshes.forEach(s => {
-    const tags = s.spot.tags || [];
-    const visible = activeTags.size === 0 || tags.some(t => activeTags.has(t));
-    s.mesh.visible = visible;
-    s.haloMesh.visible = visible;
-  });
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // INTERACTION
@@ -936,7 +1197,7 @@ function hitTestSpots(clientX, clientY) {
     -(clientY / window.innerHeight) * 2 + 1
   );
   raycaster.setFromCamera(ndc, camera);
-  const hits = raycaster.intersectObjects(spotMeshes.map(s => s.mesh));
+  const hits = raycaster.intersectObjects(spotMeshes.filter(s => s.mesh.visible).map(s => s.mesh));
   if (!hits.length) return null;
   return spotMeshes.find(s => s.mesh === hits[0].object) || null;
 }
@@ -944,23 +1205,18 @@ function hitTestSpots(clientX, clientY) {
 function setupInteraction() {
   $canvas.addEventListener('mousedown', e => {
     isDragging = false;
-    dragStartX = e.clientX;
-    dragStartY = e.clientY;
-    dragStartRotY = rotationY;
-    dragStartRotX = rotationX;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    dragStartRotY = rotationY; dragStartRotX = rotationX;
     $canvas.style.cursor = 'grabbing';
   });
 
   window.addEventListener('mousemove', e => {
-    const dx = e.clientX - dragStartX;
-    const dy = e.clientY - dragStartY;
-
+    const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
     if (e.buttons === 1 && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
       isDragging = true;
       rotationY = dragStartRotY + dx * 0.005;
       rotationX = Math.max(-1.0, Math.min(1.0, dragStartRotX + dy * 0.005));
     }
-
     const hit = hitTestSpots(e.clientX, e.clientY);
     if (hit) {
       $canvas.style.cursor = 'pointer';
@@ -989,8 +1245,7 @@ function setupInteraction() {
 
   $canvas.addEventListener('wheel', e => {
     e.preventDefault();
-    const delta = e.deltaY * 0.002;
-    cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, cameraZ + delta));
+    cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, cameraZ + e.deltaY * 0.002));
   }, { passive: false });
 
   let lastPinchDist = null;
@@ -1002,10 +1257,7 @@ function setupInteraction() {
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (lastPinchDist !== null) {
-        const delta = (lastPinchDist - dist) * 0.008;
-        cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, cameraZ + delta));
-      }
+      if (lastPinchDist !== null) cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, cameraZ + (lastPinchDist - dist) * 0.008));
       lastPinchDist = dist;
     }
   }, { passive: true });
@@ -1013,23 +1265,18 @@ function setupInteraction() {
 
   let touchStartX = 0, touchStartY = 0;
   $canvas.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    dragStartRotY = rotationY;
-    dragStartRotX = rotationX;
+    touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY;
+    dragStartRotY = rotationY; dragStartRotX = rotationX;
     isDragging = false;
   }, { passive: true });
-
   $canvas.addEventListener('touchmove', e => {
-    const dx = e.touches[0].clientX - touchStartX;
-    const dy = e.touches[0].clientY - touchStartY;
+    const dx = e.touches[0].clientX - touchStartX, dy = e.touches[0].clientY - touchStartY;
     if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
       isDragging = true;
       rotationY = dragStartRotY + dx * 0.005;
       rotationX = Math.max(-1.0, Math.min(1.0, dragStartRotX + dy * 0.005));
     }
   }, { passive: true });
-
   $canvas.addEventListener('touchend', e => {
     if (!isDragging) {
       const t = e.changedTouches[0];
@@ -1048,16 +1295,12 @@ let lastTs = 0;
 function renderLoop(ts = 0) {
   globeAnimId = requestAnimationFrame(renderLoop);
   if (globePaused) return;
-
   lastTs = ts;
   camera.position.z += (cameraZ - camera.position.z) * 0.08;
-
-  if (!isDragging) rotationY += AUTO_ROTATE;
-
+  if (!isDragging && globeAutoRotate) rotationY += AUTO_ROTATE;
   globe.rotation.y = rotationY;
   globe.rotation.x = rotationX;
   atmosphere.rotation.x = rotationX;
-
   const t = ts / 1000;
   spotMeshes.forEach(s => {
     const isHovered = s === hoveredSpot;
@@ -1065,7 +1308,6 @@ function renderLoop(ts = 0) {
     s.haloMesh.scale.setScalar(isHovered ? 2.2 : pulse);
     s.haloMesh.material.opacity = isHovered ? 0.7 : 0.28 + 0.1 * Math.sin(t * 2.5 + s.index * 1.3);
   });
-
   renderer.render(scene, camera);
 }
 
@@ -1076,16 +1318,12 @@ function enterSpot(index, isRetry = false) {
   const spot = SPOTS[index];
   currentSpotIndex = index;
   currentSpotUrl = spot.url;
-
   if (!isRetry) travelRetryCount = 0;
 
   $tooltip.classList.remove('visible');
-
-  // Hide header
   $siteHeader.classList.add('hidden');
-
   document.getElementById('shuffle-btn').classList.add('hidden');
-  document.getElementById('filter-wrap').classList.add('hidden');
+  $searchWrap.classList.add('hidden');
 
   const s = spotMeshes[index];
   if (s) { s.haloMesh.scale.setScalar(3.5); s.haloMesh.material.opacity = 1; }
@@ -1096,12 +1334,8 @@ function enterSpot(index, isRetry = false) {
     fadeToBlack(() => {
       globePaused = true;
       $sceneView.classList.add('active');
-
       const tips = spot.tips || [];
-      $travelingTip.textContent = tips.length
-        ? tips[Math.floor(Math.random() * tips.length)]
-        : spot.name;
-
+      $travelingTip.textContent = tips.length ? tips[Math.floor(Math.random() * tips.length)] : spot.name;
       $traveling.classList.add('visible');
       fadeFromBlack();
       launchSpotVideo(spot, isRetry);
@@ -1111,24 +1345,19 @@ function enterSpot(index, isRetry = false) {
 
 function launchSpotVideo(spot, isRetry) {
   destroyScenePlayer();
-
   const target = document.createElement('div');
   target.id = 'yt-target';
   $sceneView.insertBefore(target, document.getElementById('yt-blocker'));
 
-  let revealed = false;
-  let audioFadeStarted = false;
+  let revealed = false, audioFadeStarted = false;
 
   clearTimeout(travelTimeoutTimer);
-  travelTimeoutTimer = setTimeout(() => {
-    if (!revealed) handleTravelTimeout(spot);
-  }, 5000);
+  travelTimeoutTimer = setTimeout(() => { if (!revealed) handleTravelTimeout(spot); }, 5000);
 
   function reveal() {
     if (revealed) return;
     revealed = true;
     clearTimeout(travelTimeoutTimer);
-
     setTimeout(() => {
       fadeToBlack(() => {
         $traveling.classList.remove('visible');
@@ -1146,42 +1375,20 @@ function launchSpotVideo(spot, isRetry) {
   scenePlayer = new YT.Player('yt-target', {
     videoId: spot.videoId,
     playerVars: {
-      autoplay:        1,
-      mute:            0,
-      loop:            1,
-      playlist:        spot.videoId,
-      controls:        0,
-      disablekb:       1,
-      modestbranding:  1,
-      playsinline:     1,
-      rel:             0,
-      iv_load_policy:  3,
-      fs:              0,
-      cc_load_policy:  0,
+      autoplay: 1, mute: 0, loop: 1, playlist: spot.videoId,
+      controls: 0, disablekb: 1, modestbranding: 1, playsinline: 1,
+      rel: 0, iv_load_policy: 3, fs: 0, cc_load_policy: 0,
     },
     events: {
-      onReady(e) {
-        try {
-          e.target.setVolume(0);
-        } catch(e) {}
-
-        e.target.playVideo();
-      },
+      onReady(e) { try { e.target.setVolume(0); } catch(e) {} e.target.playVideo(); },
       onStateChange(e) {
         if (e.data === YT.PlayerState.PLAYING) {
-          // Start audio fade immediately on first PLAYING event
-          if (!audioFadeStarted) {
-            audioFadeStarted = true;
-            fadeInSceneAudio();
-          }
+          if (!audioFadeStarted) { audioFadeStarted = true; fadeInSceneAudio(); }
           reveal();
         }
         if (e.data === YT.PlayerState.ENDED) scenePlayer && scenePlayer.playVideo();
       },
-      onError() {
-        clearTimeout(travelTimeoutTimer);
-        handleTravelTimeout(spot);
-      }
+      onError() { clearTimeout(travelTimeoutTimer); handleTravelTimeout(spot); }
     }
   });
 
@@ -1193,15 +1400,10 @@ function launchSpotVideo(spot, isRetry) {
         transform:translate(-50%,-50%);
         width:max(177.78vh,100vw);
         height:max(100vh,56.25vw);
-        border:none;z-index:1;
-        pointer-events:none;
-        opacity:0;
-        transition:opacity 1.2s ease;
+        border:none;z-index:1;pointer-events:none;
+        opacity:0;transition:opacity 1.2s ease;
       `;
-      setTimeout(() => {
-        const iframe = document.getElementById('yt-target');
-        if (iframe) iframe.style.opacity = '1';
-      }, 100);
+      setTimeout(() => { const iframe = document.getElementById('yt-target'); if (iframe) iframe.style.opacity = '1'; }, 100);
       clearInterval(sizeIv);
     }
   }, 30);
@@ -1210,11 +1412,9 @@ function launchSpotVideo(spot, isRetry) {
 function handleTravelTimeout(spot) {
   if (travelRetryCount === 0) {
     travelRetryCount = 1;
-    console.log('Video load timeout — retrying…');
     destroyScenePlayer();
     launchSpotVideo(spot, true);
   } else {
-    console.log('Video load failed after retry — returning to globe.');
     returnToGlobe();
   }
 }
@@ -1224,7 +1424,6 @@ function handleTravelTimeout(spot) {
 // ─────────────────────────────────────────────────────────────────────────────
 function returnToGlobe() {
   clearTimeout(travelTimeoutTimer);
-
   fadeToBlack(() => {
     destroyScenePlayer();
     $sceneView.classList.remove('active');
@@ -1233,25 +1432,20 @@ function returnToGlobe() {
     clearTimeout(idleTimer);
     document.removeEventListener('mousemove', onSceneMouseMove);
     document.removeEventListener('touchstart', onSceneTouchStart);
-
     globePaused = false;
     lastTs = performance.now();
-
-    // Restore header
+    globeAutoRotate = true;
     $siteHeader.classList.remove('hidden');
-
     document.getElementById('shuffle-btn').classList.remove('hidden');
-    document.getElementById('filter-wrap').classList.remove('hidden');
-
+    $searchWrap.classList.remove('hidden');
+    resetSpotVisibility();
     resumeDrone();
     fadeFromBlack();
   });
 }
 
 $btnBack.addEventListener('click', returnToGlobe);
-$btnOpen.addEventListener('click', () => {
-  if (currentSpotUrl) window.open(currentSpotUrl, '_blank', 'noopener');
-});
+$btnOpen.addEventListener('click', () => { if (currentSpotUrl) window.open(currentSpotUrl, '_blank', 'noopener'); });
 
 // ─────────────────────────────────────────────────────────────────────────────
 // IDLE HUD
@@ -1261,7 +1455,6 @@ function resetIdleTimer() {
   clearTimeout(idleTimer);
   idleTimer = setTimeout(() => $sceneHud.classList.add('hidden'), 3000);
 }
-
 function onSceneMouseMove() { resetIdleTimer(); }
 function onSceneTouchStart() { resetIdleTimer(); }
 
@@ -1269,28 +1462,17 @@ function onSceneTouchStart() { resetIdleTimer(); }
 // HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 function destroyScenePlayer() {
-  if (scenePlayer) {
-    try { scenePlayer.destroy(); } catch(e) {}
-    scenePlayer = null;
-  }
+  if (scenePlayer) { try { scenePlayer.destroy(); } catch(e) {} scenePlayer = null; }
   const old = document.getElementById('yt-target');
   if (old) old.remove();
 }
 
-function fadeToBlack(cb) {
-  $transition.classList.add('visible');
-  setTimeout(cb, 850);
-}
-
-function fadeFromBlack() {
-  setTimeout(() => $transition.classList.remove('visible'), 60);
-}
+function fadeToBlack(cb) { $transition.classList.add('visible'); setTimeout(cb, 850); }
+function fadeFromBlack() { setTimeout(() => $transition.classList.remove('visible'), 60); }
 
 function checkAppReady(force = false) {
   if (!spotsLoaded) return;
-  if (dronePlaying || force) {
-    $loading.classList.add('hidden');
-  }
+  if (dronePlaying || force) $loading.classList.add('hidden');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1307,11 +1489,8 @@ async function init() {
   try {
     SPOTS = await loadSpots();
     if (!SPOTS.length) throw new Error('No spots in spots.json');
-
     spotsLoaded = true;
-
     initThree();
-
     checkAppReady();
   } catch (err) {
     console.error(err);
