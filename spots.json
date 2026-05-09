@@ -465,5 +465,44 @@
       "A storm this wide changes the atmosphere long before the rain reaches you",
       "The air is heavy and electrically still, carrying wet soil, cut grass, and the metallic sharpness that arrives just before lightning"
     ]
+  },
+  {
+    "name": "Italian Autumn Olive Orchard",
+    "lat": 46.1000,
+    "lng": 13.4333,
+    "videoId": "HpwYQm_bE-0",
+    "tags": ["forest", "river", "water"],
+    "tips": [
+      "Friuli sits between the Alps and the Adriatic, where cool mountain air and Mediterranean warmth create some of the oldest olive-growing landscapes in northern Italy",
+      "Let the spacing of the trees slow your attention. Orchards are designed rhythms, not wild forests",
+      "Olive trees can survive for centuries because they regenerate from the inside out. A trunk that looks ancient may still be actively renewing itself",
+      "The air is dry and slightly sweet, carrying crushed grass, olive leaf oil, and the earthy warmth of soil cooling after summer"
+    ]
+  },
+  {
+    "name": "Bulgarian Cherry Orchard",
+    "lat": 42.7333,
+    "lng": 25.4833,
+    "videoId": "dYfMj1SjzRc",
+    "tags": ["forest", "spring"],
+    "tips": [
+      "Bulgaria's temperate valleys produce ideal conditions for cherry trees, where cold winters and warm springs synchronize entire orchards into bloom at once",
+      "Stay with one section of movement at a time. Wind through blossoms is quieter than rain but just as alive",
+      "Fruit trees bloom all at once because pollination is a race against weather",
+      "The air is cool and lightly floral, carrying damp soil, fresh leaves, and the faint almond-like sweetness released by cherry blossoms"
+    ]
+  },
+  {
+    "name": "Adriatic Sea Coast",
+    "lat": 38.7167,
+    "lng": 20.6500,
+    "videoId": "keyFWfDexr0",
+    "tags": ["coast", "beach", "water"],
+    "tips": [
+      "Lefkada's coastline sits along the Ionian edge of the Adriatic system, where steep limestone cliffs drop directly into unusually clear, mineral-rich water",
+      "Let the brightness of the water settle before you focus on details. Seas this clear can feel almost unreal at first",
+      "The colour here comes from limestone suspended beneath the surface, scattering light through shallow coastal water",
+      "The air is warm and salt-heavy, carrying sun-heated stone, dry herbs, and the clean wind moving inland from open sea"
+    ]
   }
 ]
