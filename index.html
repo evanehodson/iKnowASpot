@@ -8,6 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
+  <!--
+    CSS is still inline for now (Stage 1 of the refactor).
+    Stage 5 (future) will extract these into /css/*.css files.
+    The visual output is identical to the original.
+  -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -37,8 +42,7 @@
     /* ── HEADER ── */
     #site-header {
       position: fixed;
-      top: 25px;
-      left: 25px;
+      top: 25px; left: 25px;
       z-index: 20;
       pointer-events: none;
       transition: opacity 0.6s ease;
@@ -47,265 +51,145 @@
 
     #site-title {
       font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 500;
+      font-size: 2rem; font-weight: 500;
       letter-spacing: 0.05em;
       color: var(--mist);
-      line-height: 1;
-      margin-bottom: 0.45rem;
+      line-height: 1; margin-bottom: 0.45rem;
     }
 
     #site-tagline {
       font-family: var(--font-body);
-      font-size: 0.72rem;
-      font-weight: 300;
+      font-size: 0.72rem; font-weight: 300;
       letter-spacing: 0.08em;
       color: var(--sage);
-      line-height: 1.6;
-      max-width: 50ch;
+      line-height: 1.6; max-width: 50ch;
       opacity: 0.85;
     }
 
     /* ── SHUFFLE ── */
     #shuffle-btn {
-      position: fixed;
-      top: 25px;
-      right: 70px;
+      position: fixed; top: 25px; right: 70px;
       z-index: 100;
       width: 36px; height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      cursor: pointer;
-      opacity: 0.55;
-      transition: opacity 0.6s ease;
-      padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: none; cursor: pointer;
+      opacity: 0.55; transition: opacity 0.6s ease; padding: 0;
     }
     #shuffle-btn:hover { opacity: 1; }
     #shuffle-btn.hidden { opacity: 0; pointer-events: none; }
-    #shuffle-btn svg {
-      width: 20px; height: 20px;
-      stroke: var(--mist);
-    }
+    #shuffle-btn svg { width: 20px; height: 20px; stroke: var(--mist); }
 
     /* ── SEARCH WRAP ── */
     #search-wrap {
-      position: fixed;
-      top: 25px;
-      right: 25px;
+      position: fixed; top: 25px; right: 25px;
       z-index: 20;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
       transition: opacity 0.6s ease;
     }
     #search-wrap.hidden { opacity: 0; pointer-events: none; }
 
     #search-toggle {
       width: 36px; height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      cursor: pointer;
-      opacity: 0.55;
-      transition: opacity 0.2s ease;
-      padding: 0;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: none; cursor: pointer;
+      opacity: 0.55; transition: opacity 0.2s ease; padding: 0; flex-shrink: 0;
     }
     #search-toggle:hover { opacity: 1; }
     #search-toggle.active { opacity: 1; }
     #search-toggle svg {
-      width: 20px; height: 20px;
-      stroke: var(--mist);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      width: 20px; height: 20px; stroke: var(--mist);
+      fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
     }
 
     /* ── SEARCH PANEL ── */
     #search-panel {
       background: rgba(5, 8, 16, 0.88);
       border: 1px solid rgba(122, 158, 142, 0.3);
-      border-radius: 8px;
-      width: 260px;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
+      border-radius: 8px; width: 260px;
+      max-height: 0; overflow: hidden; opacity: 0;
       transition: max-height 0.4s ease, opacity 0.3s ease;
     }
-    #search-panel.open {
-      max-height: 400px;
-      opacity: 1;
-    }
+    #search-panel.open { max-height: 400px; opacity: 1; }
 
-    #search-inner {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    #search-inner { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
 
     #search-input-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
       border-bottom: 1px solid rgba(122, 158, 142, 0.2);
       padding-bottom: 10px;
     }
 
     #search-input {
-      flex: 1;
-      background: none;
-      border: none;
-      outline: none;
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      color: var(--mist);
-      caret-color: var(--sage);
+      flex: 1; background: none; border: none; outline: none;
+      font-family: var(--font-body); font-size: 0.78rem; font-weight: 300;
+      letter-spacing: 0.1em; color: var(--mist); caret-color: var(--sage);
     }
-    #search-input::placeholder {
-      color: var(--sage);
-      opacity: 0.5;
-    }
+    #search-input::placeholder { color: var(--sage); opacity: 0.5; }
 
     #search-clear {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
+      background: none; border: none; cursor: pointer; padding: 0;
       width: 16px; height: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s ease; pointer-events: none; flex-shrink: 0;
     }
-    #search-clear.visible {
-      opacity: 0.45;
-      pointer-events: all;
-    }
+    #search-clear.visible { opacity: 0.45; pointer-events: all; }
     #search-clear:hover { opacity: 1; }
-    #search-clear svg {
-      width: 12px; height: 12px;
-      stroke: var(--mist);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-    }
+    #search-clear svg { width: 12px; height: 12px; stroke: var(--mist); fill: none; stroke-width: 2; stroke-linecap: round; }
 
     /* ── SEARCH RESULTS ── */
-    #search-results {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+    #search-results { display: flex; flex-direction: column; gap: 4px; }
 
     .search-status {
-      font-family: var(--font-body);
-      font-size: 0.65rem;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      color: var(--sage);
-      opacity: 0.6;
-      padding: 2px 0;
+      font-family: var(--font-body); font-size: 0.65rem; font-weight: 300;
+      letter-spacing: 0.1em; color: var(--sage); opacity: 0.6; padding: 2px 0;
     }
 
     .search-result-item {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--mist);
-      padding: 6px 8px;
-      border-radius: 5px;
-      cursor: pointer;
+      font-family: var(--font-body); font-size: 0.72rem; font-weight: 300;
+      letter-spacing: 0.08em; color: var(--mist);
+      padding: 6px 8px; border-radius: 5px; cursor: pointer;
       transition: background 0.15s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
     }
-    .search-result-item:hover {
-      background: rgba(122, 158, 142, 0.12);
-    }
+    .search-result-item:hover { background: rgba(122, 158, 142, 0.12); }
     .search-result-item .result-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--sage);
-      flex-shrink: 0;
-      opacity: 0.7;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--sage); flex-shrink: 0; opacity: 0.7;
     }
-    .search-result-item .result-label {
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .search-result-item .result-label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .search-result-item .result-type {
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      color: var(--sage);
-      opacity: 0.5;
-      text-transform: lowercase;
-      flex-shrink: 0;
+      font-size: 0.58rem; letter-spacing: 0.12em; color: var(--sage);
+      opacity: 0.5; text-transform: lowercase; flex-shrink: 0;
     }
 
-    /* searching spinner */
-    .search-spinner {
-      display: flex;
-      gap: 5px;
-      padding: 4px 0;
-    }
+    .search-spinner { display: flex; gap: 5px; padding: 4px 0; }
     .search-spinner span {
-      width: 4px; height: 4px;
-      border-radius: 50%;
+      width: 4px; height: 4px; border-radius: 50%;
       background: var(--sage);
-      animation: blink 1.4s ease-in-out infinite;
-      opacity: 0.4;
+      animation: blink 1.4s ease-in-out infinite; opacity: 0.4;
     }
     .search-spinner span:nth-child(2) { animation-delay: 0.2s; }
     .search-spinner span:nth-child(3) { animation-delay: 0.4s; }
 
     /* ── LOADING SCREEN ── */
     #loading {
-      position: fixed; inset: 0;
-      z-index: 200;
+      position: fixed; inset: 0; z-index: 200;
       background: var(--ink);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1.2rem;
       transition: opacity 1s ease;
     }
     #loading.hidden { opacity: 0; pointer-events: none; }
 
     #loading-label {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
-      color: var(--sage);
+      font-family: var(--font-display); font-size: 1rem; font-weight: 300;
+      letter-spacing: 0.18em; color: var(--sage);
     }
 
-    .load-dots {
-      display: flex;
-      gap: 7px;
-    }
+    .load-dots { display: flex; gap: 7px; }
     .load-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--sage);
-      animation: blink 1.6s ease-in-out infinite;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--sage); animation: blink 1.6s ease-in-out infinite;
     }
     .load-dot:nth-child(2) { animation-delay: 0.25s; }
     .load-dot:nth-child(3) { animation-delay: 0.5s; }
@@ -316,138 +200,77 @@
     }
 
     #error-msg {
-      display: none;
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      color: #a06060;
-      letter-spacing: 0.1em;
-      text-align: center;
-      max-width: 30ch;
-      line-height: 1.7;
-      margin-top: 0.5rem;
+      display: none; font-family: var(--font-body); font-size: 0.72rem;
+      color: #a06060; letter-spacing: 0.1em; text-align: center;
+      max-width: 30ch; line-height: 1.7; margin-top: 0.5rem;
     }
 
     /* ── TRAVELING OVERLAY ── */
     #traveling {
-      position: fixed; inset: 0;
-      z-index: 90;
+      position: fixed; inset: 0; z-index: 90;
       background: var(--ink);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1.6rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.8s ease;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1.6rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
     }
-    #traveling.visible {
-      opacity: 1;
-      pointer-events: all;
-    }
+    #traveling.visible { opacity: 1; pointer-events: all; }
+
     #traveling-tip {
       font-family: var(--font-display);
-      font-size: clamp(0.95rem, 2vw, 1.2rem);
-      font-weight: 300;
-      color: var(--mist);
-      letter-spacing: 0.1em;
-      text-align: center;
-      max-width: 42ch;
-      line-height: 1.7;
-      opacity: 0.75;
-      padding: 0 2rem;
+      font-size: clamp(0.95rem, 2vw, 1.2rem); font-weight: 300;
+      color: var(--mist); letter-spacing: 0.1em; text-align: center;
+      max-width: 42ch; line-height: 1.7; opacity: 0.75; padding: 0 2rem;
     }
 
     /* ── TRANSITION ── */
     #transition {
-      position: fixed; inset: 0;
-      z-index: 100;
-      background: var(--ink);
-      opacity: 0;
-      pointer-events: none;
+      position: fixed; inset: 0; z-index: 100;
+      background: var(--ink); opacity: 0; pointer-events: none;
       transition: opacity 0.8s ease;
     }
     #transition.visible { opacity: 1; pointer-events: all; }
 
     /* ── SCENE VIEW ── */
     #scene-view {
-      position: fixed; inset: 0;
-      z-index: 2;
-      display: none;
-      background: var(--ink);
-      overflow: hidden;
+      position: fixed; inset: 0; z-index: 2;
+      display: none; background: var(--ink); overflow: hidden;
     }
     #scene-view.active { display: block; }
 
-    #yt-blocker {
-      position: absolute; inset: 0;
-      z-index: 5;
-      background: transparent;
-      cursor: default;
-    }
+    #yt-blocker { position: absolute; inset: 0; z-index: 5; background: transparent; cursor: default; }
 
     #scene-vignette {
       position: absolute; inset: 0;
       background: radial-gradient(ellipse at center,
-        transparent 35%,
-        rgba(5,8,16,0.3) 68%,
-        rgba(5,8,16,0.72) 100%);
-      pointer-events: none;
-      z-index: 6;
+        transparent 35%, rgba(5,8,16,0.3) 68%, rgba(5,8,16,0.72) 100%);
+      pointer-events: none; z-index: 6;
     }
 
     /* ── SCENE HUD ── */
-    #scene-hud {
-      position: absolute;
-      inset: 0;
-      z-index: 10;
-      pointer-events: none;
-      transition: opacity 0.6s ease;
-    }
+    #scene-hud { position: absolute; inset: 0; z-index: 10; pointer-events: none; transition: opacity 0.6s ease; }
     #scene-hud.hidden { opacity: 0; }
 
     .hud-btn {
-      position: absolute;
-      top: 1.8rem;
+      position: absolute; top: 1.8rem;
       width: 36px; height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      pointer-events: all;
-      opacity: 0.55;
-      transition: opacity 0.2s ease;
-      background: none;
-      border: none;
-      padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; pointer-events: all;
+      opacity: 0.55; transition: opacity 0.2s ease;
+      background: none; border: none; padding: 0;
     }
     .hud-btn:hover { opacity: 1; }
-    #btn-back  { top: 1.8rem; left: 1.8rem; }
-    #btn-open  { top: auto; bottom: 1.8rem; right: 1.8rem; }
-    .hud-btn svg {
-      width: 20px; height: 20px;
-      stroke: var(--mist);
-      stroke-width: 1.5;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+    #btn-back { top: 1.8rem; left: 1.8rem; }
+    #btn-open { top: auto; bottom: 1.8rem; right: 1.8rem; }
+    .hud-btn svg { width: 20px; height: 20px; stroke: var(--mist); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
     /* ── TOOLTIP ── */
     #spot-tooltip {
-      position: fixed;
-      z-index: 50;
-      pointer-events: none;
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      color: var(--mist);
+      position: fixed; z-index: 50; pointer-events: none;
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 300;
+      letter-spacing: 0.1em; color: var(--mist);
       text-shadow: 0 1px 12px rgba(5,8,16,0.95);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      white-space: nowrap;
-      transform: translate(18px, -50%);
+      opacity: 0; transition: opacity 0.2s ease;
+      white-space: nowrap; transform: translate(18px, -50%);
     }
     #spot-tooltip.visible { opacity: 1; }
   </style>
@@ -461,15 +284,11 @@
 
 <button id="shuffle-btn" aria-label="Shuffle to a random spot">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M16 3h5v5" />
-    <path d="M4 20L21 3" />
-    <path d="M21 16v5h-5" />
-    <path d="M15 15l6 6" />
-    <path d="M4 4l5 5" />
+    <path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/>
+    <path d="M15 15l6 6"/><path d="M4 4l5 5"/>
   </svg>
 </button>
 
-<!-- Search replaces filter -->
 <div id="search-wrap">
   <button id="search-toggle" aria-label="Search spots">
     <svg viewBox="0 0 24 24">
@@ -502,7 +321,6 @@
 
 <canvas id="globe-canvas"></canvas>
 <div id="spot-tooltip"></div>
-
 <div id="transition"></div>
 
 <div id="traveling">
@@ -531,979 +349,22 @@
   </div>
 </div>
 
+<!-- Drone audio target (off-screen, never visible) -->
 <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
   <div id="drone-yt-target"></div>
 </div>
 
+<!--
+  THREE.JS must load before main.js because main.js imports modules
+  that reference THREE as a global. The defer attribute on main.js
+  ensures it runs after the DOM is ready but Three.js is already available.
+
+  Type="module" activates ES module imports — this is the key change
+  that makes the entire /js/ folder structure work.
+-->
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-
-<script>
-// ─────────────────────────────────────────────────────────────────────────────
-// STATE
-// ─────────────────────────────────────────────────────────────────────────────
-let SPOTS = [];
-
-let ytApiReady   = false;
-let dronePlayer  = null;
-let scenePlayer  = null;
-let droneReady   = false;
-let droneVolume  = 100;
-let dronePlaying = false;
-let droneRetryCount = 0;
-const MAX_DRONE_RETRIES = 3;
-
-let spotsLoaded = false;
-
-const DRONE_ID = '25LHXXXDO-g';
-
-let currentSpotIndex = -1;
-let currentSpotUrl   = '';
-let travelRetryCount = 0;
-let travelTimeoutTimer = null;
-let idleTimer = null;
-
-let globeAnimId   = null;
-let globePaused   = false;
-let isDragging    = false;
-let isFlying      = false;
-
-const $loading        = document.getElementById('loading');
-const $loadingLabel   = document.getElementById('loading-label');
-const $transition     = document.getElementById('transition');
-const $traveling      = document.getElementById('traveling');
-const $travelingTip   = document.getElementById('traveling-tip');
-const $sceneView      = document.getElementById('scene-view');
-const $sceneHud       = document.getElementById('scene-hud');
-const $btnBack        = document.getElementById('btn-back');
-const $btnOpen        = document.getElementById('btn-open');
-const $errorMsg       = document.getElementById('error-msg');
-const $tooltip        = document.getElementById('spot-tooltip');
-const $canvas         = document.getElementById('globe-canvas');
-const $siteHeader     = document.getElementById('site-header');
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SEARCH
-// ─────────────────────────────────────────────────────────────────────────────
-const $searchWrap    = document.getElementById('search-wrap');
-const $searchToggle  = document.getElementById('search-toggle');
-const $searchPanel   = document.getElementById('search-panel');
-const $searchInput   = document.getElementById('search-input');
-const $searchClear   = document.getElementById('search-clear');
-const $searchResults = document.getElementById('search-results');
-
-let searchDebounceTimer = null;
-let searchOpen = false;
-let activeSearchQuery = '';
-
-// Simple fuzzy scorer — scores a query against a target string
-function fuzzyScore(query, target) {
-  query  = query.toLowerCase().trim();
-  target = target.toLowerCase();
-  if (!query) return 0;
-  if (target === query) return 100;
-  if (target.startsWith(query)) return 90;
-  if (target.includes(query)) return 75;
-
-  // character-sequence fuzzy
-  let qi = 0;
-  let score = 0;
-  for (let i = 0; i < target.length && qi < query.length; i++) {
-    if (target[i] === query[qi]) { score++; qi++; }
-  }
-  return qi === query.length ? Math.round((score / target.length) * 60) : 0;
-}
-
-function scoreSpot(query, spot) {
-  const scores = [
-    fuzzyScore(query, spot.name),
-    ...(spot.tags || []).map(t => fuzzyScore(query, t) * 0.85),
-  ];
-  return Math.max(...scores);
-}
-
-$searchToggle.addEventListener('click', () => {
-  searchOpen = !searchOpen;
-  $searchPanel.classList.toggle('open', searchOpen);
-  $searchToggle.classList.toggle('active', searchOpen);
-  if (searchOpen) {
-    // Always start fresh
-    $searchInput.value = '';
-    $searchClear.classList.remove('visible');
-    $searchResults.innerHTML = '';
-    setTimeout(() => $searchInput.focus(), 320);
-  } else {
-    clearSearch();
-  }
-});
-
-$searchClear.addEventListener('click', () => {
-  clearSearch();
-  $searchInput.focus();
-});
-
-$searchInput.addEventListener('input', () => {
-  const q = $searchInput.value.trim();
-  $searchClear.classList.toggle('visible', q.length > 0);
-  clearTimeout(searchDebounceTimer);
-  if (!q) {
-    clearSearch(false);
-    return;
-  }
-  searchDebounceTimer = setTimeout(() => runSearch(q), 320);
-});
-
-$searchInput.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    clearSearch();
-    $searchPanel.classList.remove('open');
-    $searchToggle.classList.remove('active');
-    searchOpen = false;
-  }
-});
-
-function clearSearch(resetSpots = true) {
-  $searchInput.value = '';
-  $searchClear.classList.remove('visible');
-  $searchResults.innerHTML = '';
-  activeSearchQuery = '';
-  clearTimeout(searchDebounceTimer);
-  if (resetSpots) {
-    resetSpotVisibility();
-    globeAutoRotate = true;
-  }
-}
-
-function resetSpotVisibility() {
-  spotMeshes.forEach(s => {
-    s.mesh.visible = true;
-    s.haloMesh.visible = true;
-  });
-}
-
-async function runSearch(query) {
-  activeSearchQuery = query;
-
-  // 1. Score all spots
-  const spotResults = SPOTS
-    .map((spot, index) => ({ spot, index, score: scoreSpot(query, spot) }))
-    .filter(r => r.score > 20)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 5);
-
-  // Show spinner while geocoding
-  showSearchStatus('searching…', true);
-
-  // 2. Geocode via Nominatim
-  let geoResult = null;
-  try {
-    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&addressdetails=0`;
-    const res = await fetch(url, {
-      headers: { 'Accept-Language': 'en', 'User-Agent': 'iKnowASpot/1.0' }
-    });
-    const data = await res.json();
-    if (data && data.length > 0) {
-      geoResult = {
-        lat: parseFloat(data[0].lat),
-        lng: parseFloat(data[0].lon),
-        name: data[0].display_name.split(',')[0]
-      };
-    }
-  } catch (err) {
-    console.warn('Geocoding failed:', err);
-  }
-
-  // Bail if query changed while we were fetching
-  if (activeSearchQuery !== query) return;
-
-  renderSearchResults(query, spotResults, geoResult);
-}
-
-function renderSearchResults(query, spotResults, geoResult) {
-  $searchResults.innerHTML = '';
-
-  const hasSpots = spotResults.length > 0;
-  const hasGeo   = geoResult !== null;
-
-  if (!hasSpots && !hasGeo) {
-    showSearchStatus('no results found');
-    resetSpotVisibility();
-    return;
-  }
-
-  // If we have spot results, show them first
-  if (hasSpots) {
-    spotResults.forEach(({ spot, index }) => {
-      const item = document.createElement('div');
-      item.className = 'search-result-item';
-      item.innerHTML = `
-        <span class="result-dot"></span>
-        <span class="result-label">${spot.name}</span>
-        <span class="result-type">spot</span>
-      `;
-      item.addEventListener('click', () => {
-        selectSpotResult(index);
-      });
-      $searchResults.appendChild(item);
-    });
-  }
-
-  // If geo result and no spots matched (or geo is a different place), show geo option
-  if (hasGeo && !hasSpots) {
-    const item = document.createElement('div');
-    item.className = 'search-result-item';
-    item.innerHTML = `
-      <span class="result-dot" style="background:var(--sage);opacity:0.4"></span>
-      <span class="result-label">${geoResult.name}</span>
-      <span class="result-type">place</span>
-    `;
-    item.addEventListener('click', () => {
-      flyToGeo(geoResult);
-      closeSearchPanel();
-    });
-    $searchResults.appendChild(item);
-  } else if (hasGeo && hasSpots) {
-    // Offer geo as a secondary option below spots
-    const item = document.createElement('div');
-    item.className = 'search-result-item';
-    item.style.opacity = '0.6';
-    item.innerHTML = `
-      <span class="result-dot" style="background:var(--sage);opacity:0.4"></span>
-      <span class="result-label">${geoResult.name}</span>
-      <span class="result-type">place</span>
-    `;
-    item.addEventListener('click', () => {
-      flyToGeo(geoResult);
-      closeSearchPanel();
-    });
-    $searchResults.appendChild(item);
-  }
-
-  // Update globe — show only matching spots
-  if (hasSpots) {
-    const matchingIndices = new Set(spotResults.map(r => r.index));
-    spotMeshes.forEach(s => {
-      const visible = matchingIndices.has(s.index);
-      s.mesh.visible = visible;
-      s.haloMesh.visible = visible;
-    });
-  } else {
-    resetSpotVisibility();
-  }
-}
-
-function selectSpotResult(index) {
-  closeSearchPanel();
-  flyToSpotMesh(spotMeshes[index], 2000, () => {
-    enterSpot(index);
-  });
-}
-
-function flyToGeo(geo) {
-  flyToGeoLatLng(geo.lat, geo.lng);
-  resetSpotVisibility();
-}
-
-function showSearchStatus(text, spinner = false) {
-  $searchResults.innerHTML = '';
-  if (spinner) {
-    const wrap = document.createElement('div');
-    wrap.className = 'search-spinner';
-    wrap.innerHTML = '<span></span><span></span><span></span>';
-    $searchResults.appendChild(wrap);
-  } else {
-    const el = document.createElement('div');
-    el.className = 'search-status';
-    el.textContent = text;
-    $searchResults.appendChild(el);
-  }
-}
-
-function closeSearchPanel() {
-  $searchPanel.classList.remove('open');
-  $searchToggle.classList.remove('active');
-  searchOpen = false;
-  $searchResults.innerHTML = '';
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// GLOBE FLY HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Fly to a real spot mesh — uses the same 3D position math as shuffle (proven correct)
-function flyToSpotMesh(spotMesh, duration = 2000, onComplete) {
-  globeAutoRotate = false;
-  const pos = spotMesh.mesh.position.clone().normalize();
-
-  const targetRotY = Math.atan2(-pos.x, pos.z);
-  const cosY = Math.cos(targetRotY);
-  const sinY = Math.sin(targetRotY);
-  const z1   = -pos.x * sinY + pos.z * cosY;
-  const targetRotX = Math.atan2(pos.y, z1);
-
-  const startRotY = rotationY;
-  const startRotX = rotationX;
-
-  let deltaY = targetRotY - startRotY;
-  while (deltaY > Math.PI)  deltaY -= Math.PI * 2;
-  while (deltaY < -Math.PI) deltaY += Math.PI * 2;
-
-  const start = performance.now();
-
-  function animate(now) {
-    const t = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - t, 3);
-    rotationY = startRotY + deltaY * ease;
-    rotationX = startRotX + (targetRotX - startRotX) * ease;
-    if (t < 1) {
-      requestAnimationFrame(animate);
-    } else {
-      if (onComplete) onComplete();
-    }
-  }
-  requestAnimationFrame(animate);
-}
-
-// Geo-only fly (no marker to derive position from) — approximate but fine at globe zoom
-function flyToGeoLatLng(lat, lng, onComplete) {
-  globeAutoRotate = false;
-  // Build a Vec3 the same way latLngToVec3 does, then derive rotations
-  // identically to flyToSpotMesh — consistent math, no magic constants
-  const phi   = (90 - lat) * (Math.PI / 180);
-  const theta = (lng + 180) * (Math.PI / 180);
-  const pos   = new THREE.Vector3(
-    -Math.sin(phi) * Math.cos(theta),
-     Math.cos(phi),
-     Math.sin(phi) * Math.sin(theta)
-  ).normalize();
-
-  const targetRotY = Math.atan2(-pos.x, pos.z);
-  const cosY = Math.cos(targetRotY);
-  const sinY = Math.sin(targetRotY);
-  const z1   = -pos.x * sinY + pos.z * cosY;
-  const targetRotX = Math.atan2(pos.y, z1);
-
-  const startRotY = rotationY;
-  const startRotX = rotationX;
-
-  let deltaY = targetRotY - startRotY;
-  while (deltaY > Math.PI)  deltaY -= Math.PI * 2;
-  while (deltaY < -Math.PI) deltaY += Math.PI * 2;
-
-  const duration = 2000;
-  const start = performance.now();
-
-  function animate(now) {
-    const t = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - t, 3);
-    rotationY = startRotY + deltaY * ease;
-    rotationX = startRotX + (targetRotX - startRotX) * ease;
-    if (t < 1) {
-      requestAnimationFrame(animate);
-    } else {
-      if (onComplete) onComplete();
-      setTimeout(() => { globeAutoRotate = true; }, 5000);
-    }
-  }
-  requestAnimationFrame(animate);
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// YOUTUBE API
-// ─────────────────────────────────────────────────────────────────────────────
-window.onYouTubeIframeAPIReady = () => {
-  ytApiReady = true;
-  initDrone();
-};
-
-function initDrone() {
-  dronePlayer = new YT.Player('drone-yt-target', {
-    width: '1', height: '1',
-    videoId: DRONE_ID,
-    playerVars: { autoplay: 1, loop: 1, playlist: DRONE_ID, controls: 0, mute: 1, playsinline: 1 },
-    events: {
-      onReady(e) {
-        droneReady = true;
-        e.target.setVolume(100);
-        tryPlayDrone();
-      },
-      onStateChange(e) {
-        if (e.data === YT.PlayerState.PLAYING) {
-          dronePlaying = true;
-          droneRetryCount = 0;
-          try { e.target.unMute(); e.target.setVolume(100); } catch(err) {}
-          checkAppReady();
-        }
-        if (e.data === YT.PlayerState.ENDED) dronePlayer.playVideo();
-      },
-      onError() { retryDrone(); }
-    }
-  });
-}
-
-function fadeDrone(targetVol, durationMs = 1000) {
-  if (!droneReady || !dronePlayer) return;
-  const startVol = droneVolume;
-  const steps = 30;
-  const stepTime = durationMs / steps;
-  const delta = (targetVol - startVol) / steps;
-  let step = 0;
-  const iv = setInterval(() => {
-    step++;
-    droneVolume = Math.max(0, Math.min(100, Math.round(startVol + delta * step)));
-    try { dronePlayer.setVolume(droneVolume); } catch(e) {}
-    if (step >= steps) {
-      clearInterval(iv);
-      droneVolume = targetVol;
-      if (targetVol === 0) { try { dronePlayer.pauseVideo(); } catch(e) {} }
-    }
-  }, stepTime);
-}
-
-function resumeDrone() {
-  if (!droneReady || !dronePlayer) return;
-  try { dronePlayer.playVideo(); } catch(e) {}
-  fadeDrone(100, 1500);
-}
-
-function tryPlayDrone() {
-  if (!dronePlayer) return;
-  try { dronePlayer.playVideo(); } catch(e) { retryDrone(); return; }
-  setTimeout(() => { if (!dronePlaying) retryDrone(); }, 1500);
-}
-
-function retryDrone() {
-  if (droneRetryCount >= MAX_DRONE_RETRIES) { checkAppReady(true); return; }
-  droneRetryCount++;
-  try { dronePlayer.destroy(); } catch(e) {}
-  dronePlayer = null; droneReady = false; dronePlaying = false;
-  setTimeout(initDrone, 800);
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SCENE AUDIO
-// ─────────────────────────────────────────────────────────────────────────────
-function fadeInSceneAudio() {
-  if (!scenePlayer) return;
-  const durationMs = 5000, steps = 50, stepTime = durationMs / steps;
-  let step = 0;
-  const iv = setInterval(() => {
-    if (!scenePlayer) { clearInterval(iv); return; }
-    step++;
-    try { scenePlayer.setVolume(Math.min(100, Math.round((step / steps) * 100))); } catch(e) {}
-    if (step >= steps) clearInterval(iv);
-  }, stepTime);
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// LOAD SPOTS
-// ─────────────────────────────────────────────────────────────────────────────
-async function loadSpots() {
-  const res = await fetch('./spots.json');
-  if (!res.ok) throw new Error(`spots.json: ${res.status}`);
-  const data = await res.json();
-  return data.map(s => ({
-    name:    s.name    || 'Unnamed Spot',
-    lat:     parseFloat(s.lat),
-    lng:     parseFloat(s.lng),
-    videoId: s.videoId || '',
-    url:     `https://www.youtube.com/watch?v=${s.videoId}`,
-    tags:    Array.isArray(s.tags) ? s.tags : [],
-    tips:    Array.isArray(s.tips) ? s.tips : []
-  }));
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// THREE.JS GLOBE
-// ─────────────────────────────────────────────────────────────────────────────
-const RADIUS = 1.0;
-let scene, camera, renderer, globe, atmosphere;
-let spotMeshes = [];
-let rotationY  = 0;
-let rotationX  = 0;
-let cameraZ    = 2.8;
-const CAM_MIN  = 2;
-const CAM_MAX  = 4.5;
-let dragStartX = 0, dragStartY = 0;
-let dragStartRotY = 0, dragStartRotX = 0;
-let hoveredSpot = null;
-const AUTO_ROTATE = 0.0001;
-let globeAutoRotate = true; // paused during fly animations and while search is active
-
-function latLngToVec3(lat, lng, r) {
-  const phi   = (90 - lat) * (Math.PI / 180);
-  const theta = (lng + 180) * (Math.PI / 180);
-  return new THREE.Vector3(
-    -r * Math.sin(phi) * Math.cos(theta),
-     r * Math.cos(phi),
-     r * Math.sin(phi) * Math.sin(theta)
-  );
-}
-
-function initThree() {
-  scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
-  camera.position.set(0, 0, 2.8);
-
-  renderer = new THREE.WebGLRenderer({ canvas: $canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0x000000, 0);
-
-  // Stars
-  const starGeo = new THREE.BufferGeometry();
-  const starCount = 2800;
-  const starPos = new Float32Array(starCount * 3);
-  for (let i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 80;
-  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-  scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.06, sizeAttenuation: true })));
-
-  // Globe
-  const loader = new THREE.TextureLoader();
-  const earthTex = loader.load(
-    'https://www.shadedrelief.com/natural3/ne3_lr.jpg',
-    undefined, undefined,
-    () => {
-      globe.material.map = new THREE.TextureLoader().load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
-      globe.material.needsUpdate = true;
-    }
-  );
-  globe = new THREE.Mesh(
-    new THREE.SphereGeometry(RADIUS, 64, 64),
-    new THREE.MeshPhongMaterial({ map: earthTex, specular: new THREE.Color(0x111122), shininess: 8 })
-  );
-  scene.add(globe);
-
-  // Atmosphere outer
-  atmosphere = new THREE.Mesh(
-    new THREE.SphereGeometry(RADIUS * 1.12, 64, 64),
-    new THREE.ShaderMaterial({
-      vertexShader: `varying vec3 vNormal; void main(){ vNormal=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-      fragmentShader: `varying vec3 vNormal; void main(){ float i=pow(0.65-dot(vNormal,vec3(0,0,1)),3.0); gl_FragColor=vec4(0.15,0.45,1.0,1.0)*i*1.6; }`,
-      blending: THREE.AdditiveBlending, side: THREE.BackSide, transparent: true, depthWrite: false,
-    })
-  );
-  scene.add(atmosphere);
-
-  scene.add(new THREE.Mesh(
-    new THREE.SphereGeometry(RADIUS * 1.04, 64, 64),
-    new THREE.ShaderMaterial({
-      vertexShader: `varying vec3 vNormal; void main(){ vNormal=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-      fragmentShader: `varying vec3 vNormal; void main(){ float i=pow(0.72-dot(vNormal,vec3(0,0,1)),4.5); gl_FragColor=vec4(0.2,0.55,1.0,0.5)*i; }`,
-      blending: THREE.AdditiveBlending, side: THREE.BackSide, transparent: true, depthWrite: false,
-    })
-  ));
-
-  // Lighting
-  scene.add(new THREE.AmbientLight(0x112244, 0.6));
-  const sun = new THREE.DirectionalLight(0xfff5e0, 2.2);
-  sun.position.set(5, 2, 3);
-  scene.add(sun);
-  const fill = new THREE.DirectionalLight(0x1a3060, 0.3);
-  fill.position.set(-5, -1, -2);
-  scene.add(fill);
-
-  // Night shadow
-  const shadowMat = new THREE.ShaderMaterial({
-    uniforms: { sunDir: { value: new THREE.Vector3(5, 2, 3).normalize() } },
-    vertexShader: `varying vec3 vWorldNormal; void main(){ vWorldNormal=normalize((modelMatrix*vec4(normal,0.0)).xyz); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-    fragmentShader: `uniform vec3 sunDir; varying vec3 vWorldNormal; void main(){ float ndotl=dot(vWorldNormal,sunDir); float dark=smoothstep(0.1,-0.25,ndotl); gl_FragColor=vec4(0.01,0.02,0.05,dark*0.72); }`,
-    transparent: true, depthWrite: false, side: THREE.FrontSide,
-  });
-  scene.add(new THREE.Mesh(new THREE.SphereGeometry(RADIUS + 0.002, 64, 64), shadowMat));
-
-  addSpotMarkers();
-  setupInteraction();
-
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-
-  renderLoop();
-}
-
-function addSpotMarkers() {
-  spotMeshes.forEach(s => { globe.remove(s.mesh); globe.remove(s.haloMesh); });
-  spotMeshes = [];
-
-  SPOTS.forEach((spot, i) => {
-    const pos = latLngToVec3(spot.lat, spot.lng, RADIUS);
-
-    const dot = new THREE.Mesh(
-      new THREE.SphereGeometry(0.012, 12, 12),
-      new THREE.MeshBasicMaterial({ color: 0x90e8b0 })
-    );
-    dot.position.copy(pos);
-    globe.add(dot);
-
-    const halo = new THREE.Mesh(
-      new THREE.SphereGeometry(0.022, 16, 16),
-      new THREE.MeshBasicMaterial({ color: 0x78c89a, transparent: true, opacity: 0.35, depthWrite: false })
-    );
-    halo.position.copy(pos);
-    globe.add(halo);
-
-    spotMeshes.push({ mesh: dot, haloMesh: halo, spot, index: i });
-  });
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SHUFFLE
-// ─────────────────────────────────────────────────────────────────────────────
-function shuffleToSpot() {
-  const visible = spotMeshes.filter(s => s.mesh.visible);
-  if (!visible.length) return;
-  const target = visible[Math.floor(Math.random() * visible.length)];
-
-  const $shuffle = document.getElementById('shuffle-btn');
-  $shuffle.style.pointerEvents = 'none';
-  globeAutoRotate = false;
-
-  flyToSpotMesh(target, 2200, () => {
-    const worldPos = new THREE.Vector3();
-    target.mesh.getWorldPosition(worldPos);
-    const projected = worldPos.project(camera);
-    const screenX = ((projected.x + 1) / 2) * window.innerWidth;
-    const screenY = ((-projected.y + 1) / 2) * window.innerHeight;
-
-    $tooltip.textContent = target.spot.name;
-    $tooltip.style.left = screenX + 'px';
-    $tooltip.style.top  = screenY + 'px';
-    $tooltip.classList.add('visible');
-    hoveredSpot = target;
-    target.haloMesh.scale.setScalar(2.2);
-    target.haloMesh.material.opacity = 0.7;
-
-    setTimeout(() => {
-      $tooltip.classList.remove('visible');
-      hoveredSpot = null;
-      $shuffle.style.pointerEvents = 'all';
-      enterSpot(target.index);
-    }, 1500);
-  });
-}
-
-document.getElementById('shuffle-btn').addEventListener('click', shuffleToSpot);
-
-// ─────────────────────────────────────────────────────────────────────────────
-// INTERACTION
-// ─────────────────────────────────────────────────────────────────────────────
-const raycaster = new THREE.Raycaster();
-
-function hitTestSpots(clientX, clientY) {
-  const ndc = new THREE.Vector2(
-    (clientX / window.innerWidth) * 2 - 1,
-    -(clientY / window.innerHeight) * 2 + 1
-  );
-  raycaster.setFromCamera(ndc, camera);
-  const hits = raycaster.intersectObjects(spotMeshes.filter(s => s.mesh.visible).map(s => s.mesh));
-  if (!hits.length) return null;
-  return spotMeshes.find(s => s.mesh === hits[0].object) || null;
-}
-
-function setupInteraction() {
-  $canvas.addEventListener('mousedown', e => {
-    isDragging = false;
-    dragStartX = e.clientX; dragStartY = e.clientY;
-    dragStartRotY = rotationY; dragStartRotX = rotationX;
-    $canvas.style.cursor = 'grabbing';
-  });
-
-  window.addEventListener('mousemove', e => {
-    const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
-    if (e.buttons === 1 && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
-      isDragging = true;
-      rotationY = dragStartRotY + dx * 0.005;
-      rotationX = Math.max(-1.0, Math.min(1.0, dragStartRotX + dy * 0.005));
-    }
-    const hit = hitTestSpots(e.clientX, e.clientY);
-    if (hit) {
-      $canvas.style.cursor = 'pointer';
-      hoveredSpot = hit;
-      $tooltip.textContent = hit.spot.name;
-      $tooltip.style.left = e.clientX + 'px';
-      $tooltip.style.top  = e.clientY + 'px';
-      $tooltip.classList.add('visible');
-    } else {
-      if (!isDragging) $canvas.style.cursor = 'grab';
-      hoveredSpot = null;
-      $tooltip.classList.remove('visible');
-    }
-  });
-
-  window.addEventListener('mouseup', () => {
-    $canvas.style.cursor = hoveredSpot ? 'pointer' : 'grab';
-  });
-
-  $canvas.addEventListener('click', e => {
-    if (isDragging) { isDragging = false; return; }
-    const hit = hitTestSpots(e.clientX, e.clientY);
-    if (hit) enterSpot(hit.index);
-    isDragging = false;
-  });
-
-  $canvas.addEventListener('wheel', e => {
-    e.preventDefault();
-    cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, cameraZ + e.deltaY * 0.002));
-  }, { passive: false });
-
-  let lastPinchDist = null;
-  $canvas.addEventListener('touchstart', e => {
-    if (e.touches.length === 2) lastPinchDist = null;
-  }, { passive: true });
-  $canvas.addEventListener('touchmove', e => {
-    if (e.touches.length === 2) {
-      const dx = e.touches[0].clientX - e.touches[1].clientX;
-      const dy = e.touches[0].clientY - e.touches[1].clientY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (lastPinchDist !== null) cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, cameraZ + (lastPinchDist - dist) * 0.008));
-      lastPinchDist = dist;
-    }
-  }, { passive: true });
-  $canvas.addEventListener('touchend', () => { lastPinchDist = null; }, { passive: true });
-
-  let touchStartX = 0, touchStartY = 0;
-  $canvas.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY;
-    dragStartRotY = rotationY; dragStartRotX = rotationX;
-    isDragging = false;
-  }, { passive: true });
-  $canvas.addEventListener('touchmove', e => {
-    const dx = e.touches[0].clientX - touchStartX, dy = e.touches[0].clientY - touchStartY;
-    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
-      isDragging = true;
-      rotationY = dragStartRotY + dx * 0.005;
-      rotationX = Math.max(-1.0, Math.min(1.0, dragStartRotX + dy * 0.005));
-    }
-  }, { passive: true });
-  $canvas.addEventListener('touchend', e => {
-    if (!isDragging) {
-      const t = e.changedTouches[0];
-      const hit = hitTestSpots(t.clientX, t.clientY);
-      if (hit) enterSpot(hit.index);
-    }
-    isDragging = false;
-  });
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// RENDER LOOP
-// ─────────────────────────────────────────────────────────────────────────────
-let lastTs = 0;
-
-function renderLoop(ts = 0) {
-  globeAnimId = requestAnimationFrame(renderLoop);
-  if (globePaused) return;
-  lastTs = ts;
-  camera.position.z += (cameraZ - camera.position.z) * 0.08;
-  if (!isDragging && globeAutoRotate) rotationY += AUTO_ROTATE;
-  globe.rotation.y = rotationY;
-  globe.rotation.x = rotationX;
-  atmosphere.rotation.x = rotationX;
-  const t = ts / 1000;
-  spotMeshes.forEach(s => {
-    const isHovered = s === hoveredSpot;
-    const pulse = 1 + 0.18 * Math.sin(t * 2.5 + s.index * 1.3);
-    s.haloMesh.scale.setScalar(isHovered ? 2.2 : pulse);
-    s.haloMesh.material.opacity = isHovered ? 0.7 : 0.28 + 0.1 * Math.sin(t * 2.5 + s.index * 1.3);
-  });
-  renderer.render(scene, camera);
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// ENTER SPOT
-// ─────────────────────────────────────────────────────────────────────────────
-function enterSpot(index, isRetry = false) {
-  const spot = SPOTS[index];
-  currentSpotIndex = index;
-  currentSpotUrl = spot.url;
-  if (!isRetry) travelRetryCount = 0;
-
-  $tooltip.classList.remove('visible');
-  $siteHeader.classList.add('hidden');
-  document.getElementById('shuffle-btn').classList.add('hidden');
-  $searchWrap.classList.add('hidden');
-
-  const s = spotMeshes[index];
-  if (s) { s.haloMesh.scale.setScalar(3.5); s.haloMesh.material.opacity = 1; }
-
-  fadeDrone(0, 1200);
-
-  setTimeout(() => {
-    fadeToBlack(() => {
-      globePaused = true;
-      $sceneView.classList.add('active');
-      const tips = spot.tips || [];
-      $travelingTip.textContent = tips.length ? tips[Math.floor(Math.random() * tips.length)] : spot.name;
-      $traveling.classList.add('visible');
-      fadeFromBlack();
-      launchSpotVideo(spot, isRetry);
-    });
-  }, 350);
-}
-
-function launchSpotVideo(spot, isRetry) {
-  destroyScenePlayer();
-  const target = document.createElement('div');
-  target.id = 'yt-target';
-  $sceneView.insertBefore(target, document.getElementById('yt-blocker'));
-
-  let revealed = false, audioFadeStarted = false;
-
-  clearTimeout(travelTimeoutTimer);
-  travelTimeoutTimer = setTimeout(() => { if (!revealed) handleTravelTimeout(spot); }, 5000);
-
-  function reveal() {
-    if (revealed) return;
-    revealed = true;
-    clearTimeout(travelTimeoutTimer);
-    setTimeout(() => {
-      fadeToBlack(() => {
-        $traveling.classList.remove('visible');
-        fadeFromBlack();
-        setTimeout(() => {
-          $sceneHud.classList.remove('hidden');
-          resetIdleTimer();
-          document.addEventListener('mousemove', onSceneMouseMove);
-          document.addEventListener('touchstart', onSceneTouchStart);
-        }, 600);
-      });
-    }, 3000);
-  }
-
-  scenePlayer = new YT.Player('yt-target', {
-    videoId: spot.videoId,
-    playerVars: {
-      autoplay: 1, mute: 0, loop: 1, playlist: spot.videoId,
-      controls: 0, disablekb: 1, modestbranding: 1, playsinline: 1,
-      rel: 0, iv_load_policy: 3, fs: 0, cc_load_policy: 0,
-    },
-    events: {
-      onReady(e) { try { e.target.setVolume(0); } catch(e) {} e.target.playVideo(); },
-      onStateChange(e) {
-        if (e.data === YT.PlayerState.PLAYING) {
-          if (!audioFadeStarted) { audioFadeStarted = true; fadeInSceneAudio(); }
-          reveal();
-        }
-        if (e.data === YT.PlayerState.ENDED) scenePlayer && scenePlayer.playVideo();
-      },
-      onError() { clearTimeout(travelTimeoutTimer); handleTravelTimeout(spot); }
-    }
-  });
-
-  const sizeIv = setInterval(() => {
-    const el = document.getElementById('yt-target');
-    if (el && el.tagName === 'IFRAME') {
-      el.style.cssText = `
-        position:absolute;top:50%;left:50%;
-        transform:translate(-50%,-50%);
-        width:max(177.78vh,100vw);
-        height:max(100vh,56.25vw);
-        border:none;z-index:1;pointer-events:none;
-        opacity:0;transition:opacity 1.2s ease;
-      `;
-      setTimeout(() => { const iframe = document.getElementById('yt-target'); if (iframe) iframe.style.opacity = '1'; }, 100);
-      clearInterval(sizeIv);
-    }
-  }, 30);
-}
-
-function handleTravelTimeout(spot) {
-  if (travelRetryCount === 0) {
-    travelRetryCount = 1;
-    destroyScenePlayer();
-    launchSpotVideo(spot, true);
-  } else {
-    returnToGlobe();
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// RETURN TO GLOBE
-// ─────────────────────────────────────────────────────────────────────────────
-function returnToGlobe() {
-  clearTimeout(travelTimeoutTimer);
-  fadeToBlack(() => {
-    destroyScenePlayer();
-    $sceneView.classList.remove('active');
-    $sceneHud.classList.add('hidden');
-    $traveling.classList.remove('visible');
-    clearTimeout(idleTimer);
-    document.removeEventListener('mousemove', onSceneMouseMove);
-    document.removeEventListener('touchstart', onSceneTouchStart);
-    globePaused = false;
-    lastTs = performance.now();
-    globeAutoRotate = true;
-    $siteHeader.classList.remove('hidden');
-    document.getElementById('shuffle-btn').classList.remove('hidden');
-    $searchWrap.classList.remove('hidden');
-    resetSpotVisibility();
-    resumeDrone();
-    fadeFromBlack();
-  });
-}
-
-$btnBack.addEventListener('click', returnToGlobe);
-$btnOpen.addEventListener('click', () => { if (currentSpotUrl) window.open(currentSpotUrl, '_blank', 'noopener'); });
-
-// ─────────────────────────────────────────────────────────────────────────────
-// IDLE HUD
-// ─────────────────────────────────────────────────────────────────────────────
-function resetIdleTimer() {
-  $sceneHud.classList.remove('hidden');
-  clearTimeout(idleTimer);
-  idleTimer = setTimeout(() => $sceneHud.classList.add('hidden'), 3000);
-}
-function onSceneMouseMove() { resetIdleTimer(); }
-function onSceneTouchStart() { resetIdleTimer(); }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
-function destroyScenePlayer() {
-  if (scenePlayer) { try { scenePlayer.destroy(); } catch(e) {} scenePlayer = null; }
-  const old = document.getElementById('yt-target');
-  if (old) old.remove();
-}
-
-function fadeToBlack(cb) { $transition.classList.add('visible'); setTimeout(cb, 850); }
-function fadeFromBlack() { setTimeout(() => $transition.classList.remove('visible'), 60); }
-
-function checkAppReady(force = false) {
-  if (!spotsLoaded) return;
-  if (dronePlaying || force) $loading.classList.add('hidden');
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// INIT
-// ─────────────────────────────────────────────────────────────────────────────
-async function init() {
-  const seasonalMessages = [
-    "The cherry blossoms are peaking somewhere in Japan right now",
-    "Yosemite's waterfalls are roaring with snowmelt this time of year",
-    "English woodland floors are carpeted in bluebells right now",
-  ];
-  $loadingLabel.textContent = seasonalMessages[Math.floor(Math.random() * seasonalMessages.length)];
-
-  try {
-    SPOTS = await loadSpots();
-    if (!SPOTS.length) throw new Error('No spots in spots.json');
-    spotsLoaded = true;
-    initThree();
-    checkAppReady();
-  } catch (err) {
-    console.error(err);
-    $loadingLabel.textContent = 'something went wrong';
-    $errorMsg.style.display = 'block';
-    $errorMsg.textContent = err.message;
-    document.querySelector('#loading .load-dots').style.display = 'none';
-  }
-}
-
-init();
-</script>
-
+<script type="module" src="js/main.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
+
 </body>
 </html>
