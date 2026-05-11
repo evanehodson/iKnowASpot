@@ -59,14 +59,7 @@ export function initGlobe(spots) {
   // ── Globe sphere ──────────────────────────────────────────────────────────
   const loader   = new THREE.TextureLoader();
   const earthTex = loader.load(
-    'https://www.shadedrelief.com/natural3/ne3_lr.jpg',
-    undefined,
-    undefined,
-    // Fallback if primary texture fails
-    () => {
-      globe.material.map = loader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
-      globe.material.needsUpdate = true;
-    }
+    'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
   );
 
   globe = new THREE.Mesh(
