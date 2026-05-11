@@ -504,5 +504,53 @@
       "The colour here comes from limestone suspended beneath the surface, scattering light through shallow coastal water",
       "The air is warm and salt-heavy, carrying sun-heated stone, dry herbs, and the clean wind moving inland from open sea"
     ]
+  },
+  {
+    "name": "Moored in Moorea",
+    "lat": -17.5388,
+    "lng": -149.8295,
+    "videoId": "TAq-GCkmjt4",
+    "tips": [
+      "Moorea is a volcanic island surrounded by coral reef lagoons, where mountain runoff and Pacific currents meet in shallow tropical water",
+      "Let the movement of the water simplify your attention — anchored boats still rise and fall with forces far beyond them",
+      "A lagoon feels calm because the reef absorbs the energy before it reaches you",
+      "The air is warm, salt-rich, and layered with tropical flowers, humid vegetation, and sun-heated seawater"
+    ]
+  },
+  {
+    "name": "Namib Desert Dunes",
+    "lat": -24.7275,
+    "lng": 15.2982,
+    "videoId": "Zk2F8WJcr90",
+    "tips": [
+      "The Namib is one of the oldest deserts on Earth, where wind has been shaping sand dunes along the Atlantic coast for millions of years",
+      "Let the emptiness expand your sense of time — nothing here moves quickly except the wind",
+      "A desert is not lifeless; it is a landscape where survival becomes visible",
+      "The air is dry, mineral-heavy, and carries the faint scent of heated stone and wind-blown dust"
+    ]
+  },
+  {
+    "name": "Victoria Falls",
+    "lat": -17.9243,
+    "lng": 25.8572,
+    "videoId": "A6xDtrAKnEg",
+    "tips": [
+      "Victoria Falls forms where the Zambezi River drops into a narrow basalt gorge, creating one of the largest continuous curtains of falling water on Earth",
+      "Let the sound overwhelm your sense of scale before you try to measure it visually",
+      "The closer you get to immense water, the less solid the world begins to feel",
+      "The air is saturated with cool mist, wet stone, and the charged freshness created by constantly moving water"
+    ]
+  },
+  {
+    "name": "Sahara Desert",
+    "lat": 23.4162,
+    "lng": 25.6628,
+    "videoId": "vf8apfQbwD0",
+    "tips": [
+      "The Sahara is the largest hot desert on Earth, shaped by shifting wind patterns that redistribute sand and dust across entire continents",
+      "Let the openness slow your need for orientation — there is less here to measure yourself against",
+      "In landscapes this vast, silence stops feeling empty and starts feeling physical",
+      "The air is intensely dry, carrying heated mineral dust and the faint metallic scent of sun-baked stone"
+    ]
   }
 ]
