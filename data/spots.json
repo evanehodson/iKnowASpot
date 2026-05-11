@@ -43,7 +43,7 @@
     "lat": 32.179167,
     "lng": -110.736944,
     "videoId": "LoO63RtYqP4",
-    "tags": ["sunrise"], 
+    "tags": ["sunrise", "desert"], 
     "tips": [
       "The saguaro cactus grows its first arm only after 75 years. The ones you see are older than most living people",
       "Dawn in the desert belongs to sound. The light comes second",
@@ -121,7 +121,7 @@
     "lat": 43.344444,
     "lng": -86.394444,
     "videoId": "r8UF2NpM0Ic",
-    "tags": ["coast", "water", "beach"],
+    "tags": ["coast", "water", "beach", "dunes"],
     "tips": [
       "Lake Michigan is one of the largest freshwater lakes on Earth, where wind-driven waves can reach heights comparable to ocean surf",
       "Let the rhythm of the waves regulate your attention. You don't need to fix it on anything else",
@@ -510,6 +510,7 @@
     "lat": -17.5388,
     "lng": -149.8295,
     "videoId": "TAq-GCkmjt4",
+    "tags": ["coast", "beach", "water"],
     "tips": [
       "Moorea is a volcanic island surrounded by coral reef lagoons, where mountain runoff and Pacific currents meet in shallow tropical water",
       "Let the movement of the water simplify your attention — anchored boats still rise and fall with forces far beyond them",
@@ -522,6 +523,7 @@
     "lat": -24.7275,
     "lng": 15.2982,
     "videoId": "Zk2F8WJcr90",
+    "tags": ["desert", "dunes"],
     "tips": [
       "The Namib is one of the oldest deserts on Earth, where wind has been shaping sand dunes along the Atlantic coast for millions of years",
       "Let the emptiness expand your sense of time — nothing here moves quickly except the wind",
@@ -534,6 +536,7 @@
     "lat": -17.9243,
     "lng": 25.8572,
     "videoId": "A6xDtrAKnEg",
+    "tags": ["water", "waterfall"],
     "tips": [
       "Victoria Falls forms where the Zambezi River drops into a narrow basalt gorge, creating one of the largest continuous curtains of falling water on Earth",
       "Let the sound overwhelm your sense of scale before you try to measure it visually",
@@ -546,11 +549,90 @@
     "lat": 23.4162,
     "lng": 25.6628,
     "videoId": "vf8apfQbwD0",
+    "tags": ["desert", "dunes"],
     "tips": [
       "The Sahara is the largest hot desert on Earth, shaped by shifting wind patterns that redistribute sand and dust across entire continents",
       "Let the openness slow your need for orientation — there is less here to measure yourself against",
       "In landscapes this vast, silence stops feeling empty and starts feeling physical",
       "The air is intensely dry, carrying heated mineral dust and the faint metallic scent of sun-baked stone"
+    ]
+  },
+  {
+    "name": "Benasque Valley",
+    "lat": 42.6050,
+    "lng": 0.5236,
+    "videoId": "aS4j9FXp2VE",
+    "tags": ["mountains", "forest"],
+    "tips": [
+      "The Benasque Valley lies in the central Pyrenees, where glaciers carved steep valleys through some of the highest mountains in Spain",
+      "Let the mountains compress your attention — alpine landscapes reward noticing what is close before what is distant",
+      "A valley like this is shaped as much by ice that disappeared long ago as by the rivers still flowing through it",
+      "The air is cool, thin, and scented with wet stone, pine forest, and snowmelt moving down from higher elevations"
+    ]
+  },
+  {
+    "name": "Mediterranean Sunrise",
+    "lat": 41.2669,
+    "lng": 1.9771,
+    "videoId": "MqN4qhSimjY",
+    "tags": ["sunrise", "coast", "beach"],
+    "tips": [
+      "The Mediterranean Sea is almost entirely enclosed by land, creating calmer tidal behavior and warmer coastal waters than most open oceans",
+      "Let the sunrise arrive gradually — the sea changes color long before the sun fully clears the horizon",
+      "Morning light over calm water makes distance feel softer than it really is",
+      "The air is mild and salt-rich, carrying warm sand, sea moisture, and the faint mineral smell of stone warming after night"
+    ]
+  },
+  {
+    "name": "Scottish Forest",
+    "lat": 55.9533,
+    "lng": -3.1883,
+    "videoId": "TQdq45EhvGE",
+    "tags": ["forest"],
+    "tips": [
+      "Scotland’s temperate forests grow in a cool maritime climate where frequent rain, mild temperatures, and long summer daylight shape dense moss and understory growth",
+      "Let the quieter sounds arrive first — birdsong and moving leaves often reveal more than the forest canopy itself",
+      "A forest in light rain never becomes silent; it simply redistributes where the sound lives",
+      "The air is cool and damp, carrying wet earth, moss, bark, and the faint sweetness of summer vegetation after rain"
+    ]
+  },
+  {
+    "name": "Irish Coast",
+    "lat": 52.9377,
+    "lng": -10.2716,
+    "videoId": "S15uIhVFuUg",
+    "tags": ["coast", "water"],
+    "tips": [
+      "Ireland’s Atlantic coastline is shaped by constant exposure to ocean wind and swell, where cliffs and rocky shores absorb the full force of the North Atlantic",
+      "Let the repetition of the waves reduce your sense of urgency — the ocean never hurries its own rhythm",
+      "Distant seabirds make coastlines feel larger than what you can actually see",
+      "The air is cool, salt-heavy, and carries wet stone, sea spray, and the damp softness of maritime weather"
+    ]
+  },
+  {
+    "name": "Glendalough Lakes",
+    "lat": 53.0105,
+    "lng": -6.3260,
+    "videoId": "6qAFt_Gmv0Q",
+    "tags": ["water", "forest", "mountains"],
+    "tips": [
+      "Glendalough sits in a glacial valley in the Wicklow Mountains, where retreating ice carved deep lakes into the surrounding granite landscape",
+      "Let the stillness of the water slow your attention before you focus on the details around it",
+      "Mountain lakes often feel quieter than they are because the landscape absorbs distance instead of reflecting it",
+      "The air is cool and damp, carrying peat, wet stone, moss, and the earthy scent of rain-soaked forest"
+    ]
+  },
+  {
+    "name": "Spring Rain in Puycelsi",
+    "lat": 44.0006,
+    "lng": 1.7075,
+    "videoId": "HcvAR4vFG2A",
+    "tags": ["rain"],
+    "tips": [
+      "Puycelsi sits on a limestone ridge in southern France, where elevated medieval villages were historically built for visibility, defense, and access to surrounding farmland",
+      "Let the rain narrow your attention to what is nearby — storms make distant landscapes feel temporarily unreachable",
+      "Thunder heard from inside shelter changes a storm from threat into atmosphere",
+      "The air is cool and humid, carrying wet stone, spring soil, distant vegetation, and the earthy scent that rises after rainfall"
     ]
   }
 ]

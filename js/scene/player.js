@@ -127,6 +127,7 @@ export function launchSpotVideo(spot, isRetry = false) {
           reveal();
         }
         if (e.data === YT.PlayerState.ENDED && state.scenePlayer) {
+          state.scenePlayer.seekTo(30, true);
           state.scenePlayer.playVideo();
         }
       },
