@@ -1,13 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // constants.js
-//
-// Every magic number, string, and config value lives here.
-// If you want to change the drone video, auto-rotate speed, camera limits,
-// retry counts — this is the only file you touch.
 // ─────────────────────────────────────────────────────────────────────────────
-
-// The ambient drone audio that plays on the globe
-export const DRONE_VIDEO_ID = '25LHXXXDO-g';
 
 // Globe camera distance limits (how far you can zoom in/out)
 export const CAM_MIN = 2;
@@ -19,9 +12,6 @@ export const AUTO_ROTATE_SPEED = 0.0001;
 
 // Globe sphere radius in Three.js units (don't change this)
 export const GLOBE_RADIUS = 1.0;
-
-// How many times to retry the drone audio before giving up
-export const MAX_DRONE_RETRIES = 3;
 
 // How long to wait (ms) for a spot video to start before retrying
 export const TRAVEL_TIMEOUT_MS = 5000;

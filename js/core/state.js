@@ -20,6 +20,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const state = {
+  isAppStarted: false,
+
   // ── Data ─────────────────────────────────────────────────────────────────
   spots: [],            // Loaded from spots.json — array of spot objects
   spotsLoaded: false,   // True once spots.json has been fetched and parsed

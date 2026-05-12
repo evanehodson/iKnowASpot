@@ -2,15 +2,6 @@
 // globe/interaction.js
 //
 // All user input on the globe canvas: drag-to-rotate, zoom, hover, click.
-//
-// WHY SEPARATE:
-// Input handling is one of the messiest parts of the original file —
-// 8 event listeners tangled with raycasting, state mutation, and enterSpot().
-// Isolating it here means you can swap touch behaviour or add gamepad support
-// without touching globe rendering or scene logic.
-//
-// This module emits events rather than calling enterSpot() directly,
-// keeping it decoupled from the scene system.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { state } from '../core/state.js';

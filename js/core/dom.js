@@ -17,6 +17,8 @@
 export const $loading      = document.getElementById('loading');
 export const $loadingLabel = document.getElementById('loading-label');
 export const $errorMsg     = document.getElementById('error-msg');
+export const $btnEnter = document.getElementById('btn-enter');
+export const $loadDots = document.getElementById('load-dots');
 
 // ── Globe canvas ──────────────────────────────────────────────────────────────
 export const $canvas       = document.getElementById('globe-canvas');
@@ -44,6 +46,3 @@ export const $searchPanel   = document.getElementById('search-panel');
 export const $searchInput   = document.getElementById('search-input');
 export const $searchClear   = document.getElementById('search-clear');
 export const $searchResults = document.getElementById('search-results');
-
-// ── YouTube drone target (hidden off-screen div) ──────────────────────────────
-export const $droneTarget   = document.getElementById('drone-yt-target');

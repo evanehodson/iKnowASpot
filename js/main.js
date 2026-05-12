@@ -13,11 +13,11 @@
 //   2. Fetch spots.json → populate state.spots
 //   3. Init Three.js globe + markers + interaction
 //   4. Init search
-//   5. Init YouTube API → drone audio
-//   6. Once spots + drone are ready → hide loading screen
+//   5. Load drone audio buffer
+//   6. Once spots are ready → show Enter button
 //
 // Event wiring (after boot):
-//   'spot:enter'      → fade to black → show traveling tip → launch video
+//   'spot:enter'      → clear tooltip → fade to black → show traveling tip → launch video
 //   'scene:revealed'  → fade transition away → show HUD
 //   'spot:exit'       → destroy player → return to globe
 //   'drone:playing'   → check if app is fully ready to show
@@ -26,10 +26,10 @@
 import { state }                    from './core/state.js';
 import { on, emit }                 from './core/events.js';
 import { fadeToBlack, fadeFromBlack } from './core/transitions.js';
-import { LOADING_MESSAGES }         from './core/constants.js';
+import { LOADING_MESSAGES, CAM_DEFAULT }         from './core/constants.js';
 import {
-  $loading, $loadingLabel, $errorMsg,
-  $sceneView, $sceneHud, $btnBack, $btnOpen,
+  $loading, $loadingLabel, $errorMsg, $btnEnter, $loadDots,
+  $sceneView, $sceneHud, $btnBack, $btnOpen, $tooltip,
   $siteHeader, $shuffleBtn, $searchWrap, $travelingTip, $traveling,
 } from './core/dom.js';
 
@@ -38,7 +38,7 @@ import { initGlobe, pauseGlobe, resumeGlobe, getCamera } from './globe/globe.js'
 import { spotMeshes, showAllMarkers } from './globe/markers.js';
 import { flyToSpot, flyToSpotWithTooltip } from './globe/fly.js';
 import { initSearch }               from './search/search.js';
-import { initDrone, fadeDrone, resumeDrone } from './scene/drone.js';
+import { initDrone, startDronePlayback, fadeDrone, resumeDrone } from './scene/drone.js';
 import { launchSpotVideo, destroyScenePlayer } from './scene/player.js';
 import { startHud, stopHud }        from './scene/hud.js';
 
@@ -59,10 +59,39 @@ function hideGlobeUI() {
 // ── App ready check ───────────────────────────────────────────────────────────
 
 function checkAppReady() {
-  if (state.spotsLoaded && state.dronePlaying) {
-    $loading.classList.add('hidden');
+  if (state.spotsLoaded) {
+    $loadDots.classList.add('hidden'); // Dots out
+    $btnEnter.classList.remove('hidden'); // Button in
   }
 }
+
+// ── The Start Action ─────────────────────────────────────────────────────────
+
+// In main.js
+
+async function handleAppStart() {
+  // 1. Snap globe to North Gulf of Mexico, clear any drag state
+  state.rotationY = 0;  // ~-89° longitude (Gulf of Mexico)
+  state.rotationX = 0.35;   // ~20° latitude (northern Gulf)
+  state.cameraZ   = CAM_DEFAULT;
+  state.isDragging = false;
+  state.globeAutoRotate = true;
+
+  // 2. Unlock the globe
+  state.isAppStarted = true;
+  const $canvas = document.querySelector('#globe-canvas');
+  if ($canvas) $canvas.style.pointerEvents = 'all';
+
+  // 3. Kick off audio
+  await initDrone();
+  startDronePlayback();
+
+  // 4. Fade UI
+  $loading.classList.add('hidden');
+  showGlobeUI();
+}
+
+$btnEnter.addEventListener('click', handleAppStart);
 
 // ── Spot navigation ───────────────────────────────────────────────────────────
 
@@ -71,6 +100,9 @@ function enterSpot(index) {
   state.currentSpotIndex = index;
   state.currentSpotUrl   = spot.url;
   state.travelRetryCount = 0;
+
+  state.hoveredSpot = null;
+  $tooltip.classList.remove('visible');
 
   hideGlobeUI();
   fadeDrone(0, 1200);
@@ -145,12 +177,11 @@ $btnOpen.addEventListener('click', () => {
 $shuffleBtn.addEventListener('click', shuffleToSpot);
 
 // ── YouTube API bridge ────────────────────────────────────────────────────────
-// The YT API calls window.onYouTubeIframeAPIReady when ready.
-// We bridge that global callback into our module system here.
-
+// Instead of waiting for YT API to start the drone, 
+// just start the drone immediately during boot.
 window.onYouTubeIframeAPIReady = () => {
   state.ytApiReady = true;
-  initDrone();
+  // Note: We don't call initDrone() here anymore
 };
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
@@ -159,10 +190,15 @@ async function boot() {
   $loadingLabel.textContent = LOADING_MESSAGES[Math.floor(Math.random() * LOADING_MESSAGES.length)];
 
   try {
-    state.spots       = await loadSpots();
+    state.spots = await loadSpots();
     state.spotsLoaded = true;
+    
     initGlobe(state.spots);
     initSearch();
+    
+    // Start the local drone immediately
+    initDrone(); 
+    
     checkAppReady();
   } catch (err) {
     console.error('[iKnowASpot] Boot failed:', err);
