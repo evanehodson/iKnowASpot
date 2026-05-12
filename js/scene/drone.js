@@ -25,7 +25,6 @@ export async function initDrone() {
     state.droneBuffer = await audioCtx.decodeAudioData(arrayBuffer);
 
     state.droneReady = true;
-    console.log("Drone buffer loaded and ready.");
 }
 
 function playLoop(time) {

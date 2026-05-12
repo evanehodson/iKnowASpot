@@ -107,10 +107,6 @@ function enterSpot(index) {
   hideGlobeUI();
   fadeDrone(0, 1200);
 
-  // Highlight marker
-  const s = spotMeshes[index];
-  if (s) { s.haloMesh.scale.setScalar(3.5); s.haloMesh.material.opacity = 1; }
-
   setTimeout(() => {
     fadeToBlack(() => {
       pauseGlobe();

@@ -87,21 +87,21 @@ export function flyToLatLng(lat, lng, duration = 2000, onComplete) {
  */
 export function flyToSpotWithTooltip(spotMesh, camera, onComplete) {
   flyToSpot(spotMesh, 2000, () => {
-    // Project the 3D marker position onto the 2D screen
     const worldPos  = new THREE.Vector3();
     spotMesh.mesh.getWorldPosition(worldPos);
     const projected = worldPos.project(camera);
     const screenX   = ((projected.x + 1) / 2) * window.innerWidth;
     const screenY   = ((-projected.y + 1) / 2) * window.innerHeight;
 
-    // Show tooltip
+    // Trigger hovered glow
+    state.hoveredSpot = spotMesh;
+
     const $tooltip = document.getElementById('spot-tooltip');
     $tooltip.textContent = spotMesh.spot.name;
     $tooltip.style.left  = screenX + 'px';
     $tooltip.style.top   = screenY + 'px';
     $tooltip.classList.add('visible');
 
-    // Flash for 1.5s then proceed
     setTimeout(() => {
       $tooltip.classList.remove('visible');
       if (onComplete) onComplete();

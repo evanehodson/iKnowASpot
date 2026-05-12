@@ -86,10 +86,17 @@ export function animateMarkers(t, hoveredSpot) {
   spotMeshes.forEach(s => {
     const isHovered = s === hoveredSpot;
     const pulse = 1 + 0.18 * Math.sin(t * 2.5 + s.index * 1.3);
-    s.haloMesh.scale.setScalar(isHovered ? 2.2 : pulse);
-    s.haloMesh.material.opacity = isHovered
+
+    const targetScale   = isHovered ? 2.2 : pulse;
+    const targetOpacity = isHovered
       ? 0.7
       : 0.28 + 0.1 * Math.sin(t * 2.5 + s.index * 1.3);
+
+    const currentScale   = s.haloMesh.scale.x;
+    const currentOpacity = s.haloMesh.material.opacity;
+
+    s.haloMesh.scale.setScalar(currentScale   + (targetScale   - currentScale)   * 0.12);
+    s.haloMesh.material.opacity = currentOpacity + (targetOpacity - currentOpacity) * 0.12;
   });
 }
 
