@@ -41,7 +41,16 @@ import { initSearch }               from './search/search.js';
 import { initDrone, startDronePlayback, fadeDrone, resumeDrone } from './scene/drone.js';
 import { launchSpotVideo, destroyScenePlayer } from './scene/player.js';
 import { startHud, stopHud }        from './scene/hud.js';
-import { logEvent } from './core/analytics.js';
+import { logEvent, logError } from './core/analytics.js';
+
+// Global error handlers — catch anything unhandled
+window.addEventListener('error', e => {
+  logError('uncaught', `${e.message} @ ${e.filename}:${e.lineno}`);
+});
+
+window.addEventListener('unhandledrejection', e => {
+  logError('unhandledrejection', e.reason?.message || String(e.reason));
+});
 
 // ── Globe UI helpers ──────────────────────────────────────────────────────────
 
