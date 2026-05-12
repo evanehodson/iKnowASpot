@@ -2,40 +2,78 @@
   {
     "name": "Lake Superior North Shore",
     "lat": 47.75,
-    "lng": -90.20,
+    "lng": -90.2,
     "videoId": "IW5y8KML1AU",
-    "tags": ["coast", "water"],
+    "tags": [
+      "coast",
+      "water"
+    ],
     "tips": [
       "Lake Superior holds enough water to flood all of North and South America under a foot of water",
       "Let the sound of the water arrive before you try to see anything",
       "Cold lakes have a different quality of stillness than warm ones",
       "The shoreline here has looked roughly like this for ten thousand years"
+    ],
+    "country": "USA",
+    "region": "Minnesota",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Midwest",
+      "Great Lakes"
     ]
   },
   {
     "name": "Grinnell Valley Headwaters Stream",
     "lat": 48.46,
-    "lng": -113.40,
+    "lng": -113.4,
     "videoId": "My2dhQWo2WQ",
-    "tags": ["mountains", "river", "water"], 
+    "tags": [
+      "mountains",
+      "river",
+      "water"
+    ],
     "tips": [
       "Glacier National Park loses roughly one glacier per year. What remains is what you're hearing",
       "Headwaters streams are among the quietest places a river will ever be. Notice what that does to the sound",
       "Mountain water sounds different — higher, thinner, more urgent",
       "The air is cold and faintly metallic. That sharpness is snowmelt, not rain"
+    ],
+    "country": "USA",
+    "region": "Montana",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Rockies",
+      "Rocky Mountains"
     ]
   },
   {
     "name": "Great Basin Glacial Valley",
-    "lat": 39.00,
+    "lat": 39,
     "lng": -114.22,
     "videoId": "A2eSVlS4-vw",
-    "tags": ["mountains", "river", "water"],
+    "tags": [
+      "mountains",
+      "river",
+      "water"
+    ],
     "tips": [
       "The Great Basin has no outlet to the sea. Every drop of water here eventually evaporates",
       "Desert silence is not the absence of sound. It is a different register entirely",
       "This valley was carved by glaciers that melted fourteen thousand years ago",
       "Notice how the light moves here. The air is too dry to soften it"
+    ],
+    "country": "USA",
+    "region": "Nevada",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Great Basin",
+      "Desert Southwest"
     ]
   },
   {
@@ -43,12 +81,25 @@
     "lat": 32.179167,
     "lng": -110.736944,
     "videoId": "LoO63RtYqP4",
-    "tags": ["sunrise", "desert"], 
+    "tags": [
+      "sunrise",
+      "desert"
+    ],
     "tips": [
       "The saguaro cactus grows its first arm only after 75 years. The ones you see are older than most living people",
       "Dawn in the desert belongs to sound. The light comes second",
       "No other desert on earth has quite this combination of heat, spines, and unlikely abundance",
       "The air before sunrise here is cool and faintly dusty. That warmth arriving is the rock, not the sun"
+    ],
+    "country": "USA",
+    "region": "Arizona",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Sonoran",
+      "Southwest",
+      "Desert"
     ]
   },
   {
@@ -56,12 +107,25 @@
     "lat": 35.562778,
     "lng": -83.498611,
     "videoId": "klKNMhGhWqw",
-    "tags": ["mountains", "forest"],
+    "tags": [
+      "mountains",
+      "forest"
+    ],
     "tips": [
       "Kuwohi is the highest point in the Great Smoky Mountains at 2,025 metres, where the elevation shifts the entire forest ecosystem",
       "Let the horizon slow you down. You don't need to scan it all at once",
       "Mountains this old don't rise. They settle",
       "What looks like fog is the forest exhaling. These trees release enough moisture to wrap the valley in their own weather"
+    ],
+    "country": "USA",
+    "region": "Tennessee",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Appalachians",
+      "Smokies",
+      "Southeast"
     ]
   },
   {
@@ -69,12 +133,23 @@
     "lat": 29.183889,
     "lng": -81.711944,
     "videoId": "9Z4tzJf8mxY",
-    "tags": ["water", "river"],
+    "tags": [
+      "water",
+      "river"
+    ],
     "tips": [
       "Juniper Springs discharges millions of gallons daily from the Floridan Aquifer, one of the largest freshwater systems on Earth",
       "Let your eyes adjust before you try to understand the water. Clarity like this can feel unfamiliar at first",
       "Clear water is not empty. It is just honest about what is there",
       "The air carries wet stone, minerals, and the smell of subtropical vegetation warming in early sun"
+    ],
+    "country": "USA",
+    "region": "Florida",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Southeast"
     ]
   },
   {
@@ -82,12 +157,24 @@
     "lat": 37.166667,
     "lng": -92.5,
     "videoId": "eX2nSmlTtm0",
-    "tags": ["forest", "rain"],
+    "tags": [
+      "forest",
+      "rain"
+    ],
     "tips": [
       "The Ozarks are an ancient uplifted plateau where rainwater disappears into limestone and re-emerges through springs and caves",
       "Let the rain set the pace. You don't need to move faster than it falls",
       "Rain turns a forest into a thousand small conversations",
       "The air is thick with wet leaves, soil, and the metallic edge of a storm that has already arrived"
+    ],
+    "country": "USA",
+    "region": "Missouri",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Midwest",
+      "Ozarks"
     ]
   },
   {
@@ -95,12 +182,21 @@
     "lat": 9.75,
     "lng": -84.25,
     "videoId": "E7byvKAJHGU",
-    "tags": ["forest"],
+    "tags": [
+      "forest"
+    ],
     "tips": [
       "Costa Rica holds around 5% of the world's biodiversity despite covering less than 0.1% of its land surface",
       "Don't try to track every sound. Let the forest come to you instead",
       "Nothing here is still, even when it looks like it is",
       "The air is heavy and green-smelling. That density is not heat alone but the weight of everything growing at once"
+    ],
+    "country": "Costa Rica",
+    "region": "Central Valley",
+    "aliases": [
+      "Central America",
+      "Latin America",
+      "Tropics"
     ]
   },
   {
@@ -108,12 +204,25 @@
     "lat": -7.447515,
     "lng": -73.672761,
     "videoId": "8myYyMg1fFE",
-    "tags": ["forest", "rain", "waterfall", "storm"],
+    "tags": [
+      "forest",
+      "rain",
+      "waterfall",
+      "storm"
+    ],
     "tips": [
       "The Amazon rainforest generates its own rainfall, recycling moisture through the atmosphere in a continuous loop",
       "Let the storm take over your attention. You don't need to hold onto it",
       "Thunder here doesn't interrupt the forest. It belongs to it",
       "The air is warm and electric. That smell arriving before the rain is petrichor rising from soil that has been waiting"
+    ],
+    "country": "Brazil",
+    "region": "Amazonia",
+    "aliases": [
+      "South America",
+      "Latin America",
+      "Amazon",
+      "Tropics"
     ]
   },
   {
@@ -121,12 +230,26 @@
     "lat": 43.344444,
     "lng": -86.394444,
     "videoId": "r8UF2NpM0Ic",
-    "tags": ["coast", "water", "beach", "dunes"],
+    "tags": [
+      "coast",
+      "water",
+      "beach",
+      "dunes"
+    ],
     "tips": [
       "Lake Michigan is one of the largest freshwater lakes on Earth, where wind-driven waves can reach heights comparable to ocean surf",
       "Let the rhythm of the waves regulate your attention. You don't need to fix it on anything else",
       "What looks like an ocean is completely freshwater, shaped only by wind and distance, not tides",
       "The air carries cold spray and the clean metallic edge of freshwater moving in large volume"
+    ],
+    "country": "USA",
+    "region": "Michigan",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Midwest",
+      "Great Lakes"
     ]
   },
   {
@@ -134,12 +257,24 @@
     "lat": 44.3386,
     "lng": -68.2733,
     "videoId": "JIXVMnEysTg",
-    "tags": ["coast", "water"],
+    "tags": [
+      "coast",
+      "water"
+    ],
     "tips": [
       "Acadia sits where the Atlantic meets glacier-sculpted granite, some of the oldest exposed rock on the U.S. eastern seaboard",
       "Let the tide set the rhythm. Everything here is in slow negotiation with the sea",
       "This coastline is not fixed ground. It is rock being continuously rewritten by wind, ice, and salt",
       "The air carries cold Atlantic spray, pine resin, and the sharp clarity that follows moving weather"
+    ],
+    "country": "USA",
+    "region": "Maine",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "New England",
+      "Northeast"
     ]
   },
   {
@@ -147,12 +282,24 @@
     "lat": 44.326111,
     "lng": -74.130833,
     "videoId": "dZzpRymFlsA",
-    "tags": ["water", "forest"],
+    "tags": [
+      "water",
+      "forest"
+    ],
     "tips": [
       "The Adirondack lakes sit inside the oldest mountain range in North America, shaped by glaciers into basins that are cold, deep, and remarkably clear",
       "Slow your attention to the pace of the water. Fishing here is as much about waiting as it is about noticing",
       "Stillness on a lake is never complete. It just asks you to look more carefully",
       "The air carries pine resin and cold freshwater, with a faint metallic stillness that comes from depth and shade"
+    ],
+    "country": "USA",
+    "region": "New York",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Northeast",
+      "Adirondacks"
     ]
   },
   {
@@ -160,12 +307,25 @@
     "lat": 41.2132,
     "lng": -124.0046,
     "videoId": "g4S9w3ydS0E",
-    "tags": ["forest", "coast", "rain"],
+    "tags": [
+      "forest",
+      "coast",
+      "rain"
+    ],
     "tips": [
       "Coastal redwoods are the tallest trees on Earth, and they drink fog. Up to 40% of their water intake comes not from rain but from clouds moving through the canopy",
       "Let your attention move upward slowly. These trees are measured in vertical time, not horizontal distance",
       "Sound doesn't travel far in this forest. It gets absorbed before it ever becomes distant",
       "The air is cool and damp, layered with salt fog, decaying wood, and the dense green smell of things that never fully dry out"
+    ],
+    "country": "USA",
+    "region": "California",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Pacific Northwest",
+      "West Coast"
     ]
   },
   {
@@ -173,12 +333,22 @@
     "lat": 7.7683,
     "lng": 98.3016,
     "videoId": "nta1YhicoGw",
-    "tags": ["beach", "coast"],
+    "tags": [
+      "beach",
+      "coast"
+    ],
     "tips": [
       "Yanui sits in a sheltered cove where limestone headlands and nearby coral reef systems absorb open-ocean energy before it reaches shore",
       "Let the tide decide how long you stay in any one thought. Nothing here moves in straight lines",
       "Stillness here is an effect of scale. What feels calm is movement happening just below perception",
       "The air is warm and salt-heavy, carrying sun-heated rock, sea spray, and the faint green edge of jungle at the treeline"
+    ],
+    "country": "Thailand",
+    "region": "Phuket",
+    "aliases": [
+      "Southeast Asia",
+      "Asia",
+      "Thai"
     ]
   },
   {
@@ -186,25 +356,46 @@
     "lat": 47.8021,
     "lng": -123.6044,
     "videoId": "85SKnam3zeo",
-    "tags": ["forest"],
+    "tags": [
+      "forest"
+    ],
     "tips": [
       "Olympic National Park contains three distinct ecosystems — glaciated peaks, temperate rainforest, and wild Pacific coastline — all within a single protected landscape",
       "Let the scale of the place unsettle your sense of distance. Mountains, forest, and ocean are all happening at once",
       "What looks like separate environments is one continuous system exchanging water, air, and energy",
       "The air shifts between salt spray, moss-heavy forest damp, and cold alpine wind depending on where you stand and which way the wind turns"
+    ],
+    "country": "USA",
+    "region": "Washington",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Pacific Northwest",
+      "West Coast"
     ]
   },
   {
     "name": "Three Sisters Alpine Lake",
-    "lat": 51.0900,
-    "lng": -115.3430,
+    "lat": 51.09,
+    "lng": -115.343,
     "videoId": "9Ch7eqK4gdI",
-    "tags": ["mountains", "water"],
+    "tags": [
+      "mountains",
+      "water"
+    ],
     "tips": [
       "The Three Sisters are limestone peaks in the Canadian Rockies formed from ancient seafloor lifted by tectonic forces and carved by glaciers over millions of years",
       "Let the evening alpine light simplify everything. Detail falls away before colour does",
       "At this elevation, still water becomes a mirror for weather rather than landscape",
       "The air is cold and faintly mineral, carrying pine, stone, and the memory of ice that has not fully left"
+    ],
+    "country": "Canada",
+    "region": "Alberta",
+    "aliases": [
+      "Canadian Rockies",
+      "Rockies",
+      "North America"
     ]
   },
   {
@@ -212,12 +403,25 @@
     "lat": 40.3428,
     "lng": -105.6836,
     "videoId": "-7K1THu1BTU",
-    "tags": ["mountains", "river", "water"],
+    "tags": [
+      "mountains",
+      "river",
+      "water"
+    ],
     "tips": [
       "Spring melt in the Rockies releases an entire winter's snowpack at once, sending stored water into rivers and streams faster than the land can absorb it",
       "Let the sound of moving water set the pace. This is a landscape transitioning faster than it can be seen",
       "What looks like a single river is winter returning to motion all at once",
       "The air is cold at altitude but carries the sharp freshness of melting snow, pine, and stone newly exposed to sun"
+    ],
+    "country": "USA",
+    "region": "Colorado",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Rockies",
+      "Rocky Mountains"
     ]
   },
   {
@@ -225,12 +429,23 @@
     "lat": 20.6843,
     "lng": -88.5678,
     "videoId": "p_eEadzpEnI",
-    "tags": ["forest", "water"],
+    "tags": [
+      "forest",
+      "water"
+    ],
     "tips": [
       "Cenotes form when limestone bedrock collapses, exposing groundwater that has been filtering through porous rock for thousands of years",
       "Let your perception adjust to the vertical shift. You are looking into a water system that runs beneath the land, not across it",
       "Stillness here is not calm water. It is groundwater made visible, held in place by stone",
       "The air is cool and faintly mineral, carrying wet limestone and the particular quiet of a place the sun only partially reaches"
+    ],
+    "country": "Mexico",
+    "region": "Yucatán",
+    "aliases": [
+      "Latin America",
+      "Central America",
+      "Mayan",
+      "Mexican"
     ]
   },
   {
@@ -238,12 +453,22 @@
     "lat": -36.8872,
     "lng": -62.0108,
     "videoId": "TiXyzG4XJEc",
-    "tags": ["water", "sunrise"],
+    "tags": [
+      "water",
+      "sunrise"
+    ],
     "tips": [
       "Laguna Las Mulitas sits in the flat pampas of Argentina, where shallow lakes form in wind-shaped depressions across one of the largest grassland plains on Earth",
       "Let the horizon widen your attention",
       "What looks like a simple lake is part of a seasonal system that expands and contracts with rainfall across the pampas",
       "The air is open and wind-swept, carrying dry grass, soil, and the particular emptiness of long horizontal space"
+    ],
+    "country": "Argentina",
+    "region": "Buenos Aires Province",
+    "aliases": [
+      "South America",
+      "Latin America",
+      "Pampas"
     ]
   },
   {
@@ -251,64 +476,115 @@
     "lat": -33.7122,
     "lng": 150.3119,
     "videoId": "wfs_5EfO2mU",
-    "tags": ["mountains", "forest"],
+    "tags": [
+      "mountains",
+      "forest"
+    ],
     "tips": [
       "The blue haze over these mountains is real and chemical. Eucalyptus forests release oils into the air that scatter light, tinting the entire distance blue",
       "Let your attention follow depth instead of detail. This landscape is built in layers that recede rather than resolve",
       "What looks like solid forest is a system of ridges, cliffs, and valleys carved over millions of years by slow erosion",
       "The air carries eucalyptus vapor, dry sandstone dust, and a sharp clarity that shifts with every change in wind and light"
+    ],
+    "country": "Australia",
+    "region": "New South Wales",
+    "aliases": [
+      "Oceania",
+      "Aussie"
     ]
   },
   {
     "name": "Colombian Jungle, Chocó",
-    "lat": 6.0200,
-    "lng": -77.3500,
+    "lat": 6.02,
+    "lng": -77.35,
     "videoId": "PSzVqDGY2gs",
-    "tags": ["forest", "river"],
+    "tags": [
+      "forest",
+      "river"
+    ],
     "tips": [
       "The Chocó is not an extension of the Amazon. Sealed off by the Andes on one side and the Pacific on the other, it evolved in isolation — around 20% of its plant species exist nowhere else on Earth",
       "Don't try to separate the sounds into individual sources. Let the whole thing arrive at once",
       "The loudest rainforests are usually the most alive. Silence here would be the warning",
       "The air is saturated and warm, carrying the smell of wet bark, decomposing leaves, and soil that has never fully dried out"
+    ],
+    "country": "Colombia",
+    "region": "Chocó",
+    "aliases": [
+      "South America",
+      "Latin America",
+      "Colombian"
     ]
   },
   {
     "name": "Bahia Atlantic Forest",
-    "lat": -23.5000,
-    "lng": -45.1000,
+    "lat": -23.5,
+    "lng": -45.1,
     "videoId": "6eNgRI_p4EQ",
-    "tags": ["forest"],
+    "tags": [
+      "forest"
+    ],
     "tips": [
       "This forest holds more life per square metre than almost anywhere on Earth",
       "Stay with one layer of sound at a time. There is no end to what the forest is doing",
       "A forest this dense doesn't have a background. Everything you hear is the foreground",
       "The air is warm and thick, carrying the smell of wet soil, bark, and flowering things competing for the same small patches of light"
+    ],
+    "country": "Brazil",
+    "region": "São Paulo State",
+    "aliases": [
+      "South America",
+      "Latin America",
+      "Atlantic Forest"
     ]
   },
   {
     "name": "Denali Tundra Hillside",
     "lat": 63.3333,
-    "lng": -150.5000,
+    "lng": -150.5,
     "videoId": "dD9OI_cYZDk",
-    "tags":  ["mountains", "river"],
+    "tags": [
+      "mountains",
+      "river"
+    ],
     "tips": [
       "During the last ice age, the tundra around Denali was part of Beringia — a vast ice-free refuge connected to northeastern Asia. The plants and animals here have more in common with Siberia than with the rest of North America",
       "Pick a point on the horizon and stay with it. At this scale, stillness takes time to arrive",
       "Tundra wind doesn't move through things. It moves everything at once",
       "The air is cold and almost scentless. That absence is what subarctic air smells like — space, with nothing to catch it"
+    ],
+    "country": "USA",
+    "region": "Alaska",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Arctic",
+      "Subarctic"
     ]
   },
-    {
+  {
     "name": "Morning in the Cloud Forest",
     "lat": 15.0833,
     "lng": -89.9167,
     "videoId": "kb-VSf-QdUU",
-    "tags": ["forest", "rain", "mountains"],
+    "tags": [
+      "forest",
+      "rain",
+      "mountains"
+    ],
     "tips": [
       "Sierra de las Minas is the source of 63 permanent rivers. They begin as fog, caught by leaves exactly like these",
       "Watch one drop form and fall. The whole water cycle is happening at that scale",
       "A fern doesn't wait for rain. It drinks the cloud directly",
       "The air is cool and still, carrying wet moss, dark soil, and the mineral sharpness of stone that hasn't seen direct sun since yesterday"
+    ],
+    "country": "Guatemala",
+    "region": "Alta Verapaz",
+    "aliases": [
+      "Central America",
+      "Latin America",
+      "Mayan"
     ]
   },
   {
@@ -316,12 +592,25 @@
     "lat": 20.7984,
     "lng": -156.3319,
     "videoId": "LCc6I-n2UUc",
-    "tags": ["beach", "coast", "sunrise"],
+    "tags": [
+      "beach",
+      "coast",
+      "sunrise"
+    ],
     "tips": [
       "Hawaii is the most geographically isolated island chain on Earth, more than 3,200 kilometres from the nearest continent",
       "Let the light come in stages. Sunrise here moves slower than you expect",
       "An ocean this large doesn't have a far side you can feel. It just continues",
       "The air is warm and salt-heavy, carrying the particular softness of trade winds that have crossed thousands of kilometres of open water before reaching land"
+    ],
+    "country": "USA",
+    "region": "Hawaii",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Pacific",
+      "Hawaiian Islands"
     ]
   },
   {
@@ -329,12 +618,23 @@
     "lat": 26.1167,
     "lng": -111.2833,
     "videoId": "Z1zxi4gaunE",
-    "tags": ["beach", "coast"],
+    "tags": [
+      "beach",
+      "coast"
+    ],
     "tips": [
       "This narrow sea contains more marine species than almost any comparable body of water on Earth",
       "Let your eyes adjust to the water before you try to read it. Clarity this shallow takes a moment to make sense of",
       "Volcanic rock and turquoise water shouldn't go together. Here they do",
       "The air is dry and bright, carrying sea salt, warm basalt, and the particular sharpness of a desert meeting the ocean"
+    ],
+    "country": "Mexico",
+    "region": "Baja California Sur",
+    "aliases": [
+      "Latin America",
+      "Baja",
+      "Mexican",
+      "Sea of Cortez"
     ]
   },
   {
@@ -342,12 +642,23 @@
     "lat": 18.3533,
     "lng": -64.7891,
     "videoId": "_Q9NjXNMtNE",
-    "tags": ["beach", "coast"],
+    "tags": [
+      "beach",
+      "coast"
+    ],
     "tips": [
       "Trunk Bay is named after the leatherback sea turtles that nest here. Leatherbacks are the largest reptiles on Earth",
       "Watch the water rather than through it. The colour itself is the first thing worth staying with",
       "The Caribbean is not one shade of blue. It changes with depth, sand, and the angle of the sun every few metres",
       "The air is warm and lightly salted, carried by trade winds that have moved across open Atlantic for thousands of kilometres before reaching this bay"
+    ],
+    "country": "US Virgin Islands",
+    "region": "St. John",
+    "aliases": [
+      "Caribbean",
+      "USVI",
+      "America",
+      "US"
     ]
   },
   {
@@ -360,6 +671,15 @@
       "Let the birds set the rhythm. This is a place measured in arrivals and departures, not stillness",
       "Wetlands don't look like much until something lands. Then everything changes",
       "The air is flat and open, carrying cattail, still water, and the particular quiet of a valley floor with no hills to hold the wind"
+    ],
+    "country": "USA",
+    "region": "California",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Central Valley",
+      "San Joaquin"
     ]
   },
   {
@@ -367,12 +687,23 @@
     "lat": 29.2498,
     "lng": -103.2502,
     "videoId": "w23YelRLv6s",
-    "tags": ["water"],
+    "tags": [
+      "water"
+    ],
     "tips": [
       "The Chisos Mountains rising from Big Bend's desert floor are a sky island — a cool, forested range so isolated by surrounding desert that their plants and animals have evolved separately from any other mountain range",
       "Morning is a slow process, not an event",
       "Desert silence before dawn is different from desert silence at noon. One is waiting. The other is enduring",
       "The air is cool and bone-dry, carrying creosote, warm rock, and the faint sweetness of something blooming that you cannot see"
+    ],
+    "country": "USA",
+    "region": "Texas",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Southwest",
+      "Chihuahuan Desert"
     ]
   },
   {
@@ -380,12 +711,25 @@
     "lat": -27.1127,
     "lng": -109.3497,
     "videoId": "tNqA2cuxwCU",
-    "tags": ["mountains", "coast", "water"],
+    "tags": [
+      "mountains",
+      "coast",
+      "water"
+    ],
     "tips": [
       "Rapa Nui sits alone in more than 8 million square miles of open ocean — one of the most isolated inhabited places on Earth",
       "Let the scale of the ocean behind arrive slowly. The distance is the point",
       "These figures face inland, not outward. They were watching over the living, not the sea",
       "The air is salt-stripped and open, carrying volcanic rock, dry grass, and the particular emptiness of wind that has crossed thousands of kilometres of open Pacific with nothing to slow it"
+    ],
+    "country": "Chile",
+    "region": "Easter Island",
+    "aliases": [
+      "South America",
+      "Latin America",
+      "Polynesia",
+      "Pacific",
+      "Rapa Nui"
     ]
   },
   {
@@ -393,12 +737,23 @@
     "lat": -42.3833,
     "lng": 172.1333,
     "videoId": "9hrKyf_VFGQ",
-    "tags": ["mountains", "river"],
+    "tags": [
+      "mountains",
+      "river"
+    ],
     "tips": [
       "The Southern Alps are being pushed upward by the Alpine Fault at roughly the same rate fingernails grow — but erosion strips them back just as fast",
       "Let the sound of the water fill the valley before you look for anything else. A river this cold moves differently from a warm one",
       "Southern beech forest has a particular quality of green. Dense and unbroken, it makes the valley feel like it has a ceiling",
       "The air is cold and wet, carrying beech leaf, glacial stone, and the clean mineral sharpness of water that began as snow not far above"
+    ],
+    "country": "New Zealand",
+    "region": "Canterbury",
+    "aliases": [
+      "Oceania",
+      "Aotearoa",
+      "NZ",
+      "Kiwi"
     ]
   },
   {
@@ -406,12 +761,25 @@
     "lat": 37.7365,
     "lng": -119.5567,
     "videoId": "TC0hpqHAZ4E",
-    "tags": ["mountains", "river", "water"],
+    "tags": [
+      "mountains",
+      "river",
+      "water"
+    ],
     "tips": [
       "Up to 85% of the Merced River's flow comes entirely from snowmelt. What you're hearing is an entire winter stored in the Sierra Nevada releasing itself at once",
       "Find a fixed point on the bank and watch the water move past it. A river this fast makes stillness feel earned",
       "Snowmelt rivers are a different colour than rainwater rivers. The cold keeps them clear all the way to the bottom",
       "The air is cold and sharp, carrying granite, pine, and the clean electric freshness of water that was snow just days ago"
+    ],
+    "country": "USA",
+    "region": "California",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Sierra Nevada",
+      "Yosemite"
     ]
   },
   {
@@ -419,38 +787,70 @@
     "lat": 35.0116,
     "lng": 135.7681,
     "videoId": "JPckEQWaIxE",
-    "tags": ["forest"],
+    "tags": [
+      "forest"
+    ],
     "tips": [
       "Kyoto has recorded cherry blossom bloom dates continuously since 812 CE — one of the longest biological records on Earth",
       "Watch a single branch rather than the whole tree. The whole tree is too much at once",
       "A flower that lasts one week has a different weight than one that lasts all season",
       "The air in peak bloom carries a faint vanilla sweetness — cherry blossoms contain coumarin, the same compound that gives fresh hay its scent"
+    ],
+    "country": "Japan",
+    "region": "Kyoto",
+    "aliases": [
+      "Asia",
+      "East Asia",
+      "Japanese"
     ]
   },
   {
     "name": "Bluebell Forest",
-    "lat": 51.5500,
-    "lng": -0.9500,
+    "lat": 51.55,
+    "lng": -0.95,
     "videoId": "IsPBplWLImI",
-    "tags": ["forest"],
+    "tags": [
+      "forest"
+    ],
     "tips": [
       "A bluebell carpet is often a sign that trees have stood here for five hundred years or more",
       "Let your eyes adjust to the colour before anything else. Blue this dense in a forest takes a moment to accept as real",
       "A bluebell wood smells different from any other forest. That sweetness has nowhere else to go",
       "The air is cool and damp, carrying soil, last year's leaves, and the particular green stillness of a woodland that has not yet fully opened its canopy"
+    ],
+    "country": "UK",
+    "region": "England",
+    "aliases": [
+      "Britain",
+      "Great Britain",
+      "United Kingdom",
+      "British",
+      "English"
     ]
   },
   {
     "name": "Bavarian Alps Blizzard",
-    "lat": 47.64, 
+    "lat": 47.64,
     "lng": 11.77,
     "videoId": "M3Zt4h1EJjs",
-    "tags": ["mountains", "snow", "storm"],
+    "tags": [
+      "mountains",
+      "snow",
+      "storm"
+    ],
     "tips": [
       "The Bavarian Alps sit where moist Atlantic air collides with cold continental air, creating snowstorms that can reshape entire valleys overnight",
       "Let the snowfall narrow your attention. In weather like this, distance disappears before sound does",
       "A blizzard changes the shape of a mountain without moving the mountain itself",
       "The air is sharp and metallic, carrying pine resin, wet wool, and the muffled stillness that arrives when snow absorbs almost every distant sound"
+    ],
+    "country": "Germany",
+    "region": "Bavaria",
+    "aliases": [
+      "Europe",
+      "Central Europe",
+      "German",
+      "Alps"
     ]
   },
   {
@@ -458,25 +858,49 @@
     "lat": 40.8172,
     "lng": -99.1125,
     "videoId": "azEfqCmwKVk",
-    "tags": ["rain", "storm"],
+    "tags": [
+      "rain",
+      "storm"
+    ],
     "tips": [
       "The Great Plains produce some of the largest thunderstorms on Earth, where warm Gulf air and cold northern systems collide across thousands of open kilometres",
       "Let the distance calm you before the storm arrives. On the plains, weather is something you watch becoming",
       "A storm this wide changes the atmosphere long before the rain reaches you",
       "The air is heavy and electrically still, carrying wet soil, cut grass, and the metallic sharpness that arrives just before lightning"
+    ],
+    "country": "USA",
+    "region": "Nebraska",
+    "aliases": [
+      "America",
+      "US",
+      "United States",
+      "Midwest",
+      "Great Plains"
     ]
   },
   {
     "name": "Italian Autumn Olive Orchard",
-    "lat": 46.1000,
+    "lat": 46.1,
     "lng": 13.4333,
     "videoId": "HpwYQm_bE-0",
-    "tags": ["forest", "river", "water"],
+    "tags": [
+      "forest",
+      "river",
+      "water"
+    ],
     "tips": [
       "Friuli sits between the Alps and the Adriatic, where cool mountain air and Mediterranean warmth create some of the oldest olive-growing landscapes in northern Italy",
       "Let the spacing of the trees slow your attention. Orchards are designed rhythms, not wild forests",
       "Olive trees can survive for centuries because they regenerate from the inside out. A trunk that looks ancient may still be actively renewing itself",
       "The air is dry and slightly sweet, carrying crushed grass, olive leaf oil, and the earthy warmth of soil cooling after summer"
+    ],
+    "country": "Italy",
+    "region": "Friuli-Venezia Giulia",
+    "aliases": [
+      "Europe",
+      "Southern Europe",
+      "Italian",
+      "Mediterranean"
     ]
   },
   {
@@ -484,25 +908,50 @@
     "lat": 42.7333,
     "lng": 25.4833,
     "videoId": "dYfMj1SjzRc",
-    "tags": ["forest", "spring"],
+    "tags": [
+      "forest",
+      "spring"
+    ],
     "tips": [
       "Bulgaria's temperate valleys produce ideal conditions for cherry trees, where cold winters and warm springs synchronize entire orchards into bloom at once",
       "Stay with one section of movement at a time. Wind through blossoms is quieter than rain but just as alive",
       "Fruit trees bloom all at once because pollination is a race against weather",
       "The air is cool and lightly floral, carrying damp soil, fresh leaves, and the faint almond-like sweetness released by cherry blossoms"
+    ],
+    "country": "Bulgaria",
+    "region": "Central Bulgaria",
+    "aliases": [
+      "Europe",
+      "Eastern Europe",
+      "Balkans",
+      "Bulgarian"
     ]
   },
   {
     "name": "Adriatic Sea Coast",
     "lat": 38.7167,
-    "lng": 20.6500,
+    "lng": 20.65,
     "videoId": "keyFWfDexr0",
-    "tags": ["coast", "beach", "water"],
+    "tags": [
+      "coast",
+      "beach",
+      "water"
+    ],
     "tips": [
       "Lefkada's coastline sits along the Ionian edge of the Adriatic system, where steep limestone cliffs drop directly into unusually clear, mineral-rich water",
       "Let the brightness of the water settle before you focus on details. Seas this clear can feel almost unreal at first",
       "The colour here comes from limestone suspended beneath the surface, scattering light through shallow coastal water",
       "The air is warm and salt-heavy, carrying sun-heated stone, dry herbs, and the clean wind moving inland from open sea"
+    ],
+    "country": "Greece",
+    "region": "Lefkada",
+    "aliases": [
+      "Europe",
+      "Southern Europe",
+      "Mediterranean",
+      "Greek",
+      "Ionian",
+      "Adriatic"
     ]
   },
   {
@@ -510,12 +959,25 @@
     "lat": -17.5388,
     "lng": -149.8295,
     "videoId": "TAq-GCkmjt4",
-    "tags": ["coast", "beach", "water"],
+    "tags": [
+      "coast",
+      "beach",
+      "water"
+    ],
     "tips": [
       "Moorea is a volcanic island surrounded by coral reef lagoons, where mountain runoff and Pacific currents meet in shallow tropical water",
       "Let the movement of the water simplify your attention — anchored boats still rise and fall with forces far beyond them",
       "A lagoon feels calm because the reef absorbs the energy before it reaches you",
       "The air is warm, salt-rich, and layered with tropical flowers, humid vegetation, and sun-heated seawater"
+    ],
+    "country": "French Polynesia",
+    "region": "Moorea",
+    "aliases": [
+      "Pacific",
+      "Polynesia",
+      "France",
+      "French",
+      "Oceania"
     ]
   },
   {
@@ -523,12 +985,22 @@
     "lat": -24.7275,
     "lng": 15.2982,
     "videoId": "Zk2F8WJcr90",
-    "tags": ["desert", "dunes"],
+    "tags": [
+      "desert",
+      "dunes"
+    ],
     "tips": [
       "The Namib is one of the oldest deserts on Earth, where wind has been shaping sand dunes along the Atlantic coast for millions of years",
       "Let the emptiness expand your sense of time — nothing here moves quickly except the wind",
       "A desert is not lifeless; it is a landscape where survival becomes visible",
       "The air is dry, mineral-heavy, and carries the faint scent of heated stone and wind-blown dust"
+    ],
+    "country": "Namibia",
+    "region": "Namib-Naukluft",
+    "aliases": [
+      "Africa",
+      "Southern Africa",
+      "Namibian"
     ]
   },
   {
@@ -536,12 +1008,23 @@
     "lat": -17.9243,
     "lng": 25.8572,
     "videoId": "A6xDtrAKnEg",
-    "tags": ["water", "waterfall"],
+    "tags": [
+      "water",
+      "waterfall"
+    ],
     "tips": [
       "Victoria Falls forms where the Zambezi River drops into a narrow basalt gorge, creating one of the largest continuous curtains of falling water on Earth",
       "Let the sound overwhelm your sense of scale before you try to measure it visually",
       "The closer you get to immense water, the less solid the world begins to feel",
       "The air is saturated with cool mist, wet stone, and the charged freshness created by constantly moving water"
+    ],
+    "country": "Zimbabwe",
+    "region": "Matabeleland North",
+    "aliases": [
+      "Africa",
+      "Southern Africa",
+      "Zambia",
+      "Zambezi"
     ]
   },
   {
@@ -549,25 +1032,49 @@
     "lat": 23.4162,
     "lng": 25.6628,
     "videoId": "vf8apfQbwD0",
-    "tags": ["desert", "dunes"],
+    "tags": [
+      "desert",
+      "dunes"
+    ],
     "tips": [
       "The Sahara is the largest hot desert on Earth, shaped by shifting wind patterns that redistribute sand and dust across entire continents",
       "Let the openness slow your need for orientation — there is less here to measure yourself against",
       "In landscapes this vast, silence stops feeling empty and starts feeling physical",
       "The air is intensely dry, carrying heated mineral dust and the faint metallic scent of sun-baked stone"
+    ],
+    "country": "Egypt",
+    "region": "Sahara",
+    "aliases": [
+      "Africa",
+      "North Africa",
+      "Egyptian",
+      "Libyan",
+      "Algerian"
     ]
   },
   {
     "name": "Benasque Valley",
-    "lat": 42.6050,
+    "lat": 42.605,
     "lng": 0.5236,
     "videoId": "aS4j9FXp2VE",
-    "tags": ["mountains", "forest"],
+    "tags": [
+      "mountains",
+      "forest"
+    ],
     "tips": [
       "The Benasque Valley lies in the central Pyrenees, where glaciers carved steep valleys through some of the highest mountains in Spain",
       "Let the mountains compress your attention — alpine landscapes reward noticing what is close before what is distant",
       "A valley like this is shaped as much by ice that disappeared long ago as by the rivers still flowing through it",
       "The air is cool, thin, and scented with wet stone, pine forest, and snowmelt moving down from higher elevations"
+    ],
+    "country": "Spain",
+    "region": "Pyrenees",
+    "aliases": [
+      "Europe",
+      "Southern Europe",
+      "Spanish",
+      "Iberia",
+      "Iberian"
     ]
   },
   {
@@ -575,12 +1082,25 @@
     "lat": 41.2669,
     "lng": 1.9771,
     "videoId": "MqN4qhSimjY",
-    "tags": ["sunrise", "coast", "beach"],
+    "tags": [
+      "sunrise",
+      "coast",
+      "beach"
+    ],
     "tips": [
       "The Mediterranean Sea is almost entirely enclosed by land, creating calmer tidal behavior and warmer coastal waters than most open oceans",
       "Let the sunrise arrive gradually — the sea changes color long before the sun fully clears the horizon",
       "Morning light over calm water makes distance feel softer than it really is",
       "The air is mild and salt-rich, carrying warm sand, sea moisture, and the faint mineral smell of stone warming after night"
+    ],
+    "country": "Spain",
+    "region": "Catalonia",
+    "aliases": [
+      "Europe",
+      "Southern Europe",
+      "Spanish",
+      "Iberia",
+      "Mediterranean"
     ]
   },
   {
@@ -588,12 +1108,23 @@
     "lat": 55.9533,
     "lng": -3.1883,
     "videoId": "TQdq45EhvGE",
-    "tags": ["forest"],
+    "tags": [
+      "forest"
+    ],
     "tips": [
       "Scotland’s temperate forests grow in a cool maritime climate where frequent rain, mild temperatures, and long summer daylight shape dense moss and understory growth",
       "Let the quieter sounds arrive first — birdsong and moving leaves often reveal more than the forest canopy itself",
       "A forest in light rain never becomes silent; it simply redistributes where the sound lives",
       "The air is cool and damp, carrying wet earth, moss, bark, and the faint sweetness of summer vegetation after rain"
+    ],
+    "country": "UK",
+    "region": "Scotland",
+    "aliases": [
+      "Britain",
+      "Great Britain",
+      "United Kingdom",
+      "British",
+      "Scottish"
     ]
   },
   {
@@ -601,25 +1132,48 @@
     "lat": 52.9377,
     "lng": -10.2716,
     "videoId": "S15uIhVFuUg",
-    "tags": ["coast", "water"],
+    "tags": [
+      "coast",
+      "water"
+    ],
     "tips": [
       "Ireland’s Atlantic coastline is shaped by constant exposure to ocean wind and swell, where cliffs and rocky shores absorb the full force of the North Atlantic",
       "Let the repetition of the waves reduce your sense of urgency — the ocean never hurries its own rhythm",
       "Distant seabirds make coastlines feel larger than what you can actually see",
       "The air is cool, salt-heavy, and carries wet stone, sea spray, and the damp softness of maritime weather"
+    ],
+    "country": "Ireland",
+    "region": "Kerry",
+    "aliases": [
+      "Europe",
+      "Northern Europe",
+      "Irish",
+      "Atlantic"
     ]
   },
   {
     "name": "Glendalough Lakes",
     "lat": 53.0105,
-    "lng": -6.3260,
+    "lng": -6.326,
     "videoId": "6qAFt_Gmv0Q",
-    "tags": ["water", "forest", "mountains"],
+    "tags": [
+      "water",
+      "forest",
+      "mountains"
+    ],
     "tips": [
       "Glendalough sits in a glacial valley in the Wicklow Mountains, where retreating ice carved deep lakes into the surrounding granite landscape",
       "Let the stillness of the water slow your attention before you focus on the details around it",
       "Mountain lakes often feel quieter than they are because the landscape absorbs distance instead of reflecting it",
       "The air is cool and damp, carrying peat, wet stone, moss, and the earthy scent of rain-soaked forest"
+    ],
+    "country": "Ireland",
+    "region": "Wicklow",
+    "aliases": [
+      "Europe",
+      "Northern Europe",
+      "Irish",
+      "Dublin"
     ]
   },
   {
@@ -627,12 +1181,22 @@
     "lat": 44.0006,
     "lng": 1.7075,
     "videoId": "HcvAR4vFG2A",
-    "tags": ["rain"],
+    "tags": [
+      "rain"
+    ],
     "tips": [
       "Puycelsi sits on a limestone ridge in southern France, where elevated medieval villages were historically built for visibility, defense, and access to surrounding farmland",
       "Let the rain narrow your attention to what is nearby — storms make distant landscapes feel temporarily unreachable",
       "Thunder heard from inside shelter changes a storm from threat into atmosphere",
       "The air is cool and humid, carrying wet stone, spring soil, distant vegetation, and the earthy scent that rises after rainfall"
+    ],
+    "country": "France",
+    "region": "Occitanie",
+    "aliases": [
+      "Europe",
+      "Western Europe",
+      "French",
+      "Southern France"
     ]
   }
 ]

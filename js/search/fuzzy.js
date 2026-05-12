@@ -51,7 +51,10 @@ export function fuzzyScore(query, target) {
 export function scoreSpot(query, spot) {
   const scores = [
     fuzzyScore(query, spot.name),
-    ...(spot.tags || []).map(t => fuzzyScore(query, t) * 0.85),
+    ...(spot.tags    || []).map(t => fuzzyScore(query, t) * 0.85),
+    fuzzyScore(query, spot.country || '') * 0.90,
+    fuzzyScore(query, spot.region  || '') * 0.80,
+    ...(spot.aliases || []).map(a => fuzzyScore(query, a) * 0.75),
   ];
   return Math.max(...scores);
 }
@@ -67,8 +70,8 @@ export function scoreSpot(query, spot) {
  * @returns {{ spot: Object, index: number, score: number }[]}
  */
 export function rankSpots(query, spots, limit = 5, threshold = 20) {
-  return spots
-    .map((spot, index) => ({ spot, index, score: scoreSpot(query, spot) }))
+  const results = spots.map((spot, index) => ({ spot, index, score: scoreSpot(query, spot) }));
+  return results
     .filter(r => r.score > threshold)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);

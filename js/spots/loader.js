@@ -26,14 +26,11 @@ function normalise(raw) {
     lng:     parseFloat(raw.lng)  || 0,
     videoId: raw.videoId || '',
     url:     `https://www.youtube.com/watch?v=${raw.videoId || ''}`,
-    tags:    Array.isArray(raw.tags) ? raw.tags : [],
-    tips:    Array.isArray(raw.tips) ? raw.tips : [],
-
-    // Fields not yet in spots.json — ready for when you add them:
-    // biome:      raw.biome      || null,
-    // season:     raw.season     || null,
-    // credit:     raw.credit     || null,
-    // region:     raw.region     || null,
+    tags:    Array.isArray(raw.tags)    ? raw.tags    : [],
+    tips:    Array.isArray(raw.tips)    ? raw.tips    : [],
+    country: raw.country || '',
+    region:  raw.region  || '',
+    aliases: Array.isArray(raw.aliases) ? raw.aliases : [],
   };
 }
 

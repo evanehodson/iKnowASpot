@@ -133,7 +133,7 @@ async function runSearch(query) {
   }
 }
 
-const debouncedSearch = debounce(runSearch, 320);
+const debouncedSearch = debounce(runSearch, 600);
 
 // ── Event wiring ──────────────────────────────────────────────────────────────
 
