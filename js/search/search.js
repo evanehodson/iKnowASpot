@@ -23,6 +23,7 @@ import {
   $searchToggle, $searchPanel, $searchInput,
   $searchClear, $searchResults,
 } from '../core/dom.js';
+import { logEvent } from '../core/analytics.js';
 
 // ── Internal helpers ──────────────────────────────────────────────────────────
 
@@ -122,10 +123,14 @@ async function runSearch(query) {
 
   const geoResult = await geocode(query);
 
-  // Bail if query changed while we were fetching
   if (state.activeSearchQuery !== query) return;
 
   renderResults(spotResults, geoResult);
+  
+  // Log the query only if it returned something
+  if (spotResults.length > 0 || geoResult) {
+    logEvent('search', query);
+  }
 }
 
 const debouncedSearch = debounce(runSearch, 320);

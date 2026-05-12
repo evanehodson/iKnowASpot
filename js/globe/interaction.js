@@ -94,6 +94,7 @@ export function initInteraction(camera) {
   // ── Click (enter spot) ────────────────────────────────────────────────────
   $canvas.addEventListener('click', e => {
     if (state.isDragging) { state.isDragging = false; return; }
+    if (e.pointerType === 'touch') return; // touchend already handled it
     const hit = hitTestSpots(e.clientX, e.clientY);
     if (hit) emit('spot:enter', hit.index);
     state.isDragging = false;

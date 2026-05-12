@@ -41,6 +41,7 @@ import { initSearch }               from './search/search.js';
 import { initDrone, startDronePlayback, fadeDrone, resumeDrone } from './scene/drone.js';
 import { launchSpotVideo, destroyScenePlayer } from './scene/player.js';
 import { startHud, stopHud }        from './scene/hud.js';
+import { logEvent } from './core/analytics.js';
 
 // ── Globe UI helpers ──────────────────────────────────────────────────────────
 
@@ -95,8 +96,9 @@ $btnEnter.addEventListener('click', handleAppStart);
 
 // ── Spot navigation ───────────────────────────────────────────────────────────
 
-function enterSpot(index) {
+function enterSpot(index, log = true) {
   const spot = state.spots[index];
+  if (log) logEvent('spot:enter', spot.name, index);
   state.currentSpotIndex = index;
   state.currentSpotUrl   = spot.url;
   state.travelRetryCount = 0;
@@ -149,7 +151,7 @@ function shuffleToSpot() {
 
   flyToSpotWithTooltip(target, getCamera(), () => {
     $shuffleBtn.style.pointerEvents = 'all';
-    enterSpot(target.index);
+    enterSpot(target.index, false); // don't log shuffle
   });
 }
 
