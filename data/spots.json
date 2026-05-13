@@ -81,6 +81,7 @@
   },
   {
     "name": "Sonoran Desert Sunrise",
+    "tagline": "The ones who live in the desert, / if you knew them / you would understand everything. - Lucille Clifton, Sonora Desert Poem",
     "lat": 32.179167,
     "lng": -110.736944,
     "videoId": "LoO63RtYqP4",
@@ -106,7 +107,8 @@
     ]
   },
   {
-    "name": "Kuwohi (Clingmans Dome)",
+    "name": "Kuwohi",
+    "tagline": "The Mulberry Place. The sanctuary of the animals, a mountain that breathes through the clouds, where the earth and the sky are still in conversation. - Adapted from Cherokee Oral Tradition",
     "lat": 35.562778,
     "lng": -83.498611,
     "videoId": "klKNMhGhWqw",
@@ -133,6 +135,7 @@
   },
   {
     "name": "Juniper Springs",
+    "tagline": "A spring as clear as well water bubbled up from nowhere in the sand. It was as though the banks cupped green leafy hands to hold it. - Marjorie Kinnan Rawlings, The Yearling",
     "lat": 29.183889,
     "lng": -81.711944,
     "videoId": "9Z4tzJf8mxY",
@@ -157,6 +160,7 @@
   },
   {
     "name": "Rainy Ozarks",
+    "tagline": "Consider the azalea’s loose petals, / bursts of promiscuous color / made more vibrant / in this light rain. Here, / drizzle kins to dazzle. - Sandy Longhorn, In the Aftermath, Broken Body Bound",
     "lat": 37.166667,
     "lng": -92.5,
     "videoId": "eX2nSmlTtm0",
@@ -182,6 +186,7 @@
   },
   {
     "name": "Costa Rican Rainforest",
+    "tagline": "there she was… / an endless sea of dark green velvet / rainforests, lush, deep, beckoning / lakes sparkling like pools of diamonds - Don Iannone, Costa Rica from Upon High",
     "lat": 9.75,
     "lng": -84.25,
     "videoId": "E7byvKAJHGU",
