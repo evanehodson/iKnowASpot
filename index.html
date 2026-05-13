@@ -383,6 +383,189 @@
       white-space: nowrap; transform: translate(18px, -50%);
     }
     #spot-tooltip.visible { opacity: 1; }
+
+    #feedback-trigger {
+      position: fixed;
+      bottom: 25px; left: 25px;
+      z-index: 20;
+      font-family: var(--font-body);
+      font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--sage);
+      opacity: 0.7;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    #feedback-trigger:hover { opacity: 1; }
+
+    #feedback-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(5, 8, 16, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #feedback-modal.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #feedback-modal-inner {
+      position: relative;
+      width: 420px;
+      background: rgba(5, 8, 16, 0.95);
+      border: 1px solid rgba(122, 158, 142, 0.3);
+      border-radius: 8px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #feedback-modal-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--mist);
+    }
+
+    #feedback-modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity 0.2s ease;
+      padding: 0;
+    }
+    #feedback-modal-close:hover { opacity: 1; }
+    #feedback-modal-close svg {
+      width: 14px; height: 14px;
+      stroke: var(--mist); fill: none;
+      stroke-width: 2; stroke-linecap: round;
+    }
+
+    #feedback-input {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(122, 158, 142, 0.2);
+      border-radius: 4px;
+      color: var(--mist);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+      padding: 12px;
+      resize: none;
+      height: 120px;
+      outline: none;
+      caret-color: var(--sage);
+    }
+    #feedback-input::placeholder { color: var(--sage); opacity: 0.5; }
+    #feedback-input:focus { border-color: rgba(122, 158, 142, 0.5); }
+
+    #feedback-submit {
+      align-self: flex-end;
+      background: none;
+      border: 1px solid var(--sage);
+      color: var(--mist);
+      padding: 8px 24px;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #feedback-submit:hover {
+      background: var(--sage);
+      color: var(--ink);
+    }
+
+    #feedback-status {
+      font-family: var(--font-body);
+      font-weight: 300;
+      color: var(--sage);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      min-height: 1em;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+    }
+    #feedback-status.visible { opacity: 1; }
+
+    /* ── KOFI MODAL ── */
+    #kofi-trigger {
+      position: fixed;
+      bottom: 25px; right: 25px;
+      z-index: 20;
+      font-family: var(--font-body);
+      font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--sage);
+      opacity: 0.7;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    #kofi-trigger:hover { opacity: 1; }
+
+    #kofi-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(5, 8, 16, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #kofi-modal.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #kofi-modal-inner {
+      position: relative;
+      width: 420px;
+      max-height: 80vh;
+      overflow-y: auto;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #kofi-modal-close {
+      position: absolute;
+      top: 12px; right: 12px;
+      z-index: 10;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity 0.2s ease;
+      padding: 0;
+      line-height: 1;
+    }
+    #kofi-modal-close:hover { opacity: 1; }
+    #kofi-modal-close svg {
+      width: 16px; height: 16px;
+      stroke: var(--mist); fill: none;
+      stroke-width: 2; stroke-linecap: round;
+    }
   </style>
 </head>
 <body>
@@ -470,14 +653,53 @@
   </div>
 </div>
 
-<!--
-  THREE.JS must load before main.js because main.js imports modules
-  that reference THREE as a global. The defer attribute on main.js
-  ensures it runs after the DOM is ready but Three.js is already available.
+<button id="feedback-trigger">Share feedback</button>
 
-  Type="module" activates ES module imports — this is the key change
-  that makes the entire /js/ folder structure work.
--->
+<div id="feedback-modal">
+  <div id="feedback-modal-inner">
+    <button id="feedback-modal-close">
+      <svg viewBox="0 0 12 12">
+        <line x1="1" y1="1" x2="11" y2="11"/>
+        <line x1="11" y1="1" x2="1" y2="11"/>
+      </svg>
+    </button>
+    <p id="feedback-modal-title">Share feedback</p>
+    <textarea id="feedback-input" placeholder="suggest a spot, report a bug, say hello…"></textarea>
+    <button id="feedback-submit">Send</button>
+    <p id="feedback-status"></p>
+  </div>
+</div>
+
+<button id="kofi-trigger">Support this project</button>
+
+<div id="kofi-modal">
+  <div id="kofi-modal-inner">
+    <button id="kofi-modal-close">
+      <svg viewBox="0 0 12 12">
+        <line x1="1" y1="1" x2="11" y2="11"/>
+        <line x1="11" y1="1" x2="1" y2="11"/>
+      </svg>
+    </button>
+    <iframe src='https://ko-fi.com/evanehodson/?hidefeed=true&widget=true&embed=true&preview=true' 
+      style='border:none;width:100%;padding:4px;background:#f9f9f9;' 
+      height='712' 
+      title='Support iKnowASpot on Ko-fi'>
+    </iframe>
+  </div>
+</div>
+
+<script>
+  const $kofiTrigger = document.getElementById('kofi-trigger');
+  const $kofiModal   = document.getElementById('kofi-modal');
+  const $kofiClose   = document.getElementById('kofi-modal-close');
+
+  $kofiTrigger.addEventListener('click', () => $kofiModal.classList.add('visible'));
+  $kofiClose.addEventListener('click',   () => $kofiModal.classList.remove('visible'));
+  $kofiModal.addEventListener('click', e => {
+    if (e.target === $kofiModal) $kofiModal.classList.remove('visible');
+  });
+</script>
+
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <script type="module" src="js/main.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>

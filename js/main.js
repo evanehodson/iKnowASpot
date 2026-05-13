@@ -31,6 +31,8 @@ import {
   $loading, $loadingLabel, $errorMsg, $btnEnter, $loadDots,
   $sceneView, $sceneHud, $btnBack, $btnOpen, $tooltip,
   $siteHeader, $shuffleBtn, $searchWrap, $travelingTip, $traveling,
+  $feedbackTrigger, $feedbackModal, $feedbackClose,
+  $feedbackInput, $feedbackSubmit, $feedbackStatus
 } from './core/dom.js';
 
 import { loadSpots }                from './spots/loader.js';
@@ -41,7 +43,7 @@ import { initSearch }               from './search/search.js';
 import { initDrone, startDronePlayback, fadeDrone, resumeDrone } from './scene/drone.js';
 import { launchSpotVideo, destroyScenePlayer } from './scene/player.js';
 import { startHud, stopHud }        from './scene/hud.js';
-import { logEvent, logError } from './core/analytics.js';
+import { logEvent, logError, logFeedback } from './core/analytics.js';
 
 // Global error handlers — catch anything unhandled
 window.addEventListener('error', e => {
@@ -50,6 +52,46 @@ window.addEventListener('error', e => {
 
 window.addEventListener('unhandledrejection', e => {
   logError('unhandledrejection', e.reason?.message || String(e.reason));
+});
+
+// ── Feedback ──────────────────────────────────────────────────────────────────
+$feedbackTrigger.addEventListener('click', () => {
+  $feedbackModal.classList.add('visible');
+  setTimeout(() => $feedbackInput.focus(), 300);
+});
+
+$feedbackClose.addEventListener('click', () => $feedbackModal.classList.remove('visible'));
+
+$feedbackModal.addEventListener('click', e => {
+  if (e.target === $feedbackModal) $feedbackModal.classList.remove('visible');
+});
+
+$feedbackSubmit.addEventListener('click', async () => {
+  const message = $feedbackInput.value.trim();
+  if (!message) return;
+
+  $feedbackSubmit.style.pointerEvents = 'none';
+  await logFeedback(message);
+
+  // Shrink to just a thank you
+  $feedbackInput.style.display       = 'none';
+  $feedbackSubmit.style.display      = 'none';
+  document.getElementById('feedback-modal-title').style.display = 'none';
+  $feedbackStatus.textContent        = 'Thank you';
+  $feedbackStatus.classList.add('visible');
+
+  setTimeout(() => {
+    $feedbackModal.classList.remove('visible');
+    // Reset for next time
+    setTimeout(() => {
+      $feedbackInput.style.display  = '';
+      $feedbackSubmit.style.display = '';
+      document.getElementById('feedback-modal-title').style.display = '';
+      $feedbackInput.value          = '';
+      $feedbackStatus.classList.remove('visible');
+      $feedbackSubmit.style.pointerEvents = 'all';
+    }, 400);
+  }, 2000);
 });
 
 // ── Globe UI helpers ──────────────────────────────────────────────────────────

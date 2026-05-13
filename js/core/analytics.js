@@ -31,3 +31,18 @@ export async function logError(context, message) {
     });
   } catch (err) {}
 }
+
+export async function logFeedback(message) {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/feedback`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify({ message, session_id: SESSION_ID }),
+    });
+  } catch (err) {}
+}

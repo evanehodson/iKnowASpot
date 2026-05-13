@@ -20,6 +20,14 @@ export const $errorMsg     = document.getElementById('error-msg');
 export const $btnEnter = document.getElementById('btn-enter');
 export const $loadDots = document.getElementById('load-dots');
 
+// ── Feedback ──────────────────────────────────────────────────────────────────
+export const $feedbackTrigger = document.getElementById('feedback-trigger');
+export const $feedbackModal   = document.getElementById('feedback-modal');
+export const $feedbackClose   = document.getElementById('feedback-modal-close');
+export const $feedbackInput   = document.getElementById('feedback-input');
+export const $feedbackSubmit  = document.getElementById('feedback-submit');
+export const $feedbackStatus  = document.getElementById('feedback-status');
+
 // ── Globe canvas ──────────────────────────────────────────────────────────────
 export const $canvas       = document.getElementById('globe-canvas');
 
