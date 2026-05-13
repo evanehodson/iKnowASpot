@@ -1,6 +1,7 @@
 [
   {
     "name": "Lake Superior North Shore",
+    "tagline": "This couldn’t be just a lake. No real water was ever blue like that. - Dorothy Maywood Bird, Mystery at Laughing Water",
     "lat": 47.75,
     "lng": -90.2,
     "videoId": "IW5y8KML1AU",
@@ -26,6 +27,7 @@
   },
   {
     "name": "Grinnell Valley Headwaters Stream",
+    "tagline": "I’m in love with Montana. For other states I have admiration, respect, recognition, even some affection. But with Montana it is love. - John Steinbeck, Travels with Charley: In Search of America",
     "lat": 48.46,
     "lng": -113.4,
     "videoId": "My2dhQWo2WQ",
@@ -52,6 +54,7 @@
   },
   {
     "name": "Great Basin Glacial Valley",
+    "tagline": "look at Wheeler Peak / cliffs like suspended prayers / contemplate the cerulean / the gleaming limestone / the frozen shades / the wildflowers - Nathalie Handal, Accepting Heaven at Great Basin",
     "lat": 39,
     "lng": -114.22,
     "videoId": "A2eSVlS4-vw",

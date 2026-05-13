@@ -26,6 +26,8 @@ function normalise(raw) {
     lng:     parseFloat(raw.lng)  || 0,
     videoId: raw.videoId || '',
     url:     `https://www.youtube.com/watch?v=${raw.videoId || ''}`,
+    tagline: raw.tagline ? raw.tagline.split(' - ')[0].replace(/^"|"$/g, '') : '',
+    attribution: raw.tagline ? raw.tagline.split(' - ').slice(1).join(' - ')     : '',
     tags:    Array.isArray(raw.tags)    ? raw.tags    : [],
     tips:    Array.isArray(raw.tips)    ? raw.tips    : [],
     country: raw.country || '',

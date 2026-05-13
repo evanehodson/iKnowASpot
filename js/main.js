@@ -32,7 +32,7 @@ import {
   $sceneView, $sceneHud, $btnBack, $btnOpen, $tooltip,
   $siteHeader, $shuffleBtn, $searchWrap, $travelingTip, $traveling,
   $feedbackTrigger, $feedbackModal, $feedbackClose,
-  $feedbackInput, $feedbackSubmit, $feedbackStatus
+  $feedbackInput, $feedbackSubmit, $feedbackStatus, $kofiTrigger,
 } from './core/dom.js';
 
 import { loadSpots }                from './spots/loader.js';
@@ -100,12 +100,16 @@ function showGlobeUI() {
   $siteHeader.classList.remove('hidden');
   $shuffleBtn.classList.remove('hidden');
   $searchWrap.classList.remove('hidden');
+  $feedbackTrigger.classList.remove('hidden');
+  $kofiTrigger.classList.remove('hidden');
 }
 
 function hideGlobeUI() {
   $siteHeader.classList.add('hidden');
   $shuffleBtn.classList.add('hidden');
   $searchWrap.classList.add('hidden');
+  $feedbackTrigger.classList.add('hidden');
+  $kofiTrigger.classList.add('hidden');
 }
 
 // ── App ready check ───────────────────────────────────────────────────────────

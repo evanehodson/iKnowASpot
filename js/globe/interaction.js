@@ -54,9 +54,25 @@ export function initInteraction(camera) {
 
     const hit = hitTestSpots(e.clientX, e.clientY);
     if (hit) {
-      $canvas.style.cursor   = 'pointer';
-      state.hoveredSpot      = hit;
-      $tooltip.textContent   = hit.spot.name;
+      $canvas.style.cursor = 'pointer';
+      state.hoveredSpot = hit;
+
+      // 1. Prepare the multiline text (Replace / with newlines)
+      const multiLineQuote = hit.spot.tagline.split('/').map(s => s.trim()).join('\n');
+
+      // 2. Build the structure
+      // Note: We use textContent for the quote inside the div later to keep it safe
+      $tooltip.innerHTML = `
+        <div class="tooltip-card">
+          <div class="tooltip-name">${hit.spot.name}</div>
+          <div class="tooltip-quote"></div>
+          ${hit.spot.attribution ? `<div class="tooltip-attribution">— ${hit.spot.attribution}</div>` : ''}
+        </div>
+      `;
+
+      // 3. Inject the text safely into the empty div we just made
+      $tooltip.querySelector('.tooltip-quote').textContent = multiLineQuote;
+
       $tooltip.style.left    = e.clientX + 'px';
       $tooltip.style.top     = e.clientY + 'px';
       $tooltip.classList.add('visible');

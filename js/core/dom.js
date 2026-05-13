@@ -28,6 +28,9 @@ export const $feedbackInput   = document.getElementById('feedback-input');
 export const $feedbackSubmit  = document.getElementById('feedback-submit');
 export const $feedbackStatus  = document.getElementById('feedback-status');
 
+// ── Ko-fi ─────────────────────────────────────────────────────────────────────
+export const $kofiTrigger     = document.getElementById('kofi-trigger');
+
 // ── Globe canvas ──────────────────────────────────────────────────────────────
 export const $canvas       = document.getElementById('globe-canvas');
 
