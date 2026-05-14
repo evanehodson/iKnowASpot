@@ -247,11 +247,7 @@ async function boot() {
     state.spotsLoaded = true;
     
     initGlobe(state.spots);
-    initSearch();
-    
-    // Start the local drone immediately
-    initDrone(); 
-    
+    initSearch();    
     checkAppReady();
   } catch (err) {
     console.error('[iKnowASpot] Boot failed:', err);

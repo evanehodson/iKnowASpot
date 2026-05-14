@@ -118,8 +118,18 @@ export function launchSpotVideo(spot, isRetry = false) {
         try {
           e.target.setVolume(0);
           e.target.seekTo(45, true);
-        } catch (e) {}
-        e.target.playVideo();
+          e.target.playVideo();
+        } catch (err) {}
+
+        // Safari iOS sometimes needs a nudge — retry once after a short delay
+        // This stays within the gesture window if the tap was recent
+        setTimeout(() => {
+          try {
+            if (e.target.getPlayerState() !== YT.PlayerState.PLAYING) {
+              e.target.playVideo();
+            }
+          } catch (err) {}
+        }, 800);
       },
       onStateChange(e) {
         if (e.data === YT.PlayerState.PLAYING) {

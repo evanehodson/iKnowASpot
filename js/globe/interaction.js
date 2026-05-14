@@ -1,7 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // globe/interaction.js
-//
-// All user input on the globe canvas: drag-to-rotate, zoom, hover, click.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { state } from '../core/state.js';
@@ -33,6 +31,7 @@ let dragStartRotX = 0;
 export function initInteraction(camera) {
   _camera = camera;
 
+  // ── Mouse drag ────────────────────────────────────────────────────────────
   $canvas.addEventListener('mousedown', e => {
     state.isDragging  = false;
     dragStartX        = e.clientX;
@@ -43,6 +42,7 @@ export function initInteraction(camera) {
   });
 
   window.addEventListener('mousemove', e => {
+    if (e.pointerType === 'touch') return;
     const dx = e.clientX - dragStartX;
     const dy = e.clientY - dragStartY;
 
@@ -52,16 +52,12 @@ export function initInteraction(camera) {
       state.rotationX   = Math.max(-1.0, Math.min(1.0, dragStartRotX + dy * 0.005));
     }
 
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
     const hit = hitTestSpots(e.clientX, e.clientY);
-    if (hit) {
+    if (hit && !isTouchDevice) {
       $canvas.style.cursor = 'pointer';
       state.hoveredSpot = hit;
-
-      // 1. Prepare the multiline text (Replace / with newlines)
       const multiLineQuote = hit.spot.tagline.split('/').map(s => s.trim()).join('\n');
-
-      // 2. Build the structure
-      // Note: We use textContent for the quote inside the div later to keep it safe
       $tooltip.innerHTML = `
         <div class="tooltip-card">
           <div class="tooltip-name">${hit.spot.name}</div>
@@ -69,17 +65,14 @@ export function initInteraction(camera) {
           ${hit.spot.attribution ? `<div class="tooltip-attribution">— ${hit.spot.attribution}</div>` : ''}
         </div>
       `;
-
-      // 3. Inject the text safely into the empty div we just made
       $tooltip.querySelector('.tooltip-quote').textContent = multiLineQuote;
-
-      $tooltip.style.left    = e.clientX + 'px';
-      $tooltip.style.top     = e.clientY + 'px';
+      $tooltip.style.left = e.clientX + 'px';
+      $tooltip.style.top  = e.clientY + 'px';
       $tooltip.classList.add('visible');
     } else {
       if (!state.isDragging) $canvas.style.cursor = 'grab';
       state.hoveredSpot = null;
-      $tooltip.classList.remove('visible');
+      if (!isTouchDevice) $tooltip.classList.remove('visible');
     }
   });
 
@@ -89,13 +82,95 @@ export function initInteraction(camera) {
 
   $canvas.addEventListener('click', e => {
     if (state.isDragging) { state.isDragging = false; return; }
+    if (e.pointerType === 'touch') return;
     const hit = hitTestSpots(e.clientX, e.clientY);
     if (hit) emit('spot:enter', hit.index);
     state.isDragging = false;
   });
 
+  // ── Scroll zoom ───────────────────────────────────────────────────────────
   $canvas.addEventListener('wheel', e => {
     e.preventDefault();
     state.cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, state.cameraZ + e.deltaY * 0.002));
   }, { passive: false });
+
+  // ── Touch drag ────────────────────────────────────────────────────────────
+  let touchStartX = 0, touchStartY = 0;
+  let lastPinchDist = null;
+
+  $canvas.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) { lastPinchDist = null; return; }
+    touchStartX   = e.touches[0].clientX;
+    touchStartY   = e.touches[0].clientY;
+    dragStartRotY = state.rotationY;
+    dragStartRotX = state.rotationX;
+    state.isDragging = false;
+  }, { passive: true });
+
+  $canvas.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      const dx   = e.touches[0].clientX - e.touches[1].clientX;
+      const dy   = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (lastPinchDist !== null) {
+        state.cameraZ = Math.max(CAM_MIN, Math.min(CAM_MAX, state.cameraZ + (lastPinchDist - dist) * 0.008));
+      }
+      lastPinchDist = dist;
+      return;
+    }
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+      state.isDragging = true;
+      state.rotationY  = dragStartRotY + dx * 0.005;
+      state.rotationX  = Math.max(-1.0, Math.min(1.0, dragStartRotX + dy * 0.005));
+    }
+  }, { passive: true });
+
+  // ── Mobile sidebar ────────────────────────────────────────────────────────
+  const $sidebar       = document.getElementById('spot-sidebar');
+  const $sidebarName   = document.getElementById('sidebar-name');
+  const $sidebarQuote  = document.getElementById('sidebar-quote');
+  const $sidebarAttrib = document.getElementById('sidebar-attribution');
+  const $sidebarEnter  = document.getElementById('sidebar-enter');
+  const $sidebarClose  = document.getElementById('sidebar-close');
+
+  let pendingSpotEntry = null;
+
+  function openSidebar(hit) {
+    pendingSpotEntry = hit.index;
+    const multiLineQuote = hit.spot.tagline.split('/').map(s => s.trim()).join('\n');
+    $sidebarName.textContent   = hit.spot.name;
+    $sidebarQuote.textContent  = multiLineQuote;
+    $sidebarAttrib.textContent = hit.spot.attribution ? `— ${hit.spot.attribution}` : '';
+    $sidebar.classList.add('open');
+  }
+
+  function closeSidebar() {
+    $sidebar.classList.remove('open');
+    pendingSpotEntry = null;
+  }
+
+  $sidebarClose.addEventListener('click', closeSidebar);
+
+  $sidebarEnter.addEventListener('click', () => {
+    if (pendingSpotEntry === null) return;
+    const index = pendingSpotEntry;
+    closeSidebar();
+    emit('spot:enter', index);
+  });
+
+  $canvas.addEventListener('touchend', e => {
+    if (e.touches.length < 2) lastPinchDist = null;
+    if (!state.isDragging) {
+      const t   = e.changedTouches[0];
+      const hit = hitTestSpots(t.clientX, t.clientY);
+      if (hit) {
+        openSidebar(hit);
+      } else {
+        closeSidebar();
+      }
+    }
+    state.isDragging = false;
+  });
 }

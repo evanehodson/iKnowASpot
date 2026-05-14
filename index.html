@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>iKnowASpot</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,12 @@
     The visual output is identical to the original.
   -->
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     :root {
       --ink: #050810;
@@ -30,43 +35,6 @@
       width: 100%; height: 100%;
       background: var(--ink);
       overflow: hidden;
-    }
-
-    #mobile-gate {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: var(--ink);
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    #mobile-title {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      color: var(--mist);
-    }
-
-    #mobile-message {
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.12em;
-      color: var(--sage);
-      text-align: center;
-      line-height: 2;
-      opacity: 0.85;
-    }
-
-    @media (max-width: 1024px), (pointer: coarse) {
-      #mobile-gate {
-        display: flex;
-      }
     }
 
     #globe-canvas {
@@ -109,7 +77,7 @@
     /* ── SHUFFLE ── */
     #shuffle-btn {
       position: fixed; top: 25px; right: 70px;
-      z-index: 100;
+      z-index: 20;
       width: 36px; height: 36px;
       display: flex; align-items: center; justify-content: center;
       background: none; border: none; cursor: pointer;
@@ -594,13 +562,168 @@
       stroke: var(--mist); fill: none;
       stroke-width: 2; stroke-linecap: round;
     }
+
+    #portrait-gate {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--ink);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    #portrait-gate p {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--sage);
+      text-align: center;
+      line-height: 2;
+    }
+
+    @media (pointer: coarse) and (orientation: portrait) {
+      #portrait-gate { display: flex; }
+    }
+
+    #rotate-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+    }
+
+    #rotate-phone {
+      animation: rotate-cue 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      transform-origin: center;
+    }
+
+    @keyframes rotate-cue {
+      0%   { transform: rotate(0deg);   opacity: 1; }
+      40%  { transform: rotate(-90deg); opacity: 1; }
+      60%  { transform: rotate(-90deg); opacity: 1; }
+      85%  { transform: rotate(0deg);   opacity: 0.4; }
+      100% { transform: rotate(0deg);   opacity: 1; }
+    }
+
+    #spot-sidebar {
+      display: none;
+      position: fixed;
+      top: 0; right: 0;
+      width: 33vw;
+      height: 100%;
+      z-index: 80;
+      background: rgba(5, 8, 16, 0.92);
+      border-left: 1px solid rgba(122, 158, 142, 0.15);
+      backdrop-filter: blur(8px);
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem 1.5rem 2rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @media (pointer: coarse) {
+      #spot-sidebar { display: flex; }
+    }
+
+    #spot-sidebar.open {
+      transform: translateX(0);
+    }
+
+    #sidebar-close {
+      position: absolute;
+      top: 1.2rem; left: 1.2rem;
+      background: none; border: none;
+      cursor: pointer; padding: 0;
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+    #sidebar-close:hover { opacity: 1; }
+    #sidebar-close svg { width: 12px; height: 12px; }
+
+    #sidebar-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    #sidebar-name {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--mist);
+      line-height: 1.4;
+    }
+
+    #sidebar-quote {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--mist);
+      line-height: 1.7;
+      opacity: 0.7;
+      white-space: pre-line;
+    }
+
+    #sidebar-attribution {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.06em;
+      color: var(--sage);
+      opacity: 0.55;
+      line-height: 1.5;
+    }
+
+    #sidebar-enter {
+      background: none;
+      border: 1px solid var(--sage);
+      color: var(--mist);
+      padding: 10px;
+      width: 100%;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #sidebar-enter:hover {
+      background: var(--sage);
+      color: var(--ink);
+    }
+
+    @media (pointer: coarse) {
+      #site-title {
+        font-size: 1.2rem;
+      }
+
+      #site-tagline {
+        font-size: 0.62rem;
+        max-width: 28ch;
+      }
+    }
   </style>
 </head>
 <body>
 
-<div id="mobile-gate">
-  <p id="mobile-title">iKnowASpot</p>
-  <p id="mobile-message">Built for desktop only</p>
+<div id="portrait-gate">
+  <div id="rotate-hint">
+    <svg id="rotate-phone" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7a9e8e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="7" y="2" width="10" height="18" rx="2"/>
+      <path d="M12 17h.01"/>
+    </svg>
+  </div>
+  <p>rotate to landscape<br>to enter</p>
 </div>
 
 <div id="site-header">
@@ -731,6 +854,21 @@
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <script type="module" src="js/main.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
+
+<div id="spot-sidebar">
+  <button id="sidebar-close">
+    <svg viewBox="0 0 12 12" fill="none" stroke="#7a9e8e" stroke-width="2" stroke-linecap="round">
+      <line x1="1" y1="1" x2="11" y2="11"/>
+      <line x1="11" y1="1" x2="1" y2="11"/>
+    </svg>
+  </button>
+  <div id="sidebar-content">
+    <div id="sidebar-name"></div>
+    <div id="sidebar-quote"></div>
+    <div id="sidebar-attribution"></div>
+  </div>
+  <button id="sidebar-enter">Enter</button>
+</div>
 
 </body>
 </html>
