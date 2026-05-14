@@ -79,6 +79,7 @@ export function destroyScenePlayer() {
  * @param {boolean} [isRetry] - true on the second attempt
  */
 export function launchSpotVideo(spot, isRetry = false) {
+  window.dbg?.('launchSpotVideo start, videoId=' + spot.videoId + ' retry=' + isRetry);
   destroyScenePlayer();
 
   const target = document.createElement('div');
@@ -115,6 +116,7 @@ export function launchSpotVideo(spot, isRetry = false) {
     },
     events: {
       onReady(e) {
+        window.dbg?.('YT onReady fired');
         try {
           e.target.setVolume(0);
           e.target.seekTo(45, true);
@@ -132,6 +134,7 @@ export function launchSpotVideo(spot, isRetry = false) {
         }, 800);
       },
       onStateChange(e) {
+        window.dbg?.('YT stateChange=' + e.data);
         if (e.data === YT.PlayerState.PLAYING) {
           if (!audioFadeStarted) { audioFadeStarted = true; fadeInAudio(); }
           reveal();
@@ -142,6 +145,7 @@ export function launchSpotVideo(spot, isRetry = false) {
         }
       },
       onError() {
+        window.dbg?.('YT error=' + e.data);
         clearTimeout(state.travelTimeoutTimer);
         if (!isRetry) launchSpotVideo(spot, true);
         else emit('spot:exit');

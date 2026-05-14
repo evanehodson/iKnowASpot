@@ -45,6 +45,16 @@ import { launchSpotVideo, destroyScenePlayer } from './scene/player.js';
 import { startHud, stopHud }        from './scene/hud.js';
 import { logEvent, logError, logFeedback } from './core/analytics.js';
 
+function dbg(msg) {
+  const el = document.getElementById('debug-log');
+  if (!el) return;
+  const line = document.createElement('div');
+  line.textContent = `${Date.now() % 100000}: ${msg}`;
+  el.appendChild(line);
+  el.scrollTop = el.scrollHeight;
+}
+window.dbg = dbg;
+
 // Global error handlers — catch anything unhandled
 window.addEventListener('error', e => {
   logError('uncaught', `${e.message} @ ${e.filename}:${e.lineno}`);
@@ -152,6 +162,9 @@ $btnEnter.addEventListener('click', handleAppStart);
 // ── Spot navigation ───────────────────────────────────────────────────────────
 
 function enterSpot(index, log = true) {
+  dbg('enterSpot called, index=' + index);
+  const spot = state.spots[index];
+  dbg('spot=' + spot?.name + ' ytApiReady=' + state.ytApiReady);
   const spot = state.spots[index];
   if (log) logEvent('spot:enter', spot.name, index);
   state.currentSpotIndex = index;
@@ -175,7 +188,9 @@ function enterSpot(index, log = true) {
       ? tips[Math.floor(Math.random() * tips.length)]
       : spot.name;
     $traveling.classList.add('visible');
+    dbg('touch path — calling launchSpotVideo');
     launchSpotVideo(spot);
+    dbg('launchSpotVideo called');
     return;
   }
 
