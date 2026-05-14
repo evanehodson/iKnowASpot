@@ -55,6 +55,10 @@ function dbg(msg) {
 }
 window.dbg = dbg;
 
+document.getElementById('sidebar-enter')?.addEventListener('click', () => {
+  dbg('sidebar-enter raw click fired');
+});
+
 // Global error handlers — catch anything unhandled
 window.addEventListener('error', e => {
   logError('uncaught', `${e.message} @ ${e.filename}:${e.lineno}`);
