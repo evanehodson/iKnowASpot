@@ -164,6 +164,21 @@ function enterSpot(index, log = true) {
   hideGlobeUI();
   fadeDrone(0, 1200);
 
+  // On touch devices, call launchSpotVideo immediately within the gesture
+  // window, before any timeouts or async gaps drop Safari's autoplay grant
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (isTouchDevice) {
+    pauseGlobe();
+    $sceneView.classList.add('active');
+    const tips = spot.tips || [];
+    $travelingTip.textContent = tips.length
+      ? tips[Math.floor(Math.random() * tips.length)]
+      : spot.name;
+    $traveling.classList.add('visible');
+    launchSpotVideo(spot);
+    return;
+  }
+
   setTimeout(() => {
     fadeToBlack(() => {
       pauseGlobe();
